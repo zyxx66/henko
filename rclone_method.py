@@ -2,7 +2,7 @@ import os
 
 raspberry_code_path = '/home/pi/Documents/test/zyxx/'
 gdrive_code_path = 'gdrive_taka:偏光測定器_コード/zyxx/'
-
+raspberry_data_path = '/home/pi/Documents/test'
 # パソコンにあるソースコードの居場所
 pc_code_path = 'D:/pythonProject/偏光測定器_コード/'
 
@@ -14,7 +14,7 @@ for name in os.popen('rclone ls %s' % gdrive_code_path).read().split('\n'):
 
 
 # ファイルを更新する　メソッド
-def refresh(source_path, target_path):
+def update(source_path, target_path):
     os.system('rclone sync %s %s -P' % (source_path, target_path))
 
 

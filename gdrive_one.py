@@ -1,19 +1,33 @@
 import os
+import rclone_method
 
-for file_name in os.listdir("/home/pi/Documents/test/unryo"):
-    file_name_split = file_name.split('-')
-    file_name_year = file_name_split[0]
-    file_name_mounth = file_name_split[1]
-    file_name_day = file_name_split[2].split('.')[0]
-    os.system("rclone copy %s gdrive_taka:%s -P" % ("/home/pi/Documents/test/unryo/" + file_name,
-                                                    "/偏光測定器_雲量データ/%s年/%s月/%s日/" % (
-                                                    file_name_year, file_name_mounth, file_name_day)))
 
-for file_name in os.listdir("/home/pi/Documents/test/filetest"):
-    file_name_split = file_name.split('-')
-    file_name_year = file_name_split[0]
-    file_name_mounth = file_name_split[1]
-    file_name_day = file_name_split[2].split('.')[0]
-    os.system("rclone copy %s gdrive_taka:%s -P" % ("/home/pi/Documents/test/filetest/" + file_name,
-                                                    "/偏光測定器_照度データ/%s年/%s月/%s日/" % (
-                                                    file_name_year, file_name_mounth, file_name_day)))
+def pass_2(source_path, suffix):
+    for file in os.listdir(source_path):
+        if file.endswith(suffix):
+            file_split = file.split('-')
+            print(file_split)
+            file_year = file_split[0]
+            file_month = file_split[1]
+            file_day = file_split[2]
+            print('year = %s mounth = %s day = %s' % (file_year, file_month, file_day))
+
+        if suffix == '.csv':
+            pass
+
+
+# 雲量データをアップロードする
+path_unryo = rclone_method.raspberry_data_path + '/unryo'
+pass_2(path_unryo, '.csv')
+
+# 照度データをアップロードする
+path_syodo = rclone_method.raspberry_data_path + '/filetest'
+pass_2(path_syodo, '.csv')
+
+# 写真をアップロードする
+path_photo = rclone_method.raspberry_data_path + '/tp'
+pass_2(path_photo, '.jpg')
+
+# 二値化写真をアップロードする
+path_photo_2 = rclone_method.raspberry_data_path + '/bw'
+pass_2(path_photo_2, 'jpg')
