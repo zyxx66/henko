@@ -1,27 +1,24 @@
 # **********************************************************
 # 実行すると当日の測定データと写真をgoogle driveにアップロードする
+# 大嶋研にあるラズベリーパイは毎日　18時40分　このプログラミングを実行すると設定している
 # **********************************************************
 import os
-import requests
 import time
 import rclone_method
 
 # 今日の日時を取得する
 time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
 
-# --------------------------
+# ---------debug-----------
 # debug用,削除しても構いません
-# debugをする前に、各フォルダに 9999-99-99.csv　見たいなファイルを作成してください
+# debugをする前に、各フォルダに 9999-99-99.jpg 9999-99-99.csv　見たいなファイルを作成してください
 # time_local = '9999-99-99'
-# ---------------------------
+# -------------------------
 
 time_local_year = time_local[0:4]
 time_local_mounth = time_local[5:7]
 time_local_day = time_local[8:10]
 
-# LINE notift機能に関する情報
-# f219030
-# token = "qsI16BJFqnoajg7ci1vxDlhxx84AKZp0r3C4b0YV5pO"
 
 # ファイルの数を数えるため
 file_amount = 0
