@@ -10,7 +10,7 @@
 ２．git pull
 ```
 プログラミングにあるファイルをすべて更新する
-## 2.使用方法
+## 2.実行方法
 ```
 python3 ファイル位置
 例： python3 /home/pi/Documents/test/test1.py
