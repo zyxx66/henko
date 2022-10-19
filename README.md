@@ -20,7 +20,7 @@ python3 ファイル位置
 毎日18時40分実行しているプログラミングである。<br>
 動作：当日の測定結果（写真とデータ）を google driveにアップロードする<br>
 ## 2.rclone_method  [rclone_method](rclone_method.py)
-説明文書
+メインです、これを必ずダウンロードしてください。
 ## 3.gdrive_one [gdrive_one](gdrive_one.py)
 説明文書
 ## 4.create_graph [create_graph](create_graph)
