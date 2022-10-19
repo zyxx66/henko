@@ -22,6 +22,7 @@ python3 ファイル位置
 ## 2.[rclone_method](rclone_method.py)
 メインです、これを必ずダウンロードしてください。
 ## 3.[gdrive_one](gdrive_one.py)
-説明文書
+停電または不具合があれば、自動的にアップロードできなかったデータをアップロードする<br>
+動作：一定時間内のデータをアップロードする<br>
 ## 4.[create_graph](create_graph)
 未完成
