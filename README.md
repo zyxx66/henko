@@ -7,8 +7,8 @@
 # 各プログラミングの説明
 ## 1.gdrive  [gdrive](gdrive.py)
 ```
-毎日***18時40分***実行しているプログラミングである。<br>
-動作：当日の測定結果（写真とデータ）を google driveにアップロードする<br>
+毎日18時40分実行しているプログラミングである。
+動作：当日の測定結果（写真とデータ）を google driveにアップロードする
 ```
 ## 2.rclone_method  [rclone_method](rclone_method.py)
 ```
