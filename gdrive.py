@@ -4,6 +4,7 @@
 import os
 import requests
 import time
+import rclone_method
 
 # 今日の日時を取得する
 time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
@@ -24,17 +25,6 @@ time_local_day = time_local[8:10]
 
 # ファイルの数を数えるため
 file_amount = 0
-
-token = "qsI16BJFqnoajg7ci1vxDlhxx84AKZp0r3C4b0YV5pO"
-
-headers = {"Authorization": "Bearer " + token}
-line_notify_url = "https://notify-api.line.me/api/notify"
-
-
-# LINEに通知する機能
-def line_send_message(message):
-    data = {'message': message}
-    requests.post(line_notify_url, headers=headers, data=data)
 
 
 def upload_to_gdrive(source_path, suffix, target_path):
@@ -82,4 +72,4 @@ if __name__ == '__main__':
     upload_to_gdrive("/home/pi/Documents/test/unryo", "csv",
                      "/偏光測定器\u3000データ/%s年/%s月/%s日" % (time_local_year, time_local_mounth, time_local_day))
 
-    line_send_message("本日( %s )\n %s個 \n のファイルをアップロードしました。" % (time_local, file_amount))
+    rclone_method.line_send_message("本日( %s )\n %s個 \n のファイルをアップロードしました。" % (time_local, file_amount))

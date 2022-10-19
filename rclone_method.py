@@ -1,4 +1,5 @@
 import os
+import requests
 
 raspberry_code_path = '/home/pi/Documents/test/zyxx/'
 gdrive_code_path = 'gdrive_taka:偏光測定器_コード/zyxx/'
@@ -27,6 +28,16 @@ def upload(source_path, target_path):
 def delete(source_path):
     os.system('rclone delete %s' % (source_path))
 
+token = "qsI16BJFqnoajg7ci1vxDlhxx84AKZp0r3C4b0YV5pO"
+
+headers = {"Authorization": "Bearer " + token}
+line_notify_url = "https://notify-api.line.me/api/notify"
+
+
+# LINEに通知する機能
+def line_send_message(message):
+    data = {'message': message}
+    requests.post(line_notify_url, headers=headers, data=data)
 
 if __name__ == '__main__':
     for file in os.listdir(pc_code_path):
