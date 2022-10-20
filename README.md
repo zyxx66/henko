@@ -7,12 +7,14 @@
 ```
 を実行すると、すべてのファイルをラズベリーパイにダウンロードすることができる。
 ```
-２．git pull
+２．
+cd /home/pi/Documents/test/zyxx
+git pull
 ```
-プログラミングにあるファイルをすべて更新する
+zyxxフォルダにあるファイルを更新する.
 ## 2.実行方法
 ```
-python3 ファイル位置
+python3 <ファイル位置>
 例： python3 /home/pi/Documents/test/test1.py
 ```
 # 各プログラミングの説明
