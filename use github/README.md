@@ -14,7 +14,7 @@ cd /home/pi/Documents/test/zyxx
 git pull
 ```
 と同じです
-##be careful
+## be careful
 ```
 git pull
 ```
