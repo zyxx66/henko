@@ -21,14 +21,14 @@ git pull
 はどこでも実行できるではない！ <br>
 区別として、
 
-フォルダに移動せずに、直接実行すると
-![img.png](img.png)
+フォルダに移動せずに、直接実行すると<br>
+![img.png](img.png)<br>
 になる
 
 フォルダに移動して
 ```
 cd /home/pi/Documents/test/zyxx
 ```
-git pullを実行すると
-![img_1.png](img_1.png)
+git pullを実行すると<br>
+![img_1.png](img_1.png)<br>
 このように、成功。
