@@ -23,10 +23,9 @@ raspberry_source_path = [[rd + 'bw', '.jpg'],
 def gdrive_once(source_path, suffix):
     for time in upload_date:
         for file in os.listdir(source_path):
-            if time in file:
+            if str(time) in file:
                 if suffix == '.csv':
                     pass
-                    break
 
                 if file.endswith(suffix):
                     file_split = file.split('-')
