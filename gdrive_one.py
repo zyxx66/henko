@@ -29,7 +29,6 @@ def gdrive_once(source_path, suffix):
 
                 if file.endswith(suffix):
                     file_split = file.split('-')
-                    print(file_split)
                     file_year = file_split[0]
                     file_month = file_split[1]
                     file_day = file_split[2].split('.')[0]
