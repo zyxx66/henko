@@ -46,23 +46,23 @@ def update_to_gdrive(source_path, suffix, target_path):
 
 if __name__ == '__main__':
     # 本日の写真をアップロードする
-    upload_to_gdrive("/home/pi/Documents/test/tp", "jpg",
+    update_to_gdrive("/home/pi/Documents/test/tp", "jpg",
                      "/偏光測定器\u3000データ/%s年/%s月/%s日/" % (time_local_year, time_local_mounth, time_local_day))
 
     # 本日の二値化図をアップロードする
-    upload_to_gdrive("/home/pi/Documents/test/bw", "jpg",
+    update_to_gdrive("/home/pi/Documents/test/bw", "jpg",
                      "/偏光測定器\u3000データ/%s年/%s月/%s日" % (time_local_year, time_local_mounth, time_local_day))
 
     # 本日の照度データをアップロードする
-    upload_to_gdrive("/home/pi/Documents/test/filetest", "csv",
+    update_to_gdrive("/home/pi/Documents/test/filetest", "csv",
                      "/偏光測定器_照度データ/%s年/%s月" % (time_local_year, time_local_mounth))
-    upload_to_gdrive("/home/pi/Documents/test/filetest", "csv",
+    update_to_gdrive("/home/pi/Documents/test/filetest", "csv",
                      "/偏光測定器\u3000データ/%s年/%s月/%s日" % (time_local_year, time_local_mounth, time_local_day))
 
     # 本日の雲量データをアップロードする
-    upload_to_gdrive("/home/pi/Documents/test/unryo", "csv",
+    update_to_gdrive("/home/pi/Documents/test/unryo", "csv",
                      "/偏光測定器_雲量データ/%s年/%s月" % (time_local_year, time_local_mounth))
-    upload_to_gdrive("/home/pi/Documents/test/unryo", "csv",
+    update_to_gdrive("/home/pi/Documents/test/unryo", "csv",
                      "/偏光測定器\u3000データ/%s年/%s月/%s日" % (time_local_year, time_local_mounth, time_local_day))
 
     rclone_method.line_send_message("本日( %s )\n %s個 \n のファイルをアップロードしました。" % (time_local, file_amount))

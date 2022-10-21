@@ -29,6 +29,11 @@ python3 <ファイル位置>
 指定期間の測定結果をgoogle driveにアップロードするプログラミングである。<br>
 停電または不具合があれば、自動的にアップロードできなかったデータをアップロードする<br>
 動作：一定時間内のデータをアップロードする<br>
-## 4.[create_graph](create_graph)
+## 4.[create_graph](create_graph.py)
 測定データをグラフ化するプログラミング<br>
 未完成(2022-10-19)<br>
+## 5.[csv_update_to_gdrive](csv_update_to_gdrive.py)
+今まですべてのcsvファイルを　google drive　にある<偏光測定器_照度データ>と<偏光測定器_雲量データ>フォルダにアップロードする。
+```
+rclone sync （省略）を使用している
+```
