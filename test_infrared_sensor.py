@@ -133,6 +133,7 @@ for i in range(37):
         print('--------------------------')
     elif (lux1 < lux2) :
         print(lux2)
+        file.write(str(lux2) + ',' + str(adc[0]) + ',' + str(adc[1]))
         print('--------------------------')
     time.sleep(0.2)
     if i == 36:
