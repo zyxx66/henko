@@ -139,6 +139,6 @@ for i in range(37):
         angle(-90)
         file.write('\n')
         GPIO.cleanup()
-    
+file.close()
     
     
