@@ -129,11 +129,11 @@ for i in range(37):
     elif (lux1 > lux2) :
         k += 1
         print(lux1)
-        file.write(str(lux1)+','+str(adc[0])+','+str(adc[1]))
+        file.write(str(lux1)+','+str(adc[0])+','+str(adc[1])+'\n')
         print('--------------------------')
     elif (lux1 < lux2) :
         print(lux2)
-        file.write(str(lux2) + ',' + str(adc[0]) + ',' + str(adc[1]))
+        file.write(str(lux2) + ',' + str(adc[0]) + ',' + str(adc[1])+'\n')
         print('--------------------------')
     time.sleep(0.2)
     if i == 36:
