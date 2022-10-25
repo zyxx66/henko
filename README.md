@@ -37,7 +37,7 @@ python3 <ファイル位置>
 ```
 rclone sync （省略）を使用している
 ```
-##6.[test_infrared_sensor](test_infrared_sensor.py)
+## 6.[test_infrared_sensor](test_infrared_sensor.py)
 モーターを5度ずつ回しながらデータを読み取るプログラムである。<br>
 赤外線照度(60%完成)、自然光と赤外線照度(60%完成)、
 未完成理由：検証していない<br>
