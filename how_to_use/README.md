@@ -33,8 +33,8 @@ sudo date --set='2022/10/26 17:40:30'
 ### 2.3 Wifi設定
 参照ページ：http://igarashi-systems.com/sample/translation/raspberry-pi/configuration/wireless-cli.html <br>
 
-ラズベリーパイをWiFiに繋ぐと、puttyまたはvncが使えるようになるから<br>
-測定器はWiFiに依存しないから、puttyまたはvncを使う予定がない場合、WiFiにつながらなくても大丈夫です。<br>
+ラズベリーパイをWiFiに繋ぐと、puttyまたはvncが使えるようになる<br>
+測定器はWiFiに依存しないので、puttyまたはvncなどの使う予定がない場合、WiFiにつながらなくても大丈夫です。<br>
 
 繋ぐ方法：<br>
 先に![img_5.png](img_5.png)をクリックしてください。
