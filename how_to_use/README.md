@@ -60,27 +60,24 @@ network={
 ## 3.実験
 ### 3.1実験装置を設置する
 ### 3.2実験に関するプログラム
-画面にある「henko.py」をダブルクリックしてください<br>すると以下のようになる
+デスクトップにある「henko.py」をダブルクリックすると以下のようになる
 ![img_2.png](img_2.png)
-測定装置の設置が終わったら
-<br>上にある「Run」![img_3.png](img_3.png)をクリックしてください。<br>
-すると、測定が始まります。
+測定装置の設置が終わったら 、上にある「Run」![img_3.png](img_3.png)をクリックすると、測定が始まります。
+
 <br>測定が終わったら、ファイルの保存場所は以下のように示す。(保存場所は変更可能)
 ```
 /home/pi/result/
 ```
-図で表すと、
-![img_4.png](img_4.png)<br>
 ### 3.3 ファイル名、保存場所変更
 プログラムの26~28行
 ```
 #保存場所
-result_path = '/home/pi/henko/result/'
+result_path = '/home/pi/result/'
 
 #今の時間を調べる
 time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
 
-#ファイル名は 「今の時間.csv」　になる
+#保存場所とファイル名 csv_file は 「/home/pi/result/今の時間.csv」　になる
 csv_file = result_path + '%s.csv' % time_local
 ```
 を変えたらファイル名または保存場所が変わる。
