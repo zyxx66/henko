@@ -62,7 +62,7 @@ time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
 csv_file = '/home/pi/henko/result/%s.csv' % time_local
 file = open(csv_file, 'a')
 file.write(time_local + ',,,' + time.strftime('%H:%M:%S', time.localtime(
-    time.time())) + '\n' + 'henko(LUX),CH0,CH1,LUX1,LUX2\n')
+    time.time())) + '\n' + 'angle(°),henko(LUX),CH0,CH1,LUX1,LUX2\n')
 
 
 def initTSL2572():
@@ -137,11 +137,11 @@ for i in range(37):
     elif (lux1 > lux2):
         k += 1
         print(lux1)
-        file.write(str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(lux2) + ',' + '\n')
+        file.write(str(5*i)+','+str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(lux2) + ',' + '\n')
         print('--------------------------')
     elif (lux1 < lux2):
         print(lux2)
-        file.write(str(lux2) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(lux2) + ',' + '\n')
+        file.write(str(5*i)+','+str(lux2) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(lux2) + ',' + '\n')
         print('--------------------------')
     time.sleep(0.2)
     if i == 36:
