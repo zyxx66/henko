@@ -123,7 +123,7 @@ for i in range(37):
     time.sleep(0.1)
     tcaselect(0)
     adc = getTSL2572adc()
-    print("sekigai + sizen = %s" % adc[0])
+    print("sekigai + kasiko = %s" % adc[0])
     print("sekigai = %s" % adc[1])
     cpl = 0.0
     lux1 = 0.0
