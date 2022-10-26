@@ -86,7 +86,8 @@ csv_file = result_path + '%s.csv' % time_local
 /home/pi/test_zyxx/henko.py
 ```
 
-2.測定が遅い？
+2.測定が遅い？<br>
+
 105行と150行
 ```
     time.sleep(0.2)
