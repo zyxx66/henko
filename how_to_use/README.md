@@ -19,24 +19,40 @@
 ![img_1.png](img_1.png)
 ### 2.2時間設定(時間が合わない場合)
 設定方法:<br>
-先に![img_5.png](img_5.png)をクリックしてください。<br>
+先に上にある![img_5.png](img_5.png)をクリックしてください。<br>
+以下のコードを入力してください。
 ```
 sudo date --set='yyyy/mm/dd hh:mm:ss'
 ----------------------------------------
 2022/10/26 17:40:30　を例として
 sudo date --set='2022/10/26 17:40:30'
 ```
-![img_6.png](img_6.png)
-入力したら、エンターキーををしてください。
+![img_6.png](img_6.png)<br>
+入力したら、エンターキーををしてください。<br>
+以上、時間設定完了
+### 2.3 Wifi設定
+参照ページ：http://igarashi-systems.com/sample/translation/raspberry-pi/configuration/wireless-cli.html <br>
 
-WiFiをつないでください<br>
-繋ぐ方法について<br>
+ラズベリーパイをWiFiに繋ぐと、puttyまたはvncが使えるようになるから、使う予定がない場合、これを無視してください。<br>
+
+繋ぐ方法：<br>
 先に![img_5.png](img_5.png)をクリックしてください。
 
 ```
 sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
 ```
-### 2.1モニターと接続している場合
+を実行して、ファイルの一番下まで行き、次を追加してください。
+```
+network={
+    ssid="WiFiのネットワーク名"
+    psk="WiFiのパスワード"
+}
+```
+次に、ctrl+xを押してからyを押し、最後にenterを押してファイルを保存してください。<br>
+保存したら、ラズベリーパイを再起動してください。
+## 3.実験
+### 3.1装置を設置する
+### 3.2実験に関するプログラム
 画面にある「henko.py」をダブルクリックして<br>すると以下のようになる
 ![img_2.png](img_2.png)
 測定装置の設置が終わったら
@@ -48,6 +64,3 @@ sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
 ```
 図で表すと、
 ![img_4.png](img_4.png)<br>
-
-### 2.2 puttyを利用する場合
-### 2.3 vncを利用する場合
