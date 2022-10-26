@@ -22,6 +22,15 @@ GPIO.setup(gp_out, GPIO.OUT)
 motor = GPIO.PWM(gp_out, 50)
 motor.start(0.0)
 
+# 結果保存する場所
+result_path = '/home/pi/henko/result/'
+
+time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
+csv_file = result_path + '%s.csv' % time_local
+file = open(csv_file, 'a')
+file.write(time_local + ',,,' + time.strftime('%H:%M:%S', time.localtime(
+    time.time())) + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
+
 i2c = smbus.SMBus(1)
 
 # TSL2572 Register Set
@@ -57,12 +66,6 @@ TSL2572_C1DATAH = 0x17
 # TSL2572 setings
 atime = 0xC0
 gain = 1.0
-
-time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
-csv_file = '/home/pi/henko/result/%s.csv' % time_local
-file = open(csv_file, 'a')
-file.write(time_local + ',,,' + time.strftime('%H:%M:%S', time.localtime(
-    time.time())) + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
 
 
 def initTSL2572():
@@ -103,6 +106,10 @@ def angle(angle):
     time.sleep(0.3)
 
 
+# TCA9548Aに関する設定
+# tcaselect(0)の意味は：SD0はSDAと繋ぐ、SC0はSCAと繋ぐ
+tcaselect(0)
+# モーターを-90の所に戻す
 angle(-90)
 
 if (initTSL2572() != 0):
@@ -121,7 +128,6 @@ sum = 0
 for i in range(37):
     angle((i - 18) * 5)
     time.sleep(0.1)
-    tcaselect(0)
     adc = getTSL2572adc()
     print("sekigai + kasiko = %s" % adc[0])
     print("sekigai = %s" % adc[1])
@@ -137,11 +143,13 @@ for i in range(37):
     elif (lux1 > lux2):
         k += 1
         print(lux1)
-        file.write(str(5*i)+','+str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(lux2) + ',' + '\n')
+        file.write(str(5 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
+            lux2) + ',' + '\n')
         print('--------------------------')
     elif (lux1 < lux2):
         print(lux2)
-        file.write(str(5*i)+','+str(lux2) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(lux2) + ',' + '\n')
+        file.write(str(5 * i) + ',' + str(lux2) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
+            lux2) + ',' + '\n')
         print('--------------------------')
     time.sleep(0.2)
     if i == 36:
