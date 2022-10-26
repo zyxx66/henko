@@ -34,7 +34,7 @@ sudo date --set='2022/10/26 17:40:30'
 参照ページ：http://igarashi-systems.com/sample/translation/raspberry-pi/configuration/wireless-cli.html <br>
 
 ラズベリーパイをWiFiに繋ぐと、puttyまたはvncが使えるようになるから<br>
-測定器はWiFiに依存しないから、puttyまたはvncを使う予定がない場合、WiFiにつながらなくても大丈夫。<br>
+測定器はWiFiに依存しないから、puttyまたはvncを使う予定がない場合、WiFiにつながらなくても大丈夫です。<br>
 
 繋ぐ方法：<br>
 先に![img_5.png](img_5.png)をクリックしてください。
@@ -54,7 +54,7 @@ network={
 ## 3.実験
 ### 3.1実験装置を設置する
 ### 3.2実験に関するプログラム
-画面にある「henko.py」をダブルクリックして<br>すると以下のようになる
+画面にある「henko.py」をダブルクリックしてください<br>すると以下のようになる
 ![img_2.png](img_2.png)
 測定装置の設置が終わったら
 <br>上にある「Run」![img_3.png](img_3.png)をクリックしてください。<br>
@@ -65,3 +65,23 @@ network={
 ```
 図で表すと、
 ![img_4.png](img_4.png)<br>
+### 3.3 ファイル名、保存場所変更
+プログラムの26~28行
+```
+#保存場所
+result_path = '/home/pi/henko/result/'
+
+#今の時間を調べる
+time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
+
+#ファイル名は 「今の時間.csv」　になる
+csv_file = result_path + '%s.csv' % time_local
+```
+を変えたらファイル名または保存場所が変わる。
+
+### 3.4その他
+プログラムはバックアップ済みなので、ご自由に編集してください。
+バックアップ場所:
+```
+/home/pi/test_zyxx/henko.py
+```
