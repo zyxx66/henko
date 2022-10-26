@@ -19,7 +19,7 @@
 ![img_1.png](img_1.png)
 ### 2.2時間設定(時間が合わない場合)
 設定方法:<br>
-先に上にある![img_5.png](img_5.png)をクリックしてください。<br>
+上にある![img_5.png](img_5.png)をクリックしてください。<br>
 以下のコードを入力してください。
 ```
 sudo date --set='yyyy/mm/dd hh:mm:ss'
@@ -28,12 +28,13 @@ sudo date --set='yyyy/mm/dd hh:mm:ss'
 sudo date --set='2022/10/26 17:40:30'
 ```
 ![img_6.png](img_6.png)<br>
-入力したら、エンターキーををしてください。<br>
+入力したら、エンターキーををしてください(実行する)。<br>
 以上、時間設定完了
 ### 2.3 Wifi設定
 参照ページ：http://igarashi-systems.com/sample/translation/raspberry-pi/configuration/wireless-cli.html <br>
 
-ラズベリーパイをWiFiに繋ぐと、puttyまたはvncが使えるようになるから、使う予定がない場合、これを無視してください。<br>
+ラズベリーパイをWiFiに繋ぐと、puttyまたはvncが使えるようになるから<br>
+測定器はWiFiに依存しないから、puttyまたはvncを使う予定がない場合、WiFiにつながらなくても大丈夫。<br>
 
 繋ぐ方法：<br>
 先に![img_5.png](img_5.png)をクリックしてください。
