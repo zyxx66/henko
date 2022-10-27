@@ -28,7 +28,7 @@ sudo date --set='yyyy/mm/dd hh:mm:ss'
 sudo date --set='2022/10/26 17:40:30'
 ```
 ![img_6.png](img_6.png)<br>
-入力したら、エンターキーををしてください(実行する)。<br>
+入力したら、エンターキーを押してください(実行する)。<br>
 以上、時間設定完了
 ### 2.3 Wifi設定
 参照ページ：http://igarashi-systems.com/sample/translation/raspberry-pi/configuration/wireless-cli.html <br>
