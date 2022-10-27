@@ -135,6 +135,9 @@ for i in range(37):
     time.sleep(0.01)
     if ((lux1 <= 0) and (lux2 <= 0)):
         print("0 Lx")
+        file.write(str(5 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
+            lux2) + ',' + '\n')
+        print('--------------------------')
     elif (lux1 > lux2):
         k += 1
         print(lux1)
@@ -147,8 +150,9 @@ for i in range(37):
             lux2) + ',' + '\n')
         print('--------------------------')
     time.sleep(0.2)
-    if i == 36:
-        angle(-90)
-        file.write('\n')
-        GPIO.cleanup()
+
+if i == 36:
+    angle(-90)
+    file.write('\n')
+    GPIO.cleanup()
 file.close()
