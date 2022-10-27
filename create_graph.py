@@ -1,3 +1,4 @@
+# csvファイルからグラフを作るプログラムである
 import os
 for file_path in os.popen('rclone ls gdrive_taka:').read().split('\n'):
     if '-n' in file_path and file_path.endswith('.csv'):
