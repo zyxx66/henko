@@ -1,3 +1,2 @@
-k = input('input a number:\n')
-if k == 1:
-    pass
+import rclone_method
+rclone_method.line_send_message('123')
