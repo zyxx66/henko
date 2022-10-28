@@ -1,8 +1,24 @@
 # csvファイルからグラフを作るプログラムである
 import os
-for file_path in os.popen('rclone ls gdrive_taka:').read().split('\n'):
-    if '-n' in file_path and file_path.endswith('.csv'):
-        # print('偏光測定器 データ'+file_path.split('データ')[1])
-        gdrive_path = 'gdrive_taka:偏光測定器\u3000データ' + file_path.split('データ')[1]
-        os.system('rclone copy %s /home/pi/Documents/test/filetest/ -P' % (gdrive_path))
 
+# import pandas as pd
+# check the start
+# 'sizen(LUX)'
+
+# check the end
+# 'main(LUX)' in
+
+write_permission = False
+
+with open('C:/Users/zyxx/Desktop/2022-10-16-n.csv', 'r') as f:
+    for words in f:
+        if 'henkoudo' in words:
+            write_permission = True
+        if '2022-10-16' in words:
+            time_date = words.split('-')[3].split(',')[0]
+            write_permission = False
+        if write_permission:
+            print(words.split(','))
+            if words.split(',')[5] != '\n':
+                print(time_date)
+                print(words.split(',')[5])

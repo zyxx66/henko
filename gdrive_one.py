@@ -6,8 +6,8 @@ import rclone_method
 # 例　　date_start = '2022-10-11'
 # 　　　date_end = '2022-10-15'
 
-date_start = '2022-10-11'
-date_end = '2022-10-15'
+date_start = '2022-10-01'
+date_end = '2022-10-27'
 upload_date = []
 
 rclone_method.date_time(date_start, date_end, upload_date)
