@@ -89,8 +89,7 @@ slist = []
 #ts1.init()
 
 f = open(fileName,'a')
-f.write(gege.strftime("%Y-%m-%d-%H:%M:%S") +',,,'+gege.strftime("%H%M")+'\n'+'sizen(LUX),henko(LUX)\n')
-
+f.write(gege.strftime("%Y-%m-%d-%H:%M:%S") +',,,'+gege.strftime("%H%M")+'\n'+'sizen(LUX),henko(LUX),ch0,ch1,Lux1(LUX),Lux2(LUX)\n')
 
 
 for i in range(37):
@@ -103,7 +102,7 @@ for i in range(37):
   ts1.init()
   henko=ts1.lux_get()
   print("偏光:"+str(round(henko,2)) + "lux"+"   自然光:"+str(round(sizenko,2))+" lux")
-  f.write(str(round(sizenko,2))+','+str(round(henko,2))+'\n')
+  f.write(str(round(sizenko,2))+','+str(round(henko[0],2))+','+str(round(henko[1],2))+','+str(round(henko[2],2))+','+str(round(henko[3],2))+','+str(round(henko[4],2))+'\n')
   hlist.append(round(henko,2))
   slist.append(round(sizenko,2))
 

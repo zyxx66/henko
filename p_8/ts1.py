@@ -80,8 +80,8 @@ def lux_get():
   lux1 = ((adc[0] * 1.00) - (adc[1] * 1.87)) / cpl
   lux2 = ((adc[0] * 0.63) - (adc[1] * 1.00)) / cpl
   if ((lux1 <= 0) and (lux2 <= 0)) :
-    return 0
+    return [0,adc[0],adc[1],lux1,lux2]
   elif (lux1 > lux2) :
-    return lux1
+    return [lux1,adc[0],adc[1],lux1,lux2]
   elif (lux1 < lux2) :
-    return lux2
+    return [lux2,adc[0],adc[1],lux1,lux2]
