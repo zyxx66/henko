@@ -20,7 +20,7 @@ motor.start(0.0)
 
 unryou = 0
 gege = datetime.now()
-fdate_str = gege.strftime("%Y-%m-%d") + ".csv"
+fdate_str = gege.strftime("%Y-%m-%d") + "-n.csv"
 datestr = gege.strftime("%Y-%m-%d-%H:%M:%S") + ".jpg"
 fdir = "/home/pi/Documents/test/filetest/"
 fileName = fdir + fdate_str
@@ -70,7 +70,7 @@ url = "https://notify-api.line.me/api/notify"
 #token = "H5elt3vAYuitcjLoVNo0KoQdjDmeEhODrgK0agnexeV"
 
 #f219030
-#token = "qsI16BJFqnoajg7ci1vxDlhxx84AKZp0r3C4b0YV5pO"
+token = "qsI16BJFqnoajg7ci1vxDlhxx84AKZp0r3C4b0YV5pO"
 
 image = filename
 
@@ -101,17 +101,17 @@ for i in range(37):
   ts1.tcaselect(0)
   ts1.init()
   henko=ts1.lux_get()
-  print("偏光:"+str(round(henko,2)) + "lux"+"   自然光:"+str(round(sizenko,2))+" lux")
-  f.write(str(round(sizenko,2))+','+str(round(henko[0],2))+','+str(round(henko[1],2))+','+str(round(henko[2],2))+','+str(round(henko[3],2))+','+str(round(henko[4],2))+'\n')
-  hlist.append(round(henko,2))
-  slist.append(round(sizenko,2))
+  print("偏光:"+str(round(henko[0],2))+ "lux"+"   自然光:"+str(round(sizenko[0],2))+" lux")
+  f.write(str(round(sizenko[0],2))+','+str(round(henko[0],2))+','+str(round(henko[1],2))+','+str(round(henko[2],2))+','+str(round(henko[3],2))+','+str(round(henko[4],2))+'\n')
+  hlist.append(round(henko[0],2))
+  slist.append(round(sizenko[0],2))
 
 max = max(hlist)
 min = min(hlist)
 s_ave = sum(slist)/len(slist)
 henkoudo = ((max-min)/(max+min))*100
-f.write('max(LUX),'+'min(LUX),'+'sizen(LUX),'+' ,'+'henkoudo'+'\n')
-f.write(str(max)+','+str(min)+','+str(s_ave)+','+' ,'+' ,'+str(henkoudo)+'\n'+'\n')
+f.write('max(LUX),'+'min(LUX),'+'sizen(LUX),'+',,'+'henkoudo'+','+'unryou'+'\n')
+f.write(str(max)+','+str(min)+','+str(s_ave)+','+' ,'+' ,'+str(henkoudo)+','+str(unryou)+'\n'+'\n')
 map1 = map(str,hlist)
 lstr=','.join(map1)
 ms_data ='自然光(LUX)：'+str(round(s_ave,2))+'偏光(LUX)：'+lstr+"最大値:"+str(round(max,2))+"最小値:"+str(round(min,2))
