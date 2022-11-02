@@ -1,4 +1,5 @@
 # csvファイルからグラフを作るプログラムである
+#測定できなかった場合の対策も重要
 import os
 
 # import pandas as pd
@@ -9,6 +10,8 @@ import os
 # 'main(LUX)' in
 
 write_permission = False
+
+
 
 with open('C:/Users/zyxx/Desktop/2022-10-16-n.csv', 'r') as f:
     for words in f:
