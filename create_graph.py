@@ -1,5 +1,7 @@
 # csvファイルからグラフを作るプログラムである
-#測定できなかった場合の対策も重要
+# 測定できなかった場合の対策も重要
+# pandasを使うか？
+
 import os
 
 # import pandas as pd
@@ -11,17 +13,24 @@ import os
 
 write_permission = False
 
+file_path = 'C:/Users/zyxx/Desktop/'
+file_data = '2022-10-26'
+file_name = file_data+'-n.csv'
+csv_file = file_path + file_name
 
+csv_list = []
 
-with open('C:/Users/zyxx/Desktop/2022-10-16-n.csv', 'r') as f:
-    for words in f:
-        if 'henkoudo' in words:
-            write_permission = True
-        if '2022-10-16' in words:
-            time_date = words.split('-')[3].split(',')[0]
-            write_permission = False
-        if write_permission:
-            print(words.split(','))
-            if words.split(',')[5] != '\n':
-                print(time_date)
-                print(words.split(',')[5])
+# csvファイルをリストとして保存する(行数が多すぎないように)
+with open(csv_file, 'r') as f:
+    for row in f:
+        csv_list.append(row)
+
+# len(csv_list)　リスト csv_list の要素数
+print(csv_list.__len__())
+
+for i in range(csv_list.__len__()):
+    print(csv_list[i])
+# データ記録できた場合
+
+# データ記録できなかった場合
+
