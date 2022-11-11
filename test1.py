@@ -1,10 +1,13 @@
-def pr(*pr):
-    if pr.__len__ == 1:
-        print('pr len = %d'%1)
-    else:
-        print('pr len = %d'%pr.__len__())
-    for i in pr:
-        print(i)
+def input(*list):
+    for i in range(list.__len__()):
+        if i == 0 :
+            print(list[0][0])
+        else:
+            print(list[i][0])
 
 
-pr([1,2],[3,4],5)
+list = [0]
+
+print(list[0])
+
+input([0],[1])
