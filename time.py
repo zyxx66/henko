@@ -1,5 +1,6 @@
 import requests
 import os
+import rclone_method
 
 ExchangeMounth = {'Jan':1,'Feb':2,'Mar':3,'Apr':4,'May':5,'Jun':6,'Jul':7,'Aug':8,'Sep':9,'Oct':10,'Nov':11,'Dec':12}
 
@@ -17,7 +18,7 @@ while True:
             mounth_now = ExchangeMounth[net_date[8:11]]
             
             day_now = net_date[5:7]
-          
+          WiFiに
             hour_now = int(net_date[17:19]) + 9
             minute_now = net_date[20:22]
             second_now = net_date[23:25]
@@ -37,6 +38,9 @@ while True:
 
             os.system('sudo date -s' + '"' + date_now + '"')
             print(date_now)
+
+            rclone_method.line_send_message('時間設定完了')
+
             break
     except Exception as e:
         print(e)
