@@ -1,13 +1,7 @@
-def input(*list):
-    for i in range(list.__len__()):
-        if i == 0 :
-            print(list[0][0])
-        else:
-            print(list[i][0])
+def test1(input1):
+    print(input1)
+    def test2(input2):
+        return input2
 
-
-list = [0]
-
-print(list[0])
-
-input([0],[1])
+print(test1(5))
+print('k2 = %d'%test1(5).test2(3))
