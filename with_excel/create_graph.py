@@ -39,7 +39,7 @@ def create_scatter(file_name: str, sheet_name: str, chart_x_title: str, chart_y_
 
     work_sheet.add_chart(chart, chart_place)
     print('-----------------')
-    print('処理完了')
+    print('%s一部行処理完了'%(file_name))
     print('-----------------')
 
     work_book.save(file_name)
