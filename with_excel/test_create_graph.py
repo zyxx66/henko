@@ -67,10 +67,6 @@ class Create_Graph:
         work_book.save(self.file_name)
 
 
-
-def cell(x : str,y : str):
-
-
 if __name__ == '__main__':
     file = 'C:/Users/zyxx/Desktop/2022-11-09.xlsx'
     sheet_name = 'Sheet1'
@@ -78,9 +74,9 @@ if __name__ == '__main__':
     chart_y_title = '照度'
     chat_title = ''
     chart_place = 'H163'
-    x_data = [1,163,1,199,3,163,4,199]
-    y_data = [1,163,1,199,4,163,4,199]
+    x_data = [1, 163, 1, 199, 3, 163, 4, 199]
+    y_data = [1, 163, 1, 199, 4, 163, 4, 199]
 
-    graph = Create_Graph(file,sheet_name,chart_x_title,chart_y_title,chat_title,chart_place,x_data,y_data)
+    graph = Create_Graph(file, sheet_name, chart_x_title, chart_y_title, chat_title, chart_place, x_data, y_data)
 
     graph.create_scatter()
