@@ -1,8 +1,4 @@
-def cell(x:str):
-    try:
-        float(x)
-        return True
-    except ValueError:
-        pass
-
-print(ord('A'))
+list = [1,2,3]
+print(list)
+list=[]
+print(list)
