@@ -1,12 +1,14 @@
 # 毎日の測定データは正弦波かどうかを確認するプログラムである。
 # フォルダfolderの中にあるcsvファイルをすべて処理する
 
+# 動作:
+
 import os
 import openpyxl
 import csv
 import create_graph as cg
 
-folder = 'C://Users/qq914/Desktop/123/'
+folder = 'C://Users/zyxx/Desktop/test_csv/'
 sumup_file = open(folder+'sumup.csv','a')
 # すべてのcsvファイル名前をfile_listに入れる
 file_list = []
@@ -36,7 +38,7 @@ for csv_name in file_list:
     check = 0
     start_point = 0
     sumup_file.write(csv_name.split('-n')[0]+'\n')
-    sumup_file.write('時間,偏光度(%),雲量(%)\n')
+    sumup_file.write('time,henkou(%),unryou(%)\n')
     for i in range(data.__len__()):
         if 'ch0' in data[i]:
             start_point = i + 2
@@ -63,12 +65,21 @@ for csv_name in file_list:
 
     wb.save(xlsx_file)
 
+    graph = cg.create_graph(xlsx_file,'Sheet')
+
     for k in data_address:
-        cg.create_scatter(xlsx_file, 'Sheet', '角度', '照度', '偏光', 'H' + str(k[0]), [8, 3, 8, 39, 2, k[0], 2, k[1]])
-        cg.create_scatter(xlsx_file, 'Sheet', '角度', '照度', 'ch1 and ch2', 'O' + str(k[0]),
+
+        if k == data_address[0]:
+            load_file = graph.load()
+            print('load')
+
+        graph.create_scatter(load_file, '角度', '照度', '偏光'+'('+data[k[0]-3].split(',')[3].split('\n')[0]+')', 'H' + str(k[0]),
+                          [8, 3, 8, 39, 2, k[0], 2, k[1]])
+        graph.create_scatter(load_file, '角度', '照度', 'ch1 and ch2', 'O' + str(k[0]),
                           [8, 3, 8, 39, 3, k[0], 3, k[1]], [8, 3, 8, 39, 4, k[0], 4, k[1]])
-        cg.create_scatter(xlsx_file, 'Sheet', '角度', '照度', 'lux1 and lux2', 'H' + str(k[0] + 17),
+        graph.create_scatter(load_file, '角度', '照度', 'lux1 and lux2', 'H' + str(k[0] + 17),
                           [8, 3, 8, 39, 5, k[0], 5, k[1]], [8, 3, 8, 39, 6, k[0], 6, k[1]])
 
-
-print(result)
+        if k == data_address[data_address.__len__()-1]:
+            graph.save(load_file[0])
+            print('save')
