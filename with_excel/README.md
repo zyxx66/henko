@@ -2,4 +2,5 @@
 ## 書くプログラムについて
 ### 1.[create_graph](create_graph.py)
 ライブラリである</p>
-**openpyxl**に依存するから、*事前にインストールすること*を忘れないように。
+<span style="color: red">openpyxl</span>がないと実行できないから、
+<span style="color: red">事前にインストールすること</span>を忘れないように。
