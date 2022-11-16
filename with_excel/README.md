@@ -3,9 +3,10 @@
 ## 0.ご注意
 `openpyxl`がないと実行できないから、`事前にインストールすること`を忘れないように。
 ## 1.[create_graph](create_graph.py)
+### 1.0　注意
+プログラムを実行する時<br>`必ずグラフを作る対象のエクセルファイルを閉じること`
 ###　1.1 紹介
-ライブラリである</p>
-
+ライブラリである
 ###　1.2 使用方法
 1.まずはimport
 ```
@@ -23,7 +24,7 @@ import create_graph
 
 例：excel_file = example.load()
 ```
-</pr>4.グラフを作る
+<br>4.グラフを作る
 ```
 指定した変数名.create_scatter(excel_file,グラフ横軸のタイトル,グラフ縦軸のタイトル,グラフのタイトル,グラフ置く場所,
                            [xデータ開始x,xデータ開始y,xデータ終了x,xデータ終了,yデータ開始x,yデータ開始y,yデータ終了x,yデータ終了y],……(データ無限追加可能))
@@ -34,6 +35,25 @@ import create_graph
 ```
 ```
 例１(1個のデータの場合)：
-
+example.create_scatter(excel_file,'横軸タイトル','横軸タイトル','グラフタイトル','D1',[1,1,1,5,2,1,2,5])
+例２(2個のデータの場合)：
+example.create_scatter(excel_file,'横軸タイトル','横軸タイトル','グラフタイトル','L1',[1,1,1,5,2,1,2,5],[1,1,1,5,3,1,3,5])
 ```
+3.プログラム例 [example](example.py)
+```
+import create_graph
+example = create_graph.create_graph('D:/example_excel.xlsx', 'Sheet1')
+# エクセルファイルをロードする
+excel_file = example.load()
+# 散布図を作る
+example.create_scatter(excel_file,'横軸タイトル','横軸タイトル','グラフタイトル','D1',[1,1,1,5,2,1,2,5])
+example.create_scatter(excel_file,'横軸タイトル','横軸タイトル','グラフタイトル','L1',[1,1,1,5,2,1,2,5],[1,1,1,5,3,1,3,5])
+# エクセルファイル保存
+example.save(excel_file)
+```
+結果：
+<br>実行前：
+![img.png](img.png)
+<br>実行後：
+![img_1.png](img_1.png)
 ## 2.[check_data](check_data.py)

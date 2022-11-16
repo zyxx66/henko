@@ -81,5 +81,5 @@ for csv_name in file_list:
                           [8, 3, 8, 39, 5, k[0], 5, k[1]], [8, 3, 8, 39, 6, k[0], 6, k[1]])
 
         if k == data_address[data_address.__len__()-1]:
-            graph.save(load_file[0])
+            graph.save(load_file)
             print('save')

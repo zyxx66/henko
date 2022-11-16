@@ -16,8 +16,8 @@ class create_graph():
         work_sheet = work_book[self.sheet_name]
         return [work_book,work_sheet]
 
-    def save(self,work_book):
-        work_book.save(self.file_name)
+    def save(self,work_book:list):
+        work_book[0].save(self.file_name)
 
     def create_scatter(self,load_work_book:list, chart_x_title: str, chart_y_title: str,
                  chart_title: str, chart_place: str, *data_in: list):
