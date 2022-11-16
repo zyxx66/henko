@@ -13,9 +13,9 @@ import create_graph
 ```
 </pr>2.オブジェクト作る
 ```
-指定した変数名 = create_graph('エクセルファイル名','シート名')
+指定した変数名 = create_graph.create_graph('エクセルファイル名','シート名')
 
-例：example = create_graph('C:/Users/test/Desktop/test_csv/test.xlsx','Sheet')
+例：example = create_graph.create_graph('C:/Users/test/Desktop/test_csv/test.xlsx','Sheet')
 ```
 </pr>3.エクセルファイルを`一回`ロードする
 ```
