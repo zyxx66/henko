@@ -3,4 +3,4 @@
 ### 1.[create_graph](create_graph.py)
 ライブラリである</p>
 <span style="color: red">openpyxl</span>がないと実行できないから、
-<span style="color: red">事前にインストールすること</span>を忘れないように。
+<tspan fill="red">事前にインストールすること</tspan>を忘れないように。
