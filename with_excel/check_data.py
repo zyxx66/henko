@@ -13,10 +13,11 @@ def check():
     sumup_file = open(folder + 'sumup.csv', 'a')
     # すべてのcsvファイル名前をfile_listに入れる
     file_list = []
-    sumup = []
-    result = []
+    sumup_list = []
+    for i in range(26):
+        sumup_list.append('a')
     for file in os.listdir(folder):
-        if '.csv' in file and 'sum' not in file:
+        if '.csv' in file and '-' in file :
             file_list.append(file)
 
     for csv_name in file_list:
@@ -37,20 +38,26 @@ def check():
         data_address = []
         check = 0
         start_point = 0
+        if sumup_list[0] == 'a':
+            sumup_list[0] = csv_name.split('-n')[0] + ',,,,'
+            sumup_list[1] = 'time,henkou(%),unryou(%),,'
+        else:
+            sumup_list[0] = sumup_list[0]+csv_name.split('-n')[0] + ',,,,'
+            sumup_list[1] = sumup_list[1]+'time,henkou(%),unryou(%),,'
+
         sumup_file.write(csv_name.split('-n')[0] + '\n')
         sumup_file.write('time,henkou(%),unryou(%)\n')
         for i in range(data.__len__()):
             if 'ch0' in data[i]:
                 start_point = i + 2
                 if check == 0:
-                    start_check = 1
+                    check = 1
             if 'henkoudo' in data[i]:
                 check = 0
                 data_address.append([start_point, i])
             if 'henkoudo' in data[i]:
                 data_split = data[i + 1].split(',')
-                sumup_file.write(
-                    data[i - 39].split(',')[3].split('\n')[0] + ',' + str(data_split[5]) + ',' + str(data_split[6]))
+                sumup_file.write(data[i - 39].split(',')[3].split('\n')[0] + ',' + str(data_split[5]) + ',' + str(data_split[6]))
 
         for k in data_address:
             for i in range(k[0], k[1] + 1):
@@ -86,6 +93,17 @@ def check():
                 graph.save(load_file)
                 print('save')
 
+        print(sumup_list)
+
+    for i in range(sumup_list.__len__()):
+        sumup_list[i] = sumup_list[i]+'\n'
+
+    with open(folder+'result.csv','w') as f:
+        for row in sumup_list:
+            f.write(row)
+
+    print(data)
 
 if __name__ == '__main__':
     check()
+    print()
