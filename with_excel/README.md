@@ -56,4 +56,11 @@ example.save(excel_file)
 ![img.png](img.png)
 <br>実行後：
 ![img_1.png](img_1.png)
+
 ## 2.[check_data](check_data.py)
+```
+(11行)　folder = 'C://Users/zyxx/Desktop/test_csv/'
+```
+にある全てのcsvファイル(測定器から貰ったデータ)をxlsxファイルに偏光して、散布図を追加する
+<br>最後に雲量と偏光度を'sumup.csv'ファイルにまとめる。
+
