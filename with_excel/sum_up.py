@@ -17,3 +17,4 @@ for i in range(22):
     create_graph.create_scatter(file,'Sheet1','雲量(%)','偏光度(%)','','B'+str(i*10+35),[3+4*i,28,3+4*i,35,2+4*i,28,2+4*i,35])
 
 # wb.save(file)
+

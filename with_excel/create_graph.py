@@ -1,26 +1,25 @@
 import openpyxl
-import os
 import openpyxl.chart
 
 
 # 散布図を作る　メソッド
 class create_graph():
     # 定義、create_graph('file_name','sheet_name')で使うように
-    def __init__(self,file_name,sheet_name):
+    def __init__(self, file_name, sheet_name):
         self.file_name = file_name
         self.sheet_name = sheet_name
-        
+
     #   エクセルファイルを読み込む
     def load(self):
         work_book = openpyxl.load_workbook(self.file_name)
         work_sheet = work_book[self.sheet_name]
-        return [work_book,work_sheet]
+        return [work_book, work_sheet]
 
-    def save(self,work_book:list):
+    def save(self, work_book: list):
         work_book[0].save(self.file_name)
 
-    def create_scatter(self,load_work_book:list, chart_x_title: str, chart_y_title: str,
-                 chart_title: str, chart_place: str, *data_in: list):
+    def create_scatter(self, load_work_book: list, chart_x_title: str, chart_y_title: str,
+                       chart_title: str, chart_place: str, *data_in: list):
 
         series = []
         # 編集したいシートを指定する
@@ -51,8 +50,3 @@ class create_graph():
             chart.append(series[i])
 
         work_sheet.add_chart(chart, chart_place)
-        print('k')
-        # work_book.save(file_name)
-
-if __name__ == '__main__':
-    pass
