@@ -7,9 +7,10 @@ import os
 import openpyxl
 import csv
 import with_excel.create_graph as cg
+import sum_up
 
-def check():
-    folder = 'C://Users/zyxx/Desktop/test_csv/'
+
+def check(folder):
     sumup_file = open(folder + 'sumup.csv', 'a')
     # すべてのcsvファイル名前をfile_listに入れる
     file_list = []
@@ -17,14 +18,17 @@ def check():
     for i in range(26):
         sumup_list.append('a')
     for file in os.listdir(folder):
-        if '.csv' in file and '-' in file :
+        if '.csv' in file and '-' in file:
             file_list.append(file)
 
     for csv_name in file_list:
         wb = openpyxl.Workbook()
         ws = wb.active
         csv_file = folder + csv_name
-        xlsx_file = folder + csv_name.split('.')[0] + '.xlsx'
+        xlsx_file = folder + 'excel/' + csv_name.split('.')[0] + '.xlsx'
+
+        if not os.path.exists(folder + 'excel'):
+            os.mkdir(folder + 'excel')
 
         with open(csv_file, 'r') as f:
             for row in csv.reader(f):
@@ -42,11 +46,11 @@ def check():
             sumup_list[0] = csv_name.split('-n')[0] + ',,,,'
             sumup_list[1] = 'time,henkou(%),unryou(%),,'
         else:
-            sumup_list[0] = sumup_list[0]+csv_name.split('-n')[0] + ',,,,'
-            sumup_list[1] = sumup_list[1]+'time,henkou(%),unryou(%),,'
+            sumup_list[0] = sumup_list[0] + csv_name.split('-n')[0] + ',,,,'
+            sumup_list[1] = sumup_list[1] + 'time,henkou(%),unryou(%),,'
 
-        sumup_file.write(csv_name.split('-n')[0] + '\n')
-        sumup_file.write('time,henkou(%),unryou(%)\n')
+        sumup_file.write(csv_name.split('-n')[0] + ',,,\n')
+        sumup_file.write('time,henkou(%),unryou(%),,\n')
         for i in range(data.__len__()):
             if 'ch0' in data[i]:
                 start_point = i + 2
@@ -57,7 +61,8 @@ def check():
                 data_address.append([start_point, i])
             if 'henkoudo' in data[i]:
                 data_split = data[i + 1].split(',')
-                sumup_file.write(data[i - 39].split(',')[3].split('\n')[0] + ',' + str(data_split[5]) + ',' + str(data_split[6]))
+                sumup_file.write(data[i - 39].split(',')[3].split('\n')[0] + ',' + str(data_split[5]) + ',' + str(
+                    data_split[6].split('\n')[0] + ',,\n'))
 
         for k in data_address:
             for i in range(k[0], k[1] + 1):
@@ -96,14 +101,18 @@ def check():
         print(sumup_list)
 
     for i in range(sumup_list.__len__()):
-        sumup_list[i] = sumup_list[i]+'\n'
+        sumup_list[i] = sumup_list[i] + '\n'
 
-    with open(folder+'result.csv','w') as f:
+    with open(folder + 'result.csv', 'w') as f:
         for row in sumup_list:
             f.write(row)
 
+    sumup_file.write('end')
+
     print(data)
 
+
 if __name__ == '__main__':
-    check()
-    print()
+    folder = 'C://Users/zyxx/Desktop/test_csv/'
+    check(folder)
+    sum_up.sumup(folder)
