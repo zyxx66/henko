@@ -11,12 +11,16 @@ import sum_up
 
 
 def check(folder):
-    sumup_file = open(folder + 'sumup.csv', 'a')
+    if not os.path.exists(folder + 'excel'):
+        os.mkdir(folder + 'excel')
+
+    if not os.path.exists(folder + 'result'):
+        os.mkdir(folder + 'result')
+
+    sumup_file = open(folder + 'result/sumup.csv', 'a')
     # すべてのcsvファイル名前をfile_listに入れる
     file_list = []
-    sumup_list = []
-    for i in range(26):
-        sumup_list.append('a')
+
     for file in os.listdir(folder):
         if '.csv' in file and '-' in file:
             file_list.append(file)
@@ -26,9 +30,6 @@ def check(folder):
         ws = wb.active
         csv_file = folder + csv_name
         xlsx_file = folder + 'excel/' + csv_name.split('.')[0] + '.xlsx'
-
-        if not os.path.exists(folder + 'excel'):
-            os.mkdir(folder + 'excel')
 
         with open(csv_file, 'r') as f:
             for row in csv.reader(f):
@@ -42,12 +43,7 @@ def check(folder):
         data_address = []
         check = 0
         start_point = 0
-        if sumup_list[0] == 'a':
-            sumup_list[0] = csv_name.split('-n')[0] + ',,,,'
-            sumup_list[1] = 'time,henkou(%),unryou(%),,'
-        else:
-            sumup_list[0] = sumup_list[0] + csv_name.split('-n')[0] + ',,,,'
-            sumup_list[1] = sumup_list[1] + 'time,henkou(%),unryou(%),,'
+
 
         sumup_file.write(csv_name.split('-n')[0] + ',,,\n')
         sumup_file.write('time,henkou(%),unryou(%),,\n')
@@ -98,14 +94,8 @@ def check(folder):
                 graph.save(load_file)
                 print('save')
 
-        print(sumup_list)
 
-    for i in range(sumup_list.__len__()):
-        sumup_list[i] = sumup_list[i] + '\n'
 
-    with open(folder + 'result.csv', 'w') as f:
-        for row in sumup_list:
-            f.write(row)
 
     sumup_file.write('end')
 

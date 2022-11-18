@@ -1,5 +1,5 @@
 def sumup(folder):
-    file = folder + 'sumup.csv'
+    file = folder + 'result/sumup.csv'
 
     data_time = {'0600': 1, '0630': 2, '0700': 3, '0730': 4, '0800': 5, '0830': 6, '0900': 7, '0930': 8, '1000': 9,'1030': 10,
                  '1100': 11,'1130': 12, '1200': 13, '1230': 14, '1300': 15, '1330': 16, '1400': 17, '1430': 18, '1500': 19,
@@ -40,7 +40,8 @@ def sumup(folder):
             start_point_list.append(i)
 
     for i in range(len(start_point_list)):
-        data_csv[0] = data_csv[0].split('\n')[0] + data[start_point_list[i]-1]
+        if i != len(start_point_list)-1:
+            data_csv[0] = data_csv[0].split('\n')[0] + data[start_point_list[i]-1]
         if i == 0:
             data_csv[0] = data_csv[0].split('\n')[0] +','
 
@@ -61,6 +62,6 @@ def sumup(folder):
     print(start_point_list)
     for k in data:
         print(k)
-    with open(folder+'sumup_2.csv','a') as f:
+    with open(folder+'result/sumup_2.csv','a') as f:
         for i in range(27):
             f.write(data_csv[i])
