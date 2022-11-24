@@ -131,14 +131,15 @@ for i in range(37):
     lux2 = 0.0
     cpl = (2.73 * (256 - atime) * gain) / (60.0)
     lux1 = ((adc[0] * 1.00) - (adc[1] * 1.87)) / cpl
-    lux2 = ((adc[0] * 0.63) - (adc[1] * 1.00)) / cpl
+    lux2 = ((adc[0] * 0.63) - (adc[1] * 1.00)) /\
+            cpl
     time.sleep(0.01)
     if ((lux1 <= 0) and (lux2 <= 0)):
         print("0 Lx")
         file.write(str(5 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
             lux2) + ',' + '\n')
         print('--------------------------')
-    elif (lux1 > lux2):
+    elif (lux1 >= lux2):
         k += 1
         print(lux1)
         file.write(str(5 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
