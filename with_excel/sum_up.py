@@ -5,7 +5,7 @@ def sumup(folder):
                  '1100': 11,'1130': 12, '1200': 13, '1230': 14, '1300': 15, '1330': 16, '1400': 17, '1430': 18, '1500': 19,
                  '1530': 20,'1600': 21,'1630': 22, '1700': 23, '1730': 24, '1800': 25, '1830': 26}
 
-    # ある日入力したら１、入力してない(空欄の場合)0
+    # ある日入力したら１、入力しなかったら(空欄の場合も)0
     input_check = []
 
     for i in range(26):
@@ -41,7 +41,7 @@ def sumup(folder):
 
     for i in range(len(start_point_list)):
         if i != len(start_point_list)-1:
-            data_csv[0] = data_csv[0].split('\n')[0] + data[start_point_list[i]-1]
+            data_csv[0] = data_csv[ 0].split('\n')[0] + data[start_point_list[i]-1]
         if i == 0:
             data_csv[0] = data_csv[0].split('\n')[0] +','
 

@@ -21,7 +21,7 @@ motor.start(0.0)
 result_path = '/home/pi/henko/result/'
 
 time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
-csv_file = result_path + '%s.csv' % time_local
+csv_file = result_path + '%s-e.csv' % time_local
 file = open(csv_file, 'a')
 file.write(time_local + ',,,' + time.strftime('%H:%M:%S', time.localtime(
     time.time())) + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
@@ -113,8 +113,6 @@ if (initTSL2572() != 0):
 
 measure_num = 3
 total = 0
-
-Note = open('1.txt', mode='w')
 
 k = 0
 avg = 0

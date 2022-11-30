@@ -6,7 +6,7 @@ import datetime
 raspberry_code_path = '/home/pi/Documents/test/zyxx/'
 gdrive_code_path = 'gdrive_taka:偏光測定器_コード/zyxx/'
 raspberry_data_path = '/home/pi/Documents/test'
-# パソコンにあるソースコードの居場
+# パソコンにあるソースコードの場所
 pc_code_path = 'D:/pythonProject/偏光測定器_コード/'
 gdrive_code_name = []
 # -------------------line通知機能--------------------------
