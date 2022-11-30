@@ -1,7 +1,7 @@
-# 毎日の測定データは正弦波かどうかを確認するプログラムである。
-# フォルダfolderの中にあるcsvファイルをすべて処理する
+# 実験空得られたデータのグラフｗｐ作成するプログラムである。
+# フォルダ(folder)の中にあるcsvファイルをすべて処理する
 
-# 動作:
+# 動作:なし
 
 import os
 import openpyxl
@@ -50,13 +50,9 @@ def check(folder):
 
         for k in data_address:
             for i in range(k[0], k[1] + 1):
-                for j in range(1, 8):
+                for j in range(1, 7):
                     ws.cell(i, j).data_type = 'float'
                     print('123')
-
-        for k in data_address:
-            for i in range(1, 8):
-                ws.cell(k[1] + 2, i).data_type = 'float'
 
 
         wb.save(xlsx_file)
