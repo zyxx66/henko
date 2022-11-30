@@ -33,7 +33,7 @@ def gdrive_once(source_path, suffix):
                     file_month = file_split[1]
                     file_day = file_split[2].split('.')[0]
                     #target_path = "gdrive_taka:偏光測定器\u3000データ/%s年/%s月/%s日" % (file_year, file_month, file_day)
-                    target_path = "gdrive_taka:偏光測定器_雲量データ/%s年/%s月/%s日" % (file_year, file_month, file_day)
+                    target_path = "gdrive_taka:偏光測定器_雲量データ/%s年/%s月/" % (file_year, file_month)
                     rclone_method.update(source_path + '/' + file, target_path)
 
 
