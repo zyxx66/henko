@@ -10,8 +10,11 @@ import with_excel.create_graph as cg
 
 
 def check(folder):
+    if not os.path.exists(folder):
+        os.mkdir(folder)
     if not os.path.exists(folder + 'excel'):
         os.mkdir(folder + 'excel')
+
 
     # すべてのcsvファイル名前をfile_listに入れる
     file_list = []
@@ -65,13 +68,13 @@ def check(folder):
                 load_file = graph.load()
                 print('load')
 
-            graph.create_scatter(load_file, '角度', '照度', '偏光' + '(' + data[k[0] - 3].split(',')[3].split('\n')[0] + ')',
+            graph.create_scatter(load_file, '角度(°)', '照度(Lux)', '偏光' + '(' + data[k[0] - 3].split(',')[3].split('\n')[0] + ')',
                                  'H' + str(k[0]),
-                                 [1, k[0], 1, k[1], 2, k[0], 2, k[1]])
-            graph.create_scatter(load_file, '角度', '照度', 'ch1 and ch2', 'O' + str(k[0]),
-                                 [1, k[0], 1, k[1], 3, k[0], 3, k[1]], [1, k[0], 1, k[1], 4, k[0], 4, k[1]])
-            graph.create_scatter(load_file, '角度', '照度', 'lux1 and lux2', 'H' + str(k[0] + 17),
-                                 [1, k[0], 1, k[1], 5, k[0], 5, k[1]], [1, k[0], 1, k[1],  6, k[0], 6, k[1]])
+                                 [1, k[0], 1, k[1], 2, k[0]-1, 2, k[1]])
+            graph.create_scatter(load_file, '角度(°)', '照度(Lux)', 'ch1 and ch2', 'O' + str(k[0]),
+                                 [1, k[0], 1, k[1], 3, k[0]-1, 3, k[1]], [1, k[0], 1, k[1], 4, k[0]-1, 4, k[1]])
+            graph.create_scatter(load_file, '角度(°)', '照度(Lux)', 'lux1 and lux2', 'H' + str(k[0] + 17),
+                                 [1, k[0], 1, k[1], 5, k[0]-1, 5, k[1]], [1, k[0], 1, k[1],  6, k[0]-1, 6, k[1]])
 
             if k == data_address[data_address.__len__() - 1]:
                 graph.save(load_file)
@@ -81,5 +84,5 @@ def check(folder):
 
 
 if __name__ == '__main__':
-    folder = 'C://Users/zyxx/Desktop/test_csv/'
+    folder = 'C://Users/zyxx/Desktop/test_csv/experimental_data/'
     check(folder)

@@ -30,7 +30,7 @@ class create_graph():
                                               data_in[i][2], data_in[i][3])
             y_data = openpyxl.chart.Reference(work_sheet, data_in[i][4], data_in[i][5],
                                               data_in[i][6], data_in[i][7])
-            series.append(openpyxl.chart.Series(y_data, x_data, title_from_data=False))
+            series.append(openpyxl.chart.Series(y_data, x_data, title_from_data=True))
 
         chart = openpyxl.chart.ScatterChart()
         chart.title = chart_title

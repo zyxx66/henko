@@ -48,7 +48,7 @@ def check(folder):
         sumup_file.write(csv_name.split('-n')[0] + ',,,\n')
         sumup_file.write('time,henkou(%),unryou(%),,\n')
         for i in range(data.__len__()):
-            if 'ch0' in data[i]:
+            if 'henko(LUX)' in data[i]:
                 start_point = i + 2
                 if check == 0:
                     check = 1
@@ -60,11 +60,30 @@ def check(folder):
                 sumup_file.write(data[i - 39].split(',')[3].split('\n')[0] + ',' + str(data_split[5]) + ',' + str(
                     data_split[6].split('\n')[0] + ',,\n'))
 
-        for k in data_address:
-            for i in range(k[0], k[1] + 1):
-                for j in range(1, 8):
-                    ws.cell(i, j).data_type = 'float'
+        csv_name_split = csv_name.split('-')
 
+        # 　sizen(LUX),henko(LUX)…… から max(LUX),min(LUX)…… までの数値を float　にする
+        if csv_name_split[1] == '10':
+            for k in data_address:
+                for i in range(k[0], k[1] + 1):
+                    for j in range(1, 3):
+                        ws.cell(i, j).data_type = 'float'
+
+        elif csv_name_split[1] == '11' and csv_name_split[2] == '01' or csv_name_split[2] == '02':
+            for k in data_address:
+                for i in range(k[0], k[1] + 1):
+                    for j in range(1, 3):
+                        ws.cell(i, j).data_type = 'float'
+
+        else:
+            for k in data_address:
+                for i in range(k[0], k[1] + 1):
+                    for j in range(1, 8):
+                        ws.cell(i, j).data_type = 'float'
+
+
+
+        # max(LUX),min(LUX)下の一行をfloatにする
         for k in data_address:
             for i in range(1, 8):
                 ws.cell(k[1] + 2, i).data_type = 'float'
@@ -103,6 +122,6 @@ def check(folder):
 
 
 if __name__ == '__main__':
-    folder = 'C://Users/zyxx/Desktop/test_csv/'
+    folder = 'C://Users/zyxx/Desktop/test_csv/daily_data/'
     check(folder)
     sum_up.sumup(folder)

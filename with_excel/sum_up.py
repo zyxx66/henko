@@ -41,7 +41,7 @@ def sumup(folder):
 
     for i in range(len(start_point_list)):
         if i != len(start_point_list)-1:
-            data_csv[0] = data_csv[ 0].split('\n')[0] + data[start_point_list[i]-1]
+            data_csv[0] = data_csv[0].split('\n')[0] + data[start_point_list[i]-1]
         if i == 0:
             data_csv[0] = data_csv[0].split('\n')[0] +','
 
