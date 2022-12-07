@@ -65,7 +65,6 @@ target_diameter = diameter[target_name]
 file.write(time_local + ',,,' + time.strftime('%H:%M:%S', time.localtime(
     time.time())) + ',,,,%s,%s' % (target_name_short, target_diameter) + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
 
-i2c = smbus.SMBus(1)
 
 # TSL2572 Register Set
 TSL2572_ADR = 0x39
@@ -129,20 +128,13 @@ def getTSL2572adc():
     return [adc0, adc1]
 
 
-def tcaselect(channel):
-    data = 1 << channel
-    i2c.write_byte_data(0x70, 0x00, data)
-
-
 def angle(angle):
     duty = 2.5 + (12.0 - 2.5) * (angle + 90) / 180
     motor.ChangeDutyCycle(duty)
     time.sleep(0.3)
 
 
-# TCA9548Aに関する設定
-# tcaselect(0)の意味は：SD0はSDAと繋ぐ、SC0はSCAと繋ぐ
-tcaselect(0)
+
 # モーターを-90の所に戻す
 angle(-90)
 
