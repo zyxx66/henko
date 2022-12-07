@@ -51,7 +51,7 @@ result_path = '/home/pi/henko/result/'
 time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
 csv_file = result_path + '%s-e.csv' % time_local
 file = open(csv_file, 'a')
-target_number = input('測定目標の番号を入力してください？')
+target_number = input('測定目標の番号を入力してください.\n')
 try:
     target_name = number[target_number]
 except:
@@ -65,6 +65,7 @@ target_diameter = diameter[target_name]
 file.write(time_local + ',,,' + time.strftime('%H:%M:%S', time.localtime(
     time.time())) + ',,,,%s,%s' % (target_name_short, target_diameter) + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
 
+i2c = smbus.SMBus(1)
 
 # TSL2572 Register Set
 TSL2572_ADR = 0x39
