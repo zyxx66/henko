@@ -69,7 +69,7 @@ def check(folder):
                     for j in range(1, 3):
                         ws.cell(i, j).data_type = 'float'
 
-        elif csv_name_split[1] == '11' and csv_name_split[2] == '01' or csv_name_split[2] == '02':
+        elif csv_name_split[1] == '11' and csv_name_split[2] == '01' or csv_name_split[2] == '02' or csv_name_split[2] == '03':
             for k in data_address:
                 for i in range(k[0], k[1] + 1):
                     for j in range(1, 3):

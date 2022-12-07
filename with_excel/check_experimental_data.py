@@ -71,7 +71,7 @@ def check(folder):
             graph.create_scatter(load_file, '角度(°)', '照度(Lux)', '偏光' + '(' + data[k[0] - 3].split(',')[3].split('\n')[0] + ')',
                                  'H' + str(k[0]),
                                  [1, k[0], 1, k[1], 2, k[0]-1, 2, k[1]])
-            graph.create_scatter(load_file, '角度(°)', '照度(Lux)', 'ch1 and ch2', 'O' + str(k[0]),
+            graph.create_scatter(load_file, '角度(°)', '照度(Lux)', 'ch0 and ch1', 'O' + str(k[0]),
                                  [1, k[0], 1, k[1], 3, k[0]-1, 3, k[1]], [1, k[0], 1, k[1], 4, k[0]-1, 4, k[1]])
             graph.create_scatter(load_file, '角度(°)', '照度(Lux)', 'lux1 and lux2', 'H' + str(k[0] + 17),
                                  [1, k[0], 1, k[1], 5, k[0]-1, 5, k[1]], [1, k[0], 1, k[1],  6, k[0]-1, 6, k[1]])

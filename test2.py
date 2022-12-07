@@ -1,6 +1,6 @@
 import openpyxl
 
-file = 'C:/Users/zyxx/Desktop/2022-11-22.xlsx'
+file = 'C:/Users/zyxx/Desktop/sumup_2.xlsx'
 
 wb = openpyxl.load_workbook(file)
 ws = wb.active
@@ -15,7 +15,7 @@ while True:
         print('k=%d'%k)
         break
 
-for i in range(22):
+for i in range(24):
     ws.cell(29, 3 * i + 1).value = str(650 + i * 50)
     for k in range(k):
         # ws.cell(30,2).value = ws.cell(3,2).value

@@ -6,10 +6,38 @@
 # SDA    <-> 03
 
 # Python 2.7.16
+import sys
 
 import RPi.GPIO as GPIO
 import time
 import smbus
+
+number = {'1': '薄力小麦粉(20~50㎛)',
+          '2': 'トマトパウダー(100~500㎛)',
+          '3': '黒鉛粉末(5~11㎛)',
+          '4': 'トルマリン(3㎛)',
+          '5': 'トルマリン(1.8㎛)',
+          '6': 'トルマリン(0.8㎛)',
+          '7': 'RX OX(40nm)',
+          '8': 'スギ花粉(30㎛)'}
+
+name = {'薄力小麦粉(20~50㎛)': '薄力小麦粉',
+        'トマトパウダー(100~500㎛)': 'トマトパウダー',
+        '黒鉛粉末(5~11㎛)': '黒鉛粉末',
+        'トルマリン(3㎛)': 'トルマリン',
+        'トルマリン(1.8㎛)': 'トルマリン',
+        'トルマリン(0.8㎛)': 'トルマリン',
+        'RX OX(40nm)': 'RX OX',
+        'スギ花粉(30㎛)': 'スギ花粉'}
+
+diameter = {'薄力小麦粉(20~50㎛)': '20~50㎛',
+            'トマトパウダー(100~500㎛)': '100~500㎛',
+            '黒鉛粉末(5~11㎛)': '5~11㎛',
+            'トルマリン(3㎛)': '3㎛',
+            'トルマリン(1.8㎛)': '1.8㎛',
+            'トルマリン(0.8㎛)': '0.8㎛',
+            'RX OX(40nm)': '40nm',
+            'スギ花粉(30㎛)': '30㎛'}
 
 GPIO.setmode(GPIO.BCM)
 gp_out = 18
@@ -23,8 +51,19 @@ result_path = '/home/pi/henko/result/'
 time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
 csv_file = result_path + '%s-e.csv' % time_local
 file = open(csv_file, 'a')
+target_number = input('測定目標の番号を入力してください？')
+try:
+    target_name = number[target_number]
+except:
+    print('正しい番号を入力してください')
+    sys.exit()
+
+target_name_short = name[target_name]
+target_diameter = diameter[target_name]
+
+# タイトルを入力する
 file.write(time_local + ',,,' + time.strftime('%H:%M:%S', time.localtime(
-    time.time())) + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
+    time.time())) + ',,,,%s,%s' % (target_name_short, target_diameter) + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
 
 i2c = smbus.SMBus(1)
 
@@ -129,8 +168,8 @@ for i in range(37):
     lux2 = 0.0
     cpl = (2.73 * (256 - atime) * gain) / (60.0)
     lux1 = ((adc[0] * 1.00) - (adc[1] * 1.87)) / cpl
-    lux2 = ((adc[0] * 0.63) - (adc[1] * 1.00)) /\
-            cpl
+    lux2 = ((adc[0] * 0.63) - (adc[1] * 1.00)) / \
+           cpl
     time.sleep(0.01)
     if ((lux1 <= 0) and (lux2 <= 0)):
         print("0 Lx")

@@ -58,10 +58,11 @@ def sumup(folder):
                 data_csv[i+1] = data_csv[i+1].split('\n')[0]+',,,\n'
             elif input_check[i] == 1:
                 input_check[i] = 0
-            # data_time[data[i+1]]
     print(start_point_list)
+
     for k in data:
         print(k)
+
     with open(folder+'result/sumup_2.csv','a') as f:
         for i in range(27):
             f.write(data_csv[i])
