@@ -62,7 +62,7 @@ result_path = '/home/pi/henko/result/'
 time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
 csv_file = result_path + '%s-e.csv' % time_local
 # file = open(csv_file, 'a')
-file = codecs.open(csv_file,'a','utf_8')
+file = codecs.open(csv_file,'a','UTF-8')
 target_number = input('測定目標の番号を入力してください.\n')
 try:
     target_name = number[target_number]
@@ -75,7 +75,7 @@ target_diameter = diameter[target_name]
 
 # タイトルを入力する
 file.write(time_local + ',,,' + time.strftime('%H:%M:%S', time.localtime(
-    time.time())) + ',,,,%s,%s' % (target_name_short, target_diameter) + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
+    time.time())) + ',,,,%s,%s\n' % (target_name_short, target_diameter) + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
 
 i2c = smbus.SMBus(1)
 
