@@ -11,26 +11,26 @@ import sys
 import RPi.GPIO as GPIO
 import time
 import smbus
+
 # 測定目標リスト
-print('測定目標'.center(40,'-'),'\n',
-      '\033[0;37;40m','1:RX OX(40nm)'.center(40),'\033[0m'
-      '\n',
+print('測定目標'.center(40, '-'), '\n',
+      '\033[0;37;40m', '1:RX OX(40nm)'.center(40), '\033[0m'
+                                                   '\n',
       '2:トルマリン(0.8㎛)'.center(40),
       '\n',
-      '\033[0;37;40m','3:トルマリン(1.8㎛)'.center(36),'\033[0m'
-      '\n',
+      '\033[0;37;40m', '3:トルマリン(1.8㎛)'.center(36), '\033[0m'
+                                                   '\n',
       '4:トルマリン(3㎛)'.center(40),
       '\n',
-      '\033[0;37;40m','5:黒鉛粉末(5~11㎛)'.center(37),'\033[0m'
-      '\n',
+      '\033[0;37;40m', '5:黒鉛粉末(5~11㎛)'.center(37), '\033[0m'
+                                                   '\n',
       '6:薄力小麦粉(20~50㎛)'.center(40),
       '\n',
-      '\033[0;37;40m','7:スギ花粉(30㎛)'.center(37),'\033[0m'
-      '\n',
+      '\033[0;37;40m', '7:スギ花粉(30㎛)'.center(37), '\033[0m'
+                                                 '\n',
       '8:トマトパウダー(100~500㎛)'.center(40),
       '\n',
-      ''.center(40,'-'))
-
+      ''.center(40, '-'))
 
 number = {'6': '薄力小麦粉(20~50㎛)',
           '8': 'トマトパウダー(100~500㎛)',
@@ -41,6 +41,7 @@ number = {'6': '薄力小麦粉(20~50㎛)',
           '1': 'RX OX(40nm)',
           '7': 'スギ花粉(30㎛)'}
 
+# こちらの順番はどうでもいい
 name = {'薄力小麦粉(20~50㎛)': '薄力小麦粉',
         'トマトパウダー(100~500㎛)': 'トマトパウダー',
         '黒鉛粉末(5~11㎛)': '黒鉛粉末',
@@ -50,6 +51,7 @@ name = {'薄力小麦粉(20~50㎛)': '薄力小麦粉',
         'RX OX(40nm)': 'RX OX',
         'スギ花粉(30㎛)': 'スギ花粉'}
 
+# こちらの順番はどうでもいい
 diameter = {'薄力小麦粉(20~50㎛)': '20~50㎛',
             'トマトパウダー(100~500㎛)': '100~500㎛',
             '黒鉛粉末(5~11㎛)': '5~11㎛',
@@ -70,8 +72,7 @@ result_path = '/home/pi/henko/result/'
 
 time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
 csv_file = result_path + '%s-e.csv' % time_local
-# file = open(csv_file, 'a')
-file = codecs.open(csv_file,'a','utf-8')
+file = open(csv_file, 'a', encoding='utf-8')
 target_number = input('測定目標の番号を入力してください.\n')
 try:
     target_name = number[target_number]
@@ -84,7 +85,7 @@ target_diameter = diameter[target_name]
 
 # タイトルを入力する
 file.write(time_local + ',,,' + time.strftime('%H:%M:%S', time.localtime(
-    time.time())) + ',,,,' + target_name_short + ',' +target_diameter + '\n\n'+'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
+    time.time())) + ',,,,' + target_name_short + ',' + target_diameter + '\n\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
 
 i2c = smbus.SMBus(1)
 
@@ -154,7 +155,6 @@ def angle(angle):
     duty = 2.5 + (12.0 - 2.5) * (angle + 90) / 180
     motor.ChangeDutyCycle(duty)
     time.sleep(0.3)
-
 
 
 # モーターを-90の所に戻す
