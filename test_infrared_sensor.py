@@ -70,12 +70,12 @@ except:
     print('正しい番号を入力してください')
     sys.exit()
 
-target_name_short = name[target_name]
-target_diameter = diameter[target_name]
+target_name_short = str(name[target_name])
+target_diameter = str(diameter[target_name])
 
 # タイトルを入力する
 file.write(time_local + ',,,' + time.strftime('%H:%M:%S', time.localtime(
-    time.time())) + ',,,,\n' + target_name_short + ',' +target_diameter + '\n'+'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
+    time.time())) + ',,,,' + target_name_short + ',' +target_diameter + '\n'+'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
 
 i2c = smbus.SMBus(1)
 
