@@ -12,16 +12,25 @@ import RPi.GPIO as GPIO
 import time
 import smbus
 # 測定目標リスト
-print('-----------測定目標--------------\n'
-      '\033[0;37;40m','+        1:RX OX(40nm)       +','\033[0m'
-      '\n +       2:トルマリン(0.8㎛)     +\n'
-      '\033[0;37;40m','+       3:トルマリン(1.8㎛)     +','\033[0m'
-      '\n +       4:トルマリン(3㎛)       +\n'
-      '\033[0;37;40m','+       5:黒鉛粉末(5~11㎛)     +','\033[0m'
-      '\n +      6:薄力小麦粉(20~50㎛)    +\n'
-      '\033[0;37;40m','+        7:スギ花粉(30㎛)       +','\033[0m'
-      '\n +   8:トマトパウダー(100~500㎛)  +\n'
-      '--------------------------------\n')
+print('測定目標'.center(40,'-'),'\n',
+      '\033[0;37;40m','1:RX OX(40nm)'.center(40),'\033[0m'
+      '\n',
+      '2:トルマリン(0.8㎛)'.center(40),
+      '\n',
+      '\033[0;37;40m','3:トルマリン(1.8㎛)'.center(36),'\033[0m'
+      '\n',
+      '4:トルマリン(3㎛)'.center(40),
+      '\n',
+      '\033[0;37;40m','5:黒鉛粉末(5~11㎛)'.center(37),'\033[0m'
+      '\n',
+      '6:薄力小麦粉(20~50㎛)'.center(40),
+      '\n',
+      '\033[0;37;40m','7:スギ花粉(30㎛)'.center(37),'\033[0m'
+      '\n',
+      '8:トマトパウダー(100~500㎛)'.center(40),
+      '\n',
+      ''.center(40,'-'))
+
 
 number = {'6': '薄力小麦粉(20~50㎛)',
           '8': 'トマトパウダー(100~500㎛)',
@@ -70,8 +79,8 @@ except:
     print('正しい番号を入力してください')
     sys.exit()
 
-target_name_short = str(name[target_name])
-target_diameter = str(diameter[target_name])
+target_name_short = name[target_name]
+target_diameter = diameter[target_name]
 
 # タイトルを入力する
 file.write(time_local + ',,,' + time.strftime('%H:%M:%S', time.localtime(
