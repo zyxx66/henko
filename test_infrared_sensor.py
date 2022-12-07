@@ -62,7 +62,7 @@ result_path = '/home/pi/henko/result/'
 time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
 csv_file = result_path + '%s-e.csv' % time_local
 # file = open(csv_file, 'a')
-file = codecs.open(csv_file,'a','shift-jis')
+file = codecs.open(csv_file,'a','utf-8')
 target_number = input('測定目標の番号を入力してください.\n')
 try:
     target_name = number[target_number]
