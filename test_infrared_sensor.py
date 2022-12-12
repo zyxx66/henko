@@ -46,9 +46,9 @@ number = {'6': '薄力小麦粉(20~50㎛)',
 name = {'薄力小麦粉(20~50㎛)': 'komugiko',
         'トマトパウダー(100~500㎛)': 'tomato',
         '黒鉛粉末(5~11㎛)': 'kokuen',
-        'トルマリン(3㎛)': 'torumarin',
-        'トルマリン(1.8㎛)': 'torumarin',
-        'トルマリン(0.8㎛)': 'torumarin',
+        'トルマリン(3㎛)': 'torumarin_3',
+        'トルマリン(1.8㎛)': 'torumarin_1.8',
+        'トルマリン(0.8㎛)': 'torumarin_0.8',
         'RX_OX(40nm)': 'RX_OX',
         'スギ花粉(30㎛)': 'sugikafun'}
 
