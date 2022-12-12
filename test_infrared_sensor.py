@@ -11,6 +11,7 @@ import sys
 import RPi.GPIO as GPIO
 import time
 import smbus
+import rclone_method
 
 # 測定目標リスト
 print('測定目標'.center(40, '-'), '\n',
@@ -48,7 +49,7 @@ name = {'薄力小麦粉(20~50㎛)': 'komugiko',
         'トルマリン(3㎛)': 'torumarin',
         'トルマリン(1.8㎛)': 'torumarin',
         'トルマリン(0.8㎛)': 'torumarin',
-        'RX OX(40nm)': 'RX OX',
+        'RX_OX(40nm)': 'RX_OX',
         'スギ花粉(30㎛)': 'sugikafun'}
 
 # こちらの順番はどうでもいい
@@ -58,7 +59,7 @@ diameter = {'薄力小麦粉(20~50㎛)': '20~50um',
             'トルマリン(3㎛)': '3um',
             'トルマリン(1.8㎛)': '1.8um',
             'トルマリン(0.8㎛)': '0.8um',
-            'RX OX(40nm)': '40nm',
+            'RX_OX(40nm)': '40nm',
             'スギ花粉(30㎛)': '30um'}
 
 GPIO.setmode(GPIO.BCM)
@@ -70,9 +71,7 @@ motor.start(0.0)
 # 結果保存する場所
 result_path = '/home/pi/henko/result/'
 
-time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
-csv_file = result_path + '%s-e.csv' % time_local
-file = open(csv_file, 'a')
+
 target_number = input('測定目標の番号を入力してください.\n')
 try:
     target_name = number[target_number]
@@ -82,6 +81,11 @@ except:
 
 target_name_short = name[target_name]
 target_diameter = diameter[target_name]
+
+time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
+csv_file = result_path + '%s-e-%s.csv' % (time_local,target_name_short)
+file = open(csv_file, 'a')
+
 
 # タイトルを入力する
 file.write(time_local + ',,,' + time.strftime('%H:%M:%S', time.localtime(
@@ -208,3 +212,10 @@ if i == 36:
     file.write('\n')
     GPIO.cleanup()
 file.close()
+
+# 実験ファイルを google drive　にアップロードする機能、要らなかったら Ture　を Falseにしてください
+
+if True:
+    time_local_split = time_local.split('-')
+    target_path = "gdrive_taka:偏光測定器_実験データ/%s年/%s月/%s日" % (time_local_split[0], time_local_split[1],time_local_split[2])
+    rclone_method.update(csv_file,target_path)

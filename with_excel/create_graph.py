@@ -19,7 +19,7 @@ class create_graph():
         work_book[0].save(self.file_name)
 
     def create_scatter(self, load_work_book: list, chart_x_title: str, chart_y_title: str,
-                       chart_title: str, chart_place: str, *data_in: list):
+                       chart_title: str, chart_place: str, data_in: list):
 
         series = []
         # 編集したいシートを指定する
@@ -30,7 +30,7 @@ class create_graph():
                                               data_in[i][2], data_in[i][3])
             y_data = openpyxl.chart.Reference(work_sheet, data_in[i][4], data_in[i][5],
                                               data_in[i][6], data_in[i][7])
-            series.append(openpyxl.chart.Series(y_data, x_data, title_from_data=True))
+            series.append(openpyxl.chart.Series(y_data, x_data, title = data_in[i][8]))
 
         chart = openpyxl.chart.ScatterChart()
         chart.title = chart_title
@@ -45,7 +45,18 @@ class create_graph():
             elif i == 1:
                 series[i].marker.graphicalProperties.solidFill = 'FF9900'
                 series[i].marker.graphicalProperties.line.solidFill = 'FF9900'
-
+            elif i == 2:
+                series[i].marker.graphicalProperties.solidFill = '00FF00'
+                series[i].marker.graphicalProperties.line.solidFill = '00FF00'
+            elif i == 3:
+                series[i].marker.graphicalProperties.solidFill = 'B5A642'
+                series[i].marker.graphicalProperties.line.solidFill = 'B5A642'
+            elif i == 4:
+                series[i].marker.graphicalProperties.solidFill = '871F78'
+                series[i].marker.graphicalProperties.line.solidFill = '871F78'
+            elif i == 5:
+                series[i].marker.graphicalProperties.solidFill = 'E47833'
+                series[i].marker.graphicalProperties.line.solidFill = 'E47833'
             series[i].graphicalProperties.line.noFill = True
             chart.append(series[i])
 
