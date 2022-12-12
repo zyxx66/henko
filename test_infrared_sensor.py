@@ -65,7 +65,7 @@ diameter = {'薄力小麦粉(20~50㎛)': '20~50um',
             'トルマリン(0.8㎛)': '0.8um',
             'RX_OX(40nm)': '40nm',
             'スギ花粉(30㎛)': '30um',
-            'empty':'empty'}
+            '空き':'--'}
 
 GPIO.setmode(GPIO.BCM)
 gp_out = 18
