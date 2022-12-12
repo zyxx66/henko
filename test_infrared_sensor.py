@@ -93,8 +93,9 @@ file = open(csv_file, 'a')
 
 
 # タイトルを入力する
-file.write(time_local + ',,,' + time.strftime('%H:%M:%S', time.localtime(
-    time.time())) + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
+time_now = time.strftime('%H:%M:%S', time.localtime(
+    time.time()))
+file.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
 
 i2c = smbus.SMBus(1)
 
@@ -198,18 +199,18 @@ for i in range(37):
         print("0 Lx")
         file.write(str(5 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
             lux2) + ',' + '\n')
-        print('--------------------------')
+        print(time_now.center(40,'-'))
     elif (lux1 >= lux2):
         k += 1
         print(lux1)
         file.write(str(5 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
             lux2) + ',' + '\n')
-        print('--------------------------')
+        print(time_now.center(40,'-'))
     elif (lux1 < lux2):
         print(lux2)
         file.write(str(5 * i) + ',' + str(lux2) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
             lux2) + ',' + '\n')
-        print('--------------------------')
+        print(time_now.center(40,'-'))
     time.sleep(0.2)
 
 if i == 36:
