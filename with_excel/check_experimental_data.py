@@ -82,7 +82,17 @@ def check(folder):
             if k == data_address[0]:
                 number = 1
                 for i in data_address:
-                    data_list.append([1, i[0], 1, i[1], 4, i[0], 4, i[1],str(number)])
+                    if number == 1:
+                        date_title = '空きケース'
+                    elif number == 2:
+                        date_title = '振らない'
+                    elif number == 3:
+                        date_title = '振る(1回目)'
+                    elif number == 4:
+                        date_title = '振る(2回目)'
+                    elif number == 5:
+                        date_title = '振る(3回目)'
+                    data_list.append([1, i[0], 1, i[1], 4, i[0], 4, i[1],date_title])
                     number+=1
                 graph.create_scatter(load_file, '角度(°)', '照度(Lux)',
                                      'LUX1', 'Q21', data_list)

@@ -133,6 +133,9 @@ TSL2572_C1DATAH = 0x17
 atime = 0xC0
 gain = 1.0
 
+def tcaselect(channel):
+    data = 1 << channel
+    i2c.write_byte_data(0x70,0x00,data)
 
 def initTSL2572():
     if (getTSL2572reg(TSL2572_ID) != [0x34]):
@@ -166,6 +169,7 @@ def angle(angle):
     motor.ChangeDutyCycle(duty)
     time.sleep(0.3)
 
+tcaselect(0)
 
 # モーターを-90の所に戻す
 angle(-90)
