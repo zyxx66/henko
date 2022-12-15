@@ -7,6 +7,7 @@
 
 # Python 2.7.16
 import codecs
+import os
 import sys
 import RPi.GPIO as GPIO
 import time
@@ -43,7 +44,8 @@ number = {'6': '薄力小麦粉(20~50㎛)',
           '2': 'トルマリン(0.8㎛)',
           '1': 'RX_OX(40nm)',
           '7': 'スギ花粉(30㎛)',
-          '9': '空き'}
+          '9': '空き',
+          '10':'本日の実験ファイルをgoogle driveにアップロードする'}
 
 # こちらの順番はどうでもいい
 name = {'薄力小麦粉(20~50㎛)': 'komugiko',
@@ -67,6 +69,8 @@ diameter = {'薄力小麦粉(20~50㎛)': '20~50um',
             'スギ花粉(30㎛)': '30um',
             '空き':'--'}
 
+time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
+
 GPIO.setmode(GPIO.BCM)
 gp_out = 18
 GPIO.setup(gp_out, GPIO.OUT)
@@ -78,154 +82,159 @@ result_path = '/home/pi/henko/result/'
 
 
 target_number = input('測定目標の番号を入力してください.\n')
-try:
-    target_name = number[target_number]
-except:
-    print('正しい番号を入力してください')
-    sys.exit()
+if target_number != '10':
+    try:
+        target_name = number[target_number]
+    except:
+        print('正しい番号を入力してください')
+        sys.exit()
 
-target_name_short = name[target_name]
-target_diameter = diameter[target_name]
-
-time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
-csv_file = result_path + '%s-e-%s.csv' % (time_local,target_name_short)
-file = open(csv_file, 'a')
+    target_name_short = name[target_name]
+    target_diameter = diameter[target_name]
 
 
-# タイトルを入力する
-time_now = time.strftime('%H:%M:%S', time.localtime(
-    time.time()))
-file.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
-
-i2c = smbus.SMBus(1)
-
-# TSL2572 Register Set
-TSL2572_ADR = 0x39
-TSL2572_COMMAND = 0x80
-TSL2572_TYPE_REP = 0x00
-TSL2572_TYPE_INC = 0x20
-TSL2572_ALSIFC = 0x66
-
-TSL2572_SAI = 0x40
-TSL2572_AIEN = 0x10
-TSL2572_WEN = 0x80
-TSL2572_AEN = 0x02
-TSL2572_PON = 0x01
-
-TSL2572_ENABLE = 0x00
-TSL2572_ATIME = 0x01
-TSL2572_WTIME = 0x03
-TSL2572_AILTL = 0x04
-TSL2572_AILTH = 0x05
-TSL2572_AIHTL = 0x06
-TSL2572_AIHTH = 0x07
-TSL2572_PRES = 0x0C
-TSL2572_CONFIG = 0x0D
-TSL2572_CONTROL = 0x0F
-TSL2572_ID = 0x12
-TSL2572_STATUS = 0x13
-TSL2572_C0DATA = 0x14
-TSL2572_C0DATAH = 0x15
-TSL2572_C1DATA = 0x16
-TSL2572_C1DATAH = 0x17
-
-# TSL2572 setings
-atime = 0xC0
-gain = 1.0
-
-def tcaselect(channel):
-    data = 1 << channel
-    i2c.write_byte_data(0x70,0x00,data)
-
-def initTSL2572():
-    if (getTSL2572reg(TSL2572_ID) != [0x34]):
-        # check TSL2572 ID
-        return -1
-    setTSL2572reg(TSL2572_COMMAND | TSL2572_TYPE_INC | TSL2572_CONTROL, 0x00)
-    setTSL2572reg(TSL2572_COMMAND | TSL2572_TYPE_INC | TSL2572_CONFIG, 0x00)
-    setTSL2572reg(TSL2572_COMMAND | TSL2572_TYPE_INC | TSL2572_ATIME, atime)
-    setTSL2572reg(TSL2572_COMMAND | TSL2572_TYPE_INC | TSL2572_ENABLE, TSL2572_AEN | TSL2572_PON)
-    return 0
+    csv_file = result_path + '%s-e-%s.csv' % (time_local,target_name_short)
+    file = open(csv_file, 'a')
 
 
-def setTSL2572reg(reg, dat):
-    i2c.write_byte_data(TSL2572_ADR, reg, dat)
+    # タイトルを入力する
+    time_now = time.strftime('%H:%M:%S', time.localtime(
+        time.time()))
+    file.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
+
+    i2c = smbus.SMBus(1)
+
+    # TSL2572 Register Set
+    TSL2572_ADR = 0x39
+    TSL2572_COMMAND = 0x80
+    TSL2572_TYPE_REP = 0x00
+    TSL2572_TYPE_INC = 0x20
+    TSL2572_ALSIFC = 0x66
+
+    TSL2572_SAI = 0x40
+    TSL2572_AIEN = 0x10
+    TSL2572_WEN = 0x80
+    TSL2572_AEN = 0x02
+    TSL2572_PON = 0x01
+
+    TSL2572_ENABLE = 0x00
+    TSL2572_ATIME = 0x01
+    TSL2572_WTIME = 0x03
+    TSL2572_AILTL = 0x04
+    TSL2572_AILTH = 0x05
+    TSL2572_AIHTL = 0x06
+    TSL2572_AIHTH = 0x07
+    TSL2572_PRES = 0x0C
+    TSL2572_CONFIG = 0x0D
+    TSL2572_CONTROL = 0x0F
+    TSL2572_ID = 0x12
+    TSL2572_STATUS = 0x13
+    TSL2572_C0DATA = 0x14
+    TSL2572_C0DATAH = 0x15
+    TSL2572_C1DATA = 0x16
+    TSL2572_C1DATAH = 0x17
+
+    # TSL2572 setings
+    atime = 0xC0
+    gain = 1.0
+
+    def tcaselect(channel):
+        data = 1 << channel
+        i2c.write_byte_data(0x70,0x00,data)
+
+    def initTSL2572():
+        if (getTSL2572reg(TSL2572_ID) != [0x34]):
+            # check TSL2572 ID
+            return -1
+        setTSL2572reg(TSL2572_COMMAND | TSL2572_TYPE_INC | TSL2572_CONTROL, 0x00)
+        setTSL2572reg(TSL2572_COMMAND | TSL2572_TYPE_INC | TSL2572_CONFIG, 0x00)
+        setTSL2572reg(TSL2572_COMMAND | TSL2572_TYPE_INC | TSL2572_ATIME, atime)
+        setTSL2572reg(TSL2572_COMMAND | TSL2572_TYPE_INC | TSL2572_ENABLE, TSL2572_AEN | TSL2572_PON)
+        return 0
 
 
-def getTSL2572reg(reg):
-    dat = i2c.read_i2c_block_data(TSL2572_ADR, TSL2572_COMMAND | TSL2572_TYPE_INC | reg, 1)
-    return dat
+    def setTSL2572reg(reg, dat):
+        i2c.write_byte_data(TSL2572_ADR, reg, dat)
 
 
-def getTSL2572adc():
-    dat = i2c.read_i2c_block_data(TSL2572_ADR, TSL2572_COMMAND | TSL2572_TYPE_INC | TSL2572_C0DATA, 4)
-    adc0 = (dat[1] << 8) | dat[0]
-    adc1 = (dat[3] << 8) | dat[2]
-    return [adc0, adc1]
+    def getTSL2572reg(reg):
+        dat = i2c.read_i2c_block_data(TSL2572_ADR, TSL2572_COMMAND | TSL2572_TYPE_INC | reg, 1)
+        return dat
 
 
-def angle(angle):
-    duty = 2.5 + (12.0 - 2.5) * (angle + 90) / 180
-    motor.ChangeDutyCycle(duty)
-    time.sleep(0.3)
+    def getTSL2572adc():
+        dat = i2c.read_i2c_block_data(TSL2572_ADR, TSL2572_COMMAND | TSL2572_TYPE_INC | TSL2572_C0DATA, 4)
+        adc0 = (dat[1] << 8) | dat[0]
+        adc1 = (dat[3] << 8) | dat[2]
+        return [adc0, adc1]
 
-tcaselect(0)
 
-# モーターを-90の所に戻す
-angle(-90)
+    def angle(angle):
+        duty = 2.5 + (12.0 - 2.5) * (angle + 90) / 180
+        motor.ChangeDutyCycle(duty)
+        time.sleep(0.3)
 
-if (initTSL2572() != 0):
-    print('Failed')
-    sys.exit()
+    tcaselect(0)
 
-measure_num = 3
-total = 0
-
-k = 0
-avg = 0
-sum = 0
-
-for i in range(37):
-    angle((i - 18) * 5)
-    time.sleep(0.1)
-    adc = getTSL2572adc()
-    print("sekigai + kasiko = %s" % adc[0])
-    print("sekigai = %s" % adc[1])
-    cpl = 0.0
-    lux1 = 0.0
-    lux2 = 0.0
-    cpl = (2.73 * (256 - atime) * gain) / (60.0)
-    lux1 = ((adc[0] * 1.00) - (adc[1] * 1.87)) / cpl
-    lux2 = ((adc[0] * 0.63) - (adc[1] * 1.00)) / \
-           cpl
-    time.sleep(0.01)
-    if ((lux1 <= 0) and (lux2 <= 0)):
-        print("0 Lx")
-        file.write(str(5 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
-            lux2) + ',' + '\n')
-        print(time_now.center(40,'-'))
-    elif (lux1 >= lux2):
-        k += 1
-        print(lux1)
-        file.write(str(5 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
-            lux2) + ',' + '\n')
-        print(time_now.center(40,'-'))
-    elif (lux1 < lux2):
-        print(lux2)
-        file.write(str(5 * i) + ',' + str(lux2) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
-            lux2) + ',' + '\n')
-        print(time_now.center(40,'-'))
-    time.sleep(0.2)
-
-if i == 36:
+    # モーターを-90の所に戻す
     angle(-90)
-    file.write('\n')
-    GPIO.cleanup()
-file.close()
 
-# 実験ファイルを google drive　にアップロードする機能、要らなかったら Ture　を Falseにしてください
+    if (initTSL2572() != 0):
+        print('Failed')
+        sys.exit()
 
-if False:
-    time_local_split = time_local.split('-')
-    target_path = "gdrive_taka:偏光測定器_実験データ/%s年/%s月/%s日" % (time_local_split[0], time_local_split[1],time_local_split[2])
-    rclone_method.update(csv_file,target_path)
+    measure_num = 3
+    total = 0
+
+    k = 0
+    avg = 0
+    sum = 0
+
+    for i in range(37):
+        angle((i - 18) * 5)
+        time.sleep(0.1)
+        adc = getTSL2572adc()
+        print("sekigai + kasiko = %s" % adc[0])
+        print("sekigai = %s" % adc[1])
+        cpl = 0.0
+        lux1 = 0.0
+        lux2 = 0.0
+        cpl = (2.73 * (256 - atime) * gain) / (60.0)
+        lux1 = ((adc[0] * 1.00) - (adc[1] * 1.87)) / cpl
+        lux2 = ((adc[0] * 0.63) - (adc[1] * 1.00)) / \
+               cpl
+        time.sleep(0.01)
+        if ((lux1 <= 0) and (lux2 <= 0)):
+            print("0 Lx")
+            file.write(str(5 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
+                lux2) + ',' + '\n')
+            print(time_now.center(40,'-'))
+        elif (lux1 >= lux2):
+            k += 1
+            print(lux1)
+            file.write(str(5 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
+                lux2) + ',' + '\n')
+            print(time_now.center(40,'-'))
+        elif (lux1 < lux2):
+            print(lux2)
+            file.write(str(5 * i) + ',' + str(lux2) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
+                lux2) + ',' + '\n')
+            print(time_now.center(40,'-'))
+        time.sleep(0.2)
+
+    if i == 36:
+        angle(-90)
+        file.write('\n')
+        GPIO.cleanup()
+    file.close()
+
+    # 実験ファイルを google drive　にアップロードする機能、要らなかったら Ture　を Falseにしてください
+
+elif target_number == '10':
+    for file_name in os.listdir(result_path):
+        if time_local in file_name:
+            source_file = result_path+file_name
+            time_local_split = time_local.split('-')
+            print(source_file)
+            #target_path = "gdrive_taka:偏光測定器_実験データ/%s年/%s月/%s日" % (time_local_split[0], time_local_split[1],time_local_split[2])
+            #rclone_method.update(source_file,target_path)
