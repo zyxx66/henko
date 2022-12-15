@@ -225,7 +225,7 @@ file.close()
 
 # 実験ファイルを google drive　にアップロードする機能、要らなかったら Ture　を Falseにしてください
 
-if True:
+if False:
     time_local_split = time_local.split('-')
     target_path = "gdrive_taka:偏光測定器_実験データ/%s年/%s月/%s日" % (time_local_split[0], time_local_split[1],time_local_split[2])
     rclone_method.update(csv_file,target_path)
