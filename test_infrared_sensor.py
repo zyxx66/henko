@@ -34,6 +34,8 @@ print('測定目標'.center(40, '-'), '\n',
       '\n',
       '\033[0;37;40m', '9:空き'.center(39), '\033[0m'
       '\n',
+      '10:本日の実験ファイルをgoogle driveにアップロードする'.center(40),
+      '\n',
       ''.center(40, '-'))
 
 number = {'6': '薄力小麦粉(20~50㎛)',
@@ -44,8 +46,8 @@ number = {'6': '薄力小麦粉(20~50㎛)',
           '2': 'トルマリン(0.8㎛)',
           '1': 'RX_OX(40nm)',
           '7': 'スギ花粉(30㎛)',
-          '9': '空き',
-          '10':'本日の実験ファイルをgoogle driveにアップロードする'}
+          '9': '空き'
+          }
 
 # こちらの順番はどうでもいい
 name = {'薄力小麦粉(20~50㎛)': 'komugiko',
@@ -235,6 +237,5 @@ elif target_number == '10':
         if time_local in file_name:
             source_file = result_path+file_name
             time_local_split = time_local.split('-')
-            print(source_file)
-            #target_path = "gdrive_taka:偏光測定器_実験データ/%s年/%s月/%s日" % (time_local_split[0], time_local_split[1],time_local_split[2])
-            #rclone_method.update(source_file,target_path)
+            target_path = "gdrive_taka:偏光測定器_実験データ/%s年/%s月/%s日" % (time_local_split[0], time_local_split[1],time_local_split[2])
+            rclone_method.update(source_file,target_path)
