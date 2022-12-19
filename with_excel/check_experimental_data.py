@@ -14,11 +14,13 @@ import openpyxl
 import csv
 import with_excel.create_graph as cg
 
-experimental_date = '2022年/12月/15日'
+experimental_date = '2022年/12月/12日'
 
 data_title = {1: '振らない', 2: '振る', 3: '振る', 4: '振る', 5: '振らない', 6: '振らない'}
-sheet_title = {'empty':0,'RX_OX':1,'torumarin_0':2,'torumarin_1':3,'torumarin_3':4,
-              'kokuen':5,'sugikafun':7,'tomato':8}
+sheet_title = {'empty': 0, 'RX_OX': 1, 'torumarin_0': 2, 'torumarin_1': 3, 'torumarin_3': 4,
+               'kokuen': 5, 'komugiko': 6, 'sugikafun': 7, 'tomato': 8}
+sheet_name_Japanses = {'empty': '空き', 'RX_OX': 'RX OX', 'torumarin_0': 'トルマリン(0.8)', 'torumarin_1': 'トルマリン(1.8)', 'torumarin_3': 'トルマリン(3)',
+               'kokuen': '黒鉛', 'komugiko': '小麦粉', 'sugikafun': '花粉', 'tomato': 'トマト'}
 fill_color = openpyxl.styles.PatternFill('solid', fgColor='FFFF00')
 border_set = openpyxl.styles.Border(left=openpyxl.styles.Side(style='thick', color=openpyxl.styles.colors.BLACK),
                                     right=openpyxl.styles.Side(style='thick', color=openpyxl.styles.colors.BLACK),
@@ -47,7 +49,6 @@ def check(folder):
         if '.csv' in file and '-e' in file:
             file_list.append(file)
 
-
     xlsx_file = folder + 'excel/' + file_list[0].split('-e-')[0] + '-e.xlsx'
 
     wb = openpyxl.Workbook()
@@ -56,8 +57,11 @@ def check(folder):
         sheet_name = csv_name.split('-e-')[1].split('.')[0]
         sheet_no = sheet_title[sheet_name]
         ws = wb.create_sheet(sheet_name, sheet_no)
-        ws_sumup = wb.create_sheet('sumup',9)
-        sheet_no += 1
+        print(sheet_no)
+        if csv_name == file_list[0]:
+            ws_sumup = wb.create_sheet('sumup', 9)
+        else:
+            ws_sumup = wb['sumup']
         csv_file = folder + csv_name
 
         with open(csv_file, 'r') as f:
@@ -138,19 +142,47 @@ def check(folder):
                                      '偏光', 'P20', data_list)
         # ws_sumup :　統計用シート　ws : 今のシート
         sumup_no = sheet_no + 1
+        # A=1,B=2,C=3,D=4,E=5,F=6,G=7,H=8,I=9,J=10,K=11,L=12,M=13,N=14
+        sumup_sheet_i = 0
+        sumup_sheet_start_point_x = 1
         if sumup_no % 3 == 0:
-            pass
-
+            sumup_sheet_start_point_y = 11
         else:
-            pass
-            ws_sumup.cell()
+            sumup_sheet_start_point_y = 1 + (sumup_no % 3 - 1) * 5
+        while ws_sumup.cell(sumup_sheet_start_point_x, sumup_sheet_start_point_y).value is not None and \
+                ws_sumup.cell(sumup_sheet_start_point_x+1, sumup_sheet_start_point_y).value is not None:
+            sumup_sheet_start_point_x += 1
+        if sumup_sheet_start_point_x != 1:
+            sumup_sheet_start_point_x += 1
+        ws_sumup.cell(sumup_sheet_start_point_x, sumup_sheet_start_point_y).value = sheet_name_Japanses[sheet_name]
+        ws_sumup.cell(sumup_sheet_start_point_x, sumup_sheet_start_point_y + 1).value = 'max(Lux)'
+        ws_sumup.cell(sumup_sheet_start_point_x, sumup_sheet_start_point_y + 2).value = 'min(Lux)'
+        ws_sumup.cell(sumup_sheet_start_point_x, sumup_sheet_start_point_y + 3).value = '偏光度(%)'
+
+        while (ws.cell(sumup_sheet_i * 40 + 1, 11)).value is not None:
+            ws_sumup.cell(sumup_sheet_start_point_x + sumup_sheet_i + 1,
+                          sumup_sheet_start_point_y).value = '第' + str(sumup_sheet_i + 1) + '回'
+            ws_sumup.cell(sumup_sheet_start_point_x + sumup_sheet_i + 1,
+                          sumup_sheet_start_point_y + 1).value = '=' + sheet_name + '!' + 'K' + str(
+                sumup_sheet_i * 40 + 2)
+            ws_sumup.cell(sumup_sheet_start_point_x + sumup_sheet_i + 1,
+                          sumup_sheet_start_point_y + 2).value = '=' + sheet_name + '!' + 'L' + str(
+                sumup_sheet_i * 40 + 2)
+            ws_sumup.cell(sumup_sheet_start_point_x + sumup_sheet_i + 1,
+                          sumup_sheet_start_point_y + 3).value = '=' + sheet_name + '!' + 'M' + str(
+                sumup_sheet_i * 40 + 2)
+            sumup_sheet_i += 1
+        ws_sumup.cell(sumup_sheet_start_point_x + sumup_sheet_i + 1,
+                      sumup_sheet_start_point_y ).value = '平均(振らない)'
+        ws_sumup.cell(sumup_sheet_start_point_x + sumup_sheet_i + 2,
+                      sumup_sheet_start_point_y ).value = '平均(振る)'
+        ws_sumup.cell(sumup_sheet_start_point_x + sumup_sheet_i + 3,
+                      sumup_sheet_start_point_y ).value = ''
 
     wb.save(xlsx_file)
     print('save')
 
     print(data)
-
-
 
 
 if __name__ == '__main__':
