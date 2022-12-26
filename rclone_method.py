@@ -25,7 +25,6 @@ pc_experimental_path = 'C://Users/zyxx/Desktop/test_csv/experimental_data/'
 # date_time('2022-10-11','2022-10-15',data) と
 # data = ['2022-10-11','2022-10-12','2022-10-13','2022-10-14','2022-10-15']　は同じ意味である
 # --例　↑　--
-print(cloud_experimental_path)
 
 
 def date_time(date_start, date_end, data):
