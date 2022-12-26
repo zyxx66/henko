@@ -174,7 +174,7 @@ if target_number != '10':
     def angle(angle):
         duty = 2.5 + (12.0 - 2.5) * (angle + 90) / 180
         motor.ChangeDutyCycle(duty)
-        time.sleep(0.3)
+        time.sleep(0.1)
 
     tcaselect(0)
 
@@ -195,8 +195,8 @@ if target_number != '10':
     max_lux = 0
     min_lux = 9999
 
-    for i in range(37):
-        angle((i - 18) * 5)
+    for i in range(181):
+        angle(i - 90)
         time.sleep(0.1)
         adc = getTSL2572adc()
         print("sekigai + kasiko = %s" % adc[0])
