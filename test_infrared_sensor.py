@@ -217,7 +217,8 @@ if target_number != '10':
                 max_lux = 0
             if 0 < min_lux:
                 min_lux = 0
-            print('max = %f , min = %f'%(max_lux,min_lux))
+            henkodo = (max_lux - min_lux) / (max_lux + min_lux)
+            print('max = %f , min = %f,偏光度 = %f'%(max_lux,min_lux,henkodo))
             print(time_now.center(40,'-'))
         elif (lux1 >= lux2):
             k += 1
@@ -228,7 +229,8 @@ if target_number != '10':
                 max_lux = lux1
             if lux1 < min_lux:
                 min_lux = lux1
-            print('max = %f , min = %f'%(max_lux,min_lux))
+            henkodo = (max_lux-min_lux)/(max_lux+min_lux)
+            print('max = %f , min = %f,偏光度 = %f'%(max_lux,min_lux,henkodo))
             print(time_now.center(40,'-'))
         elif (lux1 < lux2):
             print(lux2)
@@ -238,7 +240,8 @@ if target_number != '10':
                 max_lux = lux2
             if lux2 < min_lux:
                 min_lux = lux2
-            print('max = %f , min = %f' % (max_lux, min_lux))
+            henkodo = (max_lux - min_lux) / (max_lux + min_lux)
+            print('max = %f , min = %f,偏光度 = %f' % (max_lux, min_lux,henkodo))
             print(time_now.center(40,'-'))
         time.sleep(0.2)
 
