@@ -195,8 +195,8 @@ if target_number != '10':
     max_lux = 0
     min_lux = 9999
 
-    for i in range(91):
-        angle((i - 45)*2)
+    for i in range(61):
+        angle((i - 30)*3)
         time.sleep(0.1)
         adc = getTSL2572adc()
         print("sekigai + kasiko = %s" % adc[0])
