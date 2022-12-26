@@ -37,7 +37,7 @@ print('測定目標'.center(40, '-'), '\n',
       '10:本日の実験結果をアップロードする'.center(36),
       '\n',
       ''.center(40, '-'))
-
+# こちらの順番はどうでもいい、番号が合ったらオーケー
 number = {'6': '薄力小麦粉(20~50㎛)',
           '8': 'トマトパウダー(100~500㎛)',
           '5': '黒鉛粉末(5~11㎛)',
@@ -192,6 +192,9 @@ if target_number != '10':
     avg = 0
     sum = 0
 
+    max_lux = 0
+    min_lux = 9999
+
     for i in range(37):
         angle((i - 18) * 5)
         time.sleep(0.1)
@@ -210,17 +213,32 @@ if target_number != '10':
             print("0 Lx")
             file.write(str(5 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
                 lux2) + ',' + '\n')
+            if 0 > max_lux:
+                max_lux = 0
+            if 0 < min_lux:
+                min_lux = 0
+            print('max = %f , min = %f'%(max_lux,min_lux))
             print(time_now.center(40,'-'))
         elif (lux1 >= lux2):
             k += 1
             print(lux1)
             file.write(str(5 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
                 lux2) + ',' + '\n')
+            if lux1 > max_lux:
+                max_lux = lux1
+            if lux1 < min_lux:
+                min_lux = lux1
+            print('max = %f , min = %f'%(max_lux,min_lux))
             print(time_now.center(40,'-'))
         elif (lux1 < lux2):
             print(lux2)
             file.write(str(5 * i) + ',' + str(lux2) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
                 lux2) + ',' + '\n')
+            if lux2 > max_lux:
+                max_lux = lux2
+            if lux2 < min_lux:
+                min_lux = lux2
+            print('max = %f , min = %f' % (max_lux, min_lux))
             print(time_now.center(40,'-'))
         time.sleep(0.2)
 

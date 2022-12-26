@@ -7,7 +7,6 @@ import os
 import openpyxl
 import csv
 import with_excel.create_graph as cg 
-import sum_up
 
 
 def check(folder):
@@ -124,4 +123,3 @@ def check(folder):
 if __name__ == '__main__':
     folder = 'C://Users/zyxx/Desktop/test_csv/daily_data/'
     check(folder)
-    sum_up.sumup(folder)
