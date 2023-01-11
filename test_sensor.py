@@ -1,9 +1,7 @@
-mport os
 import sys
 import RPi.GPIO as GPIO
 import time
 import smbus
-import ts1
 
 GPIO.setmode(GPIO.BCM)
 
@@ -42,7 +40,23 @@ TSL2572_C1DATAH = 0x17
 # TSL2572 setings
 atime = 0xC0
 gain = 1.0
+GPIO.setup(27,GPIO.OUT)
+GPIO.output(27,GPIO.HIGH)
 
+def lux_get():
+  adc = getTSL2572adc()
+  cpl = 0.0
+  lux1 = 0.0
+  lux2 = 0.0
+  cpl = (2.73 * (256 - atime) * gain)/(60.0)
+  lux1 = ((adc[0] * 1.00) - (adc[1] * 1.87)) / cpl
+  lux2 = ((adc[0] * 0.63) - (adc[1] * 1.00)) / cpl
+  if ((lux1 <= 0) and (lux2 <= 0)) :
+    return [0,adc[0],adc[1],lux1,lux2]
+  elif (lux1 > lux2) :
+    return [lux1,adc[0],adc[1],lux1,lux2]
+  elif (lux1 < lux2) :
+    return [lux2,adc[0],adc[1],lux1,lux2]
 
 def tcaselect(channel):
     data = 1 << channel
@@ -74,12 +88,17 @@ def getTSL2572adc():
     adc1 = (dat[3] << 8) | dat[2]
     return [adc0, adc1]
 
-for i in range(36):
-    time.sleep(0.3)
-    ts1.tcaselect(1)
-    ts1.init()
-    sizenko = ts1.lux_get()
-    ts1.tcaselect(0)
-    ts1.init()
-    henko = ts1.lux_get()
-    print('1.sizenko:%f,2.henko:%f'%(sizenko,henko))
+i = 1
+
+while(True):
+    time.sleep(0.1)
+    tcaselect(1)
+    initTSL2572()
+    sizenko = lux_get()
+    tcaselect(0)
+    initTSL2572()
+    henko = lux_get()
+    print(sizenko)
+    print(henko)
+    i+=1
+    print('---------------------%d-----------'%i)
