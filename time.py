@@ -46,9 +46,9 @@ while True:
                 mounth_now -= 12
                 year_now = int(year_now) + 1
 
-            time_now = str(hour_now) + ":" + minute_now + ":" + second_now
-          
-            date_now = year_now + "-" + str(mounth_now) + "-" + day_now + " " + time_now
+            time_now = str(hour_now) + ":" + str(minute_now) + ":" + str(second_now)
+
+            date_now = str(year_now) + "-" + str(mounth_now) + "-" + str(day_now) + " " + time_now
 
             os.system('sudo date -s' + '"' + date_now + '"')
             print(date_now)
