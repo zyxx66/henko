@@ -39,7 +39,6 @@ def getTSL2572reg(reg):
     dat = i2c.read_i2c_block_data(TSL2572_ADR, TSL2572_COMMAND | TSL2572_TYPE_INC | reg, 1)
     return dat
 
-
 def getTSL2572adc():
     dat = i2c.read_i2c_block_data(TSL2572_ADR, TSL2572_COMMAND | TSL2572_TYPE_INC | TSL2572_C0DATA, 4)
     adc0 = (dat[1] << 8) | dat[0]
@@ -52,7 +51,14 @@ def angle(angle):
     motor.ChangeDutyCycle(duty)
     time.sleep(0.1)
 
+GPIO.setmode(GPIO.BCM)
+gp_out = 18
+GPIO.setup(gp_out, GPIO.OUT)
+motor = GPIO.PWM(gp_out, 50)
+motor.start(0.0)
 
+# 結果保存する場所
+result_path = '/home/pi/henko/result/'
 while True:
     # 測定目標リスト
     print('測定目標'.center(40, '-'), '\n',
@@ -112,16 +118,6 @@ while True:
                 '空き':'--'}
 
     time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
-
-    GPIO.setmode(GPIO.BCM)
-    gp_out = 18
-    GPIO.setup(gp_out, GPIO.OUT)
-    motor = GPIO.PWM(gp_out, 50)
-    motor.start(0.0)
-
-    # 結果保存する場所
-    result_path = '/home/pi/henko/result/'
-
 
     target_number = input('測定目標の番号を入力してください.\n')
     if target_number != '10':
