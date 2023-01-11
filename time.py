@@ -19,7 +19,7 @@ while True:
 
             mounth_now = ExchangeMounth[net_date[8:11]]
             
-            day_now = net_date[5:7]
+            day_now = int(net_date[5:7])
 
             hour_now = int(net_date[17:19]) + 9
             minute_now = net_date[20:22]

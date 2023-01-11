@@ -243,7 +243,7 @@ while True:
                     max_lux = lux2
                 if lux2 < min_lux:
                     min_lux = lux2
-                print('max = %f , min = %f,' % (max_lux, min_lux,henkodo))
+                print('max = %f , min = %f,' % (max_lux, min_lux))
                 print(time_now.center(40,'-'))
 
         if i == 36:
