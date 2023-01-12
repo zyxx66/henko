@@ -1,3 +1,5 @@
+# 光センサーの不具合の有無を確認するプログラムである
+# 動作：
 import sys
 import RPi.GPIO as GPIO
 import time

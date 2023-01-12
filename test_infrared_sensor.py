@@ -57,6 +57,42 @@ GPIO.setup(gp_out, GPIO.OUT)
 motor = GPIO.PWM(gp_out, 50)
 motor.start(0.0)
 
+i2c = smbus.SMBus(1)
+
+# TSL2572 Register Set
+TSL2572_ADR = 0x39
+TSL2572_COMMAND = 0x80
+TSL2572_TYPE_REP = 0x00
+TSL2572_TYPE_INC = 0x20
+TSL2572_ALSIFC = 0x66
+
+TSL2572_SAI = 0x40
+TSL2572_AIEN = 0x10
+TSL2572_WEN = 0x80
+TSL2572_AEN = 0x02
+TSL2572_PON = 0x01
+
+TSL2572_ENABLE = 0x00
+TSL2572_ATIME = 0x01
+TSL2572_WTIME = 0x03
+TSL2572_AILTL = 0x04
+TSL2572_AILTH = 0x05
+TSL2572_AIHTL = 0x06
+TSL2572_AIHTH = 0x07
+TSL2572_PRES = 0x0C
+TSL2572_CONFIG = 0x0D
+TSL2572_CONTROL = 0x0F
+TSL2572_ID = 0x12
+TSL2572_STATUS = 0x13
+TSL2572_C0DATA = 0x14
+TSL2572_C0DATAH = 0x15
+TSL2572_C1DATA = 0x16
+TSL2572_C1DATAH = 0x17
+
+# TSL2572 setings
+atime = 0xC0
+gain = 1.0
+
 # 結果保存する場所
 result_path = '/home/pi/henko/result/'
 while True:
@@ -140,41 +176,6 @@ while True:
             time.time()))
         file.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
 
-        i2c = smbus.SMBus(1)
-
-        # TSL2572 Register Set
-        TSL2572_ADR = 0x39
-        TSL2572_COMMAND = 0x80
-        TSL2572_TYPE_REP = 0x00
-        TSL2572_TYPE_INC = 0x20
-        TSL2572_ALSIFC = 0x66
-
-        TSL2572_SAI = 0x40
-        TSL2572_AIEN = 0x10
-        TSL2572_WEN = 0x80
-        TSL2572_AEN = 0x02
-        TSL2572_PON = 0x01
-
-        TSL2572_ENABLE = 0x00
-        TSL2572_ATIME = 0x01
-        TSL2572_WTIME = 0x03
-        TSL2572_AILTL = 0x04
-        TSL2572_AILTH = 0x05
-        TSL2572_AIHTL = 0x06
-        TSL2572_AIHTH = 0x07
-        TSL2572_PRES = 0x0C
-        TSL2572_CONFIG = 0x0D
-        TSL2572_CONTROL = 0x0F
-        TSL2572_ID = 0x12
-        TSL2572_STATUS = 0x13
-        TSL2572_C0DATA = 0x14
-        TSL2572_C0DATAH = 0x15
-        TSL2572_C1DATA = 0x16
-        TSL2572_C1DATAH = 0x17
-
-        # TSL2572 setings
-        atime = 0xC0
-        gain = 1.0
 
 
         tcaselect(0)
