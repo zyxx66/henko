@@ -129,6 +129,9 @@ for i in range(37):
     time.sleep(1)
     ts1.init()
     henko = ts1.lux_get()
+
+    # 2023/01/12 upload
+    #　こちらのコードは、偏光の値が0になってしまった場合があるので、0にならないように存在している
     if henko[0] == 0:
         continue
     else:
