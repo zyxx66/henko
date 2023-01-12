@@ -251,7 +251,6 @@ while True:
             henkodo = (max_lux - min_lux) / (max_lux + min_lux)
             print('偏光度 = %f'%(henkodo))
             file.write('\n')
-            GPIO.cleanup()
         file.close()
 
         # 実験ファイルを google drive　にアップロードする機能、要らなかったら Ture　を Falseにしてください
@@ -264,4 +263,5 @@ while True:
                 target_path = "gdrive_taka:偏光測定器_実験データ/%s年/%s月/%s日" % (time_local_split[0], time_local_split[1],time_local_split[2])
                 rclone_method.update(source_file,target_path)
         time.sleep(1)
+        GPIO.cleanup()
         break
