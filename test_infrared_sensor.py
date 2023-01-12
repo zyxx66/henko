@@ -227,7 +227,7 @@ while True:
             elif (lux1 >= lux2):
                 k += 1
                 print(lux1)
-                file.write(str(5 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
+                file.write(str(3 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
                     lux2) + ',' + '\n')
                 if lux1 > max_lux:
                     max_lux = lux1
@@ -237,7 +237,7 @@ while True:
                 print(time_now.center(40,'-'))
             elif (lux1 < lux2):
                 print(lux2)
-                file.write(str(5 * i) + ',' + str(lux2) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
+                file.write(str(3 * i) + ',' + str(lux2) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
                     lux2) + ',' + '\n')
                 if lux2 > max_lux:
                     max_lux = lux2
@@ -246,7 +246,7 @@ while True:
                 print('max = %f , min = %f,' % (max_lux, min_lux))
                 print(time_now.center(40,'-'))
 
-        if i == 36:
+        if i == 60:
             angle(-90)
             henkodo = (max_lux - min_lux) / (max_lux + min_lux)
             print('偏光度 = %f'%(henkodo))
