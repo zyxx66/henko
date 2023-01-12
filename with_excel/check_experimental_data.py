@@ -14,9 +14,9 @@ import openpyxl
 import csv
 import with_excel.create_graph as cg
 
-experimental_date = '2022年/12月/26日'
+experimental_date = '2023年/01月/12日'
 
-data_title = {1: '振らない', 2: '振る', 3: '振る', 4: '振る', 5: '振らない', 6: '振らない'}
+data_title = {1: '振らない', 2: '振る', 3: '振る', 4: '振る', 5: '振らない', 6: '振る',7:'振る',8:'振る'}
 sheet_title = {'empty': 0, 'RX_OX': 1, 'torumarin_0': 2, 'torumarin_1': 3, 'torumarin_3': 4,
                'kokuen': 5, 'komugiko': 6, 'sugikafun': 7, 'tomato': 8}
 sheet_name_Japanses = {'empty': '空き', 'RX_OX': 'RX OX', 'torumarin_0': 'トルマリン(0.8)', 'torumarin_1': 'トルマリン(1.8)', 'torumarin_3': 'トルマリン(3)',
@@ -159,18 +159,18 @@ def check(folder):
         ws_sumup.cell(sumup_sheet_start_point_x, sumup_sheet_start_point_y + 2).value = 'min(Lux)'
         ws_sumup.cell(sumup_sheet_start_point_x, sumup_sheet_start_point_y + 3).value = '偏光度(%)'
 
-        while (ws.cell(sumup_sheet_i * 40 + 1, 11)).value is not None:
+        while (ws.cell(sumup_sheet_i * 64 + 1, 11)).value is not None:
             ws_sumup.cell(sumup_sheet_start_point_x + sumup_sheet_i + 1,
                           sumup_sheet_start_point_y).value = '第' + str(sumup_sheet_i + 1) + '回'
             ws_sumup.cell(sumup_sheet_start_point_x + sumup_sheet_i + 1,
                           sumup_sheet_start_point_y + 1).value = '=' + sheet_name + '!' + 'K' + str(
-                sumup_sheet_i * 40 + 2)
+                sumup_sheet_i * 64 + 2)
             ws_sumup.cell(sumup_sheet_start_point_x + sumup_sheet_i + 1,
                           sumup_sheet_start_point_y + 2).value = '=' + sheet_name + '!' + 'L' + str(
-                sumup_sheet_i * 40 + 2)
+                sumup_sheet_i * 64 + 2)
             ws_sumup.cell(sumup_sheet_start_point_x + sumup_sheet_i + 1,
                           sumup_sheet_start_point_y + 3).value = '=' + sheet_name + '!' + 'M' + str(
-                sumup_sheet_i * 40 + 2)
+                sumup_sheet_i * 64 + 2)
             sumup_sheet_i += 1
         ws_sumup.cell(sumup_sheet_start_point_x + sumup_sheet_i + 1,
                       sumup_sheet_start_point_y ).value = '平均(振らない)'
