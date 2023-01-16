@@ -40,23 +40,20 @@ def check(folder):
                 data.append(row)
 
         data_address = []
-        check = 0
         start_point = 0
 
 
         sumup_file.write(csv_name.split('-n')[0] + ',,,\n')
         sumup_file.write('time,henkou(%),unryou(%),,\n')
+
         for i in range(data.__len__()):
             if 'henko(LUX)' in data[i]:
                 start_point = i + 2
-                if check == 0:
-                    check = 1
             if 'henkoudo' in data[i]:
-                check = 0
                 data_address.append([start_point, i])
             if 'henkoudo' in data[i]:
                 data_split = data[i + 1].split(',')
-                sumup_file.write(data[i - 39].split(',')[3].split('\n')[0] + ',' + str(data_split[5]) + ',' + str(
+                sumup_file.write(data[start_point-3].split(',')[3].split('\n')[0] + ',' + str(data_split[5]) + ',' + str(
                     data_split[6].split('\n')[0] + ',,\n'))
 
         csv_name_split = csv_name.split('-')
@@ -102,11 +99,11 @@ def check(folder):
 
             graph.create_scatter(load_file, '角度', '照度', '偏光' + '(' + data[k[0] - 3].split(',')[3].split('\n')[0] + ')',
                                  'H' + str(k[0]),
-                                 [8, 3, 8, 39, 2, k[0], 2, k[1]])
+                                 [[8, 3, 8, 39, 2, k[0], 2, k[1],'henko']])
             graph.create_scatter(load_file, '角度', '照度', 'ch1 and ch2', 'O' + str(k[0]),
-                                 [8, 3, 8, 39, 3, k[0], 3, k[1]], [8, 3, 8, 39, 4, k[0], 4, k[1]])
+                                 [[8, 3, 8, 39, 3, k[0], 3, k[1],'ch0'], [8, 3, 8, 39, 4, k[0], 4, k[1],'ch1']])
             graph.create_scatter(load_file, '角度', '照度', 'lux1 and lux2', 'H' + str(k[0] + 17),
-                                 [8, 3, 8, 39, 5, k[0], 5, k[1]], [8, 3, 8, 39, 6, k[0], 6, k[1]])
+                                 [[8, 3, 8, 39, 5, k[0], 5, k[1],'lux1'], [8, 3, 8, 39, 6, k[0], 6, k[1],'lux2']])
 
             if k == data_address[data_address.__len__() - 1]:
                 graph.save(load_file)
@@ -117,8 +114,7 @@ def check(folder):
 
     sumup_file.write('end')
 
-    print(data)
-
+    print('完了')
 
 if __name__ == '__main__':
     folder = 'C://Users/zyxx/Desktop/test_csv/daily_data/'
