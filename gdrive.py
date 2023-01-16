@@ -1,6 +1,6 @@
 import os
 import time
-import rclone_method
+from rclone import rclone_method
 
 # 今日の日時を取得する
 time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))

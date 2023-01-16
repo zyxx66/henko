@@ -13,14 +13,15 @@
 cd /home/pi/Documents/test/zyxx
 git pull
 ```
-zyxxフォルダにあるファイルを更新する.
+zyxxフォルダにあるプログラムのファイルを更新する.
 ## 2.実行方法
 ```
 python3 <ファイル位置>
 例： python3 /home/pi/Documents/test/test1.py
 ```
 ## 3.各プログラムの説明
-### 1.[rclone_method](rclone_method.py)
+##　実行環境：　Raspberry　OS
+### 1.[rclone_method](rclone/rclone_method.py)
 メインプログラム(１~6のライブラリ)<br>
 これを必ずダウンロードしてください。
 ### 2.[gdrive](gdrive.py)
@@ -36,12 +37,12 @@ python3 <ファイル位置>
 ### 4.[create_graph](create_graph.py)
 測定データをグラフ化するプログラミング<br>
 未完成(2022-10-19)<br>
-### 5.[csv_update_to_gdrive](csv_update_to_gdrive.py)
+### 5.[csv_update_to_gdrive](rclone/csv_update_to_gdrive.py)
 今まですべてのcsvファイルを　google drive　にある<偏光測定器_照度データ>と<偏光測定器_雲量データ>フォルダにアップロードする。
 ```
 rclone sync （省略）を使用している
 ```
-### 6.[test_infrared_sensor](test_infrared_sensor.py)
+### 6.[test_infrared_sensor](with_excel/test_infrared_sensor.py)
 モーターを5度ずつ回しながらデータを読み取ると記録するプログラムである。<br>
 赤外線照度(60%完成)、自然光と赤外線照度(60%完成)、
 未完成理由：検証していない<br>
@@ -49,14 +50,14 @@ rclone sync （省略）を使用している
 <br>自然光照度(100%完成)
 
 ### 7.[p_8/p_8](/p_8/p_8.py)
-主なプログラムである(8.「ts1.py」に依存している)<br>
-測定、データ記録機能を含めている<br>
-バックアップとして使っている
+主なプログラムである(8.「ts1.py」に依存している)。<br>
+測定、データ記録機能を含めている。<br>
+バックアップとして使っている。
 
 ### 8.[p_8/ts1](/p_8/ts1.py)
 p_8のライブラリである<br>
 色々な設定とメソッドがある<br>
-バックアップとして使っている
+バックアップとして使っている。
 
 
 ## 4.参照

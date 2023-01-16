@@ -17,4 +17,4 @@ if __name__ == '__main__':
                 file_day = file_split[2].split('.')[0]
                 target_path = raspberry_path[1]+'/%s年/%s月'%(file_year,file_month)
                 print(target_path)
-                rclone_method.update(raspberry_path[0]+'/'+file,target_path)
+                rclone_method.update(raspberry_path[0] + '/' + file, target_path)

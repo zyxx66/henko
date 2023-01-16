@@ -1,13 +1,8 @@
 import RPi.GPIO as GPIO
-import time
+from time import time
 import requests
 import picamera
 from datetime import datetime
-import urllib.parse as parse
-import smbus
-from gpiozero import MCP3008
-import csv
-import os
 import cv2
 import numpy as np
 import ts1

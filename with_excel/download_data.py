@@ -1,6 +1,6 @@
 # 2022-11-02以前のデータを更新するためのプログラムである
 import os
-import rclone_method as rm
+from rclone import rclone_method as rm
 
 folder = 'C://Users/zyxx/Desktop/test_csv/daily_data/'
 date_start = '2022-10-01'

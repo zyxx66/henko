@@ -1,6 +1,6 @@
 import requests
 import os
-import rclone_method
+from rclone import rclone_method
 import time
 import calendar
 

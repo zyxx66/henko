@@ -17,22 +17,30 @@ gp_out = 18
 GPIO.setup(gp_out, GPIO.OUT)
 motor = GPIO.PWM(gp_out, 50)
 motor.start(0.0)
+
+# ----2023/01/12追加----
 GPIO.setup(27, GPIO.OUT)
 GPIO.setup(17, GPIO.OUT)
+# ----------------------
+
 GPIO.setup(5, GPIO.OUT)
 motor2 = GPIO.PWM(5, 50)
 
+# ----2023/01/12追加----
+
+# センサ―　や　マルチプレクサ　に電源入れ
 GPIO.output(27, GPIO.HIGH)
 
+# マルチプレクサーをリセットさせる(測定器の長く使用できるようになることに役に立てるかどうか知らない)
 GPIO.output(17, GPIO.LOW)
 time.sleep(0.5)
 GPIO.output(17, GPIO.HIGH)
 time.sleep(0.5)
 GPIO.output(17, GPIO.LOW)
 time.sleep(0.5)
-
 GPIO.setup(17, GPIO.IN)
 time.sleep(5)
+# -----------------------
 
 unryou = 0
 gege = datetime.now()
@@ -167,5 +175,5 @@ res2 = requests.post(url, data=send2, headers=headers, files=file2)
 
 print(henkoudo)
 
-# 2022/11/24 17:52 update
+# 2022/11/24 追加
 GPIO.cleanup()

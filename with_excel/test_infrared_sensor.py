@@ -6,13 +6,12 @@
 # SDA    <-> 03
 
 # Python 2.7.16
-import codecs
 import os
 import sys
 import RPi.GPIO as GPIO
-import time
+from time import time
 import smbus
-import rclone_method
+from rclone import rclone_method
 
 
 def tcaselect(channel):
@@ -261,7 +260,7 @@ while True:
                 source_file = result_path+file_name
                 time_local_split = time_local.split('-')
                 target_path = "gdrive_taka:偏光測定器_実験データ/%s年/%s月/%s日" % (time_local_split[0], time_local_split[1],time_local_split[2])
-                rclone_method.update(source_file,target_path)
+                rclone_method.update(source_file, target_path)
         time.sleep(1)
         GPIO.cleanup()
         break

@@ -1,5 +1,5 @@
 import os
-import rclone_method
+from rclone import rclone_method
 
 # 開始日付と終了日付を入力してください
 # 半角で入力　と　[''],[-]を忘れないように

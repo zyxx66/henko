@@ -1,8 +1,5 @@
-
-import time
 import smbus
 import sys
-import RPi.GPIO as gpio
 
 i2c = smbus.SMBus(1)
 

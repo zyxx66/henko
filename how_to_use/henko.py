@@ -13,7 +13,7 @@
 
 # ----------------------------------------
 import RPi.GPIO as GPIO
-import time
+from time import time
 import smbus
 
 GPIO.setmode(GPIO.BCM)
