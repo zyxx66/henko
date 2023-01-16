@@ -40,7 +40,7 @@ p_8は　測定プログラム
 内容待つ
 ### 5.[tiem](/time)
 内容待つ
-### 6.[use_github](/use github)
+### 6.[use_github](/use_github)
 内容待つ
 ### 7.[with_excel](/with_excel)
 内容待つ
