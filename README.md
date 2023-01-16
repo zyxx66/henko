@@ -30,18 +30,25 @@ python3 <ファイル位置>
 
 ## 4.各フォルダの説明
 ### 1.[how_to_use](/how_to_use)
+測定プログラムの使い方である
+
 ### 2.[p_8/](/p_8)
 先輩が作ったもののバックアップ場所<br>
 ts1は　ライブラリ<br>
 p_8は　測定プログラム
+
 ### 3.[rclone](/rclone)
 内容待つ
+
 ### 4,[test](/test)
 内容待つ
+
 ### 5.[tiem](/time)
 内容待つ
+
 ### 6.[use_github](/use_github)
 内容待つ
+
 ### 7.[with_excel](/with_excel)
 内容待つ
 
