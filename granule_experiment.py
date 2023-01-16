@@ -1,11 +1,5 @@
-# Sensor <-> RasPiHeader
-# Vin    <-> 01
-# 3V3    <-> 01
-# GND    <-> 09
-# SCL    <-> 05
-# SDA    <-> 03
+# 粒子実験用プログラム
 
-# Python 2.7.16
 import os
 import sys
 import RPi.GPIO as GPIO
