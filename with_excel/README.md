@@ -17,7 +17,7 @@
   ![img_4.png](img_4.png)
   * 2.`Setting...`を押して<br>
   ![img_5.png](img_5.png)
-  * 3.自分のプロジェクト中にある`Python Interpreter`を選択して,右にある`+`を押して<br>
+  * 3.自分のプロジェクト(プロジェクト名は図と違うかもしれない)中にある`Python Interpreter`を選択して,右にある`+`を押して<br>
   ![img_6.png](img_6.png)
   * 4.上に`openpyxl`を検索して、下の`openpyxl`を選択して、下の`Install Package`を押す<br>
   ![img_7.png](img_7.png)
