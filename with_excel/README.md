@@ -8,19 +8,19 @@
 * もちろん無理せず自分に合う　プログラミング言語　と　IDE　を使ってくださいね
 * 'opnepyxl'のインストール方法　１
   * 1.下にある`Terminal`を押して<br>
-  ![img_2.png](/pic/img_2.png)
+  ![img_2.png](pic/img_2.png)
   * 2.pip install openpyxlを入力して<br>
-  ![img_3.png](/pic/img_3.png)
+  ![img_3.png](pic/img_3.png)
   * エンターキーを押す<br>
 * 'opnepyxl'のインストール方法　2
   * 1.上にある`File`を押して<br>
-  ![img_4.png](/pic/img_4.png)
+  ![img_4.png](pic/img_4.png)
   * 2.`Setting...`を押して<br>
-  ![img_5.png](/pic/img_5.png)
+  ![img_5.png](pic/img_5.png)
   * 3.自分のプロジェクト(プロジェクト名は図と違うかもしれない)中にある`Python Interpreter`を選択して,右にある`+`を押して<br>
-  ![img_6.png](/pic/img_6.png)
+  ![img_6.png](pic/img_6.png)
   * 4.上に`openpyxl`を検索して、下の`openpyxl`を選択して、下の`Install Package`を押す<br>
-  ![img_7.png](/pic/img_7.png)
+  ![img_7.png](pic/img_7.png)
 ## 1.[create_graph](create_graph.py)
 ### 1.0　注意
 プログラムを実行する時<br>`必ずグラフを作る対象のエクセルファイルを閉じること`
@@ -58,7 +58,7 @@ example.create_scatter(excel_file,'横軸タイトル１','横軸タイトル１
 例２(複数のデータの場合)：
 example.create_scatter(excel_file,'横軸タイトル２','横軸タイトル２','グラフタイトル２','L1',[[1,1,1,5,2,1,2,5,'なんでも'],[1,1,1,5,3,1,3,5,'いいですよ']])
 ```
-3.プログラム例 [example](example.py)
+3.プログラム例 [example](example.py)<br>
 事前に[example_excel](example_excel.xlsx)をパソコンの`D://`に保存すること
 ```
 import create_graph
