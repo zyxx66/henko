@@ -5,7 +5,7 @@
 <br>インストール方法(パソコン(windows OS)の場合)：
 * （自分は*PyCahrm*を用いてプログラムで作成しているので、今回はPyCharmを例として紹介します）
 * PyCharmをダウンロードする：[ClickHere](https://www.jetbrains.com/ja-jp/pycharm/)
-* もちろん自分に合う　プログラミング言語　と　IDE　を使ってくださいね
+* もちろん無理せず自分に合う　プログラミング言語　と　IDE　を使ってくださいね
 * 'opnepyxl'のインストール方法　１
   * 1.下にある`Terminal`を押して<br>
   ![img_2.png](img_2.png)
