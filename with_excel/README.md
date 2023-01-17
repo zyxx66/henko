@@ -7,19 +7,19 @@
 * PyCharmをダウンロードする：[ClickHere](https://www.jetbrains.com/ja-jp/pycharm/)
 * もちろん自分に合う　プログラミング言語　と　IDE　を使ってくださいね
 * 'opnepyxl'のインストール方法　１
-  * 1.下にある`Terminal`を押して
+  * 1.下にある`Terminal`を押して<br>
   ![img_2.png](img_2.png)
-  * 2.pip install openpyxlを入力して
+  * 2.pip install openpyxlを入力して<br>
   ![img_3.png](img_3.png)
-  * エンターキーを押す
-* 'opnepyxl'のインストール方法　１
-  * 1.上にある`File`を押して
+  * エンターキーを押す<br>
+* 'opnepyxl'のインストール方法　2
+  * 1.上にある`File`を押して<br>
   ![img_4.png](img_4.png)
-  * 2.`Setting...`を押して
+  * 2.`Setting...`を押して<br>
   ![img_5.png](img_5.png)
-  * 3.自分のプロジェクト中にある`Python Interpreter`を選択して,右にある`+`を押して
+  * 3.自分のプロジェクト中にある`Python Interpreter`を選択して,右にある`+`を押して<br>
   ![img_6.png](img_6.png)
-  * 4.上に`openpyxl`を検索して、下の`openpyxl`を選択して、下の`install package`を押す
+  * 4.上に`openpyxl`を検索して、下の`openpyxl`を選択して、下の`Install Package`を押す<br>
   ![img_7.png](img_7.png)
 ## 1.[create_graph](create_graph.py)
 ### 1.0　注意
