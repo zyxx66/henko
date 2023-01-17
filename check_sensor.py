@@ -108,25 +108,22 @@ target_number = input('チェックしたい番号を入力して、エンター
 
 
 while(True):
-    try:
-        if target_number == 2 or 3:
-            time.sleep(0.1)
-            tcaselect(1)
-            initTSL2572()
-            sizenko = lux_get()
-            print(sizenko)
-        if target_number ==1 or 3:
-            tcaselect(0)
-            initTSL2572()
-            henko = lux_get()
-            print(henko)
-        if target_number == 4:
-            time.sleep(0.1)
-            initTSL2572()
-            light = lux_get()
-            print(light)
-    except IOError as e:
-        print('不具合が生じてる')
-        print(e)
+    if target_number == 2 or 3:
+        time.sleep(0.1)
+        tcaselect(1)
+        initTSL2572()
+        sizenko = lux_get()
+        print(sizenko)
+    if target_number ==1 or 3:
+        tcaselect(0)
+        initTSL2572()
+        henko = lux_get()
+        print(henko)
+    if target_number == 4:
+        time.sleep(0.1)
+        initTSL2572()
+        light = lux_get()
+        print(light)
+
     i+=1
     print('---------------------%d-----------'%i)
