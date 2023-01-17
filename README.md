@@ -34,35 +34,40 @@ python3 <ファイル位置>
 
 ### 2.[p_8/](/p_8)
 先輩が作ったプログラムを **バックアップ** する場所<br>
-* ts1.py 　
+* [ts1.py](/p_8/ts1.py) 　
   * ライブラリ
-* p_8.py 　
+* [p_8.py](/p_8/p_8.py) 　
   * 測定プログラム
 
 ### 3.[rclone](/rclone)
 gdrive (google drive)　に関するプログラムである
-* gdrive.py
+* [gdrive.py](/rclone/gdrive.py)
   * 毎日*18時40分*実行している
   * 本日記録したデータをアップロードするプログラムである
-* gdrive_one.py　　　
+* [gdrive_one.py](/rclone/gdrive_one.py)　　　
   * 一定時間内のデータをアップロードするプログラムである
   * 一般的にはデータを修正する時使う(ラズパイのデータファイルを修正してください)
-* rclone_method.py　
+* [rclone_method.py](/rclone/rclone_method.py)　
   * ライブラリ
   * pcのアドレス(C://*** D://***みたいなもの)を自分のアドレスに変更してください
 
 ### 4,[test](/test)
-たまにあるコードを試してみたい時に使うフォルダ
-**削除する可**
+たまにあるコードを試してみたい時に使うフォルダ<br>
+**削除可**
 
 ### 5.[tiem](/time)
-内容待つ
+* [time.py](/time/time.py)
+  * 毎回ラズベリーパイ起動する時実行するプログラムである
+  * 時刻合わせ　
 
 ### 6.[use_github](/use_github)
-内容待つ
+* GitHubの使い方を簡単に書きたいが
+* **まだ完成してない**（2023/01/17）
 
 ### 7.[with_excel](/with_excel)
-内容待つ
+* [check_data.py](/with_excel/check_data.py)
+* [check_experimental_data.py](/with_excel/check_experimental_data.py)
+* [download_data.py](/with_excel/download_data.py)
 
 ## 5.参照
 参照ページ1：https://akizukidenshi.com/catalog/g/gK-15536/ <br>
