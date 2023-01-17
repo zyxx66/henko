@@ -93,15 +93,40 @@ def getTSL2572adc():
 
 i = 1
 
+print('測定目標'.center(40, '-'), '\n',
+      '\033[0;37;40m', '1:tca(0)のセンサ'.center(40), '\033[0m'
+                                                   '\n',
+      '2:tca(1)のセンサ'.center(40),
+      '\n',
+      '\033[0;37;40m', '3:tca(0)とtca(1)のセンサ'.center(36), '\033[0m'
+                                                   '\n',
+      '4:直接繋いでるセンサ'.center(40),
+      '\n',
+      ''.center(40, '-'))
+
+target_number = input('チェックしたい番号を入力して、エンターキーを押してください。\n')
+
+
 while(True):
-    time.sleep(0.1)
-    tcaselect(1)
-    initTSL2572()
-    sizenko = lux_get()
-    tcaselect(0)
-    initTSL2572()
-    henko = lux_get()
-    print(sizenko)
-    print(henko)
+    try:
+        if target_number == 2 or 3:
+            time.sleep(0.1)
+            tcaselect(1)
+            initTSL2572()
+            sizenko = lux_get()
+            print(sizenko)
+        if target_number ==1 or 3:
+            tcaselect(0)
+            initTSL2572()
+            henko = lux_get()
+            print(henko)
+        if target_number == 4:
+            time.sleep(0.1)
+            initTSL2572()
+            light = lux_get()
+            print(light)
+    except IOError as e:
+        print('不具合が生じてる')
+        print(e)
     i+=1
     print('---------------------%d-----------'%i)
