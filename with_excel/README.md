@@ -2,6 +2,25 @@
 # 各プログラムについて
 ## 0.ご注意
 `openpyxl`がないと実行できないから、`事前にインストールすること`を忘れないように。
+<br>インストール方法(パソコン(windows OS)の場合)：
+* （自分は*PyCahrm*を用いてプログラムで作成しているので、今回はPyCharmを例として紹介します）
+* PyCharmをダウンロードする：[ClickHere](https://www.jetbrains.com/ja-jp/pycharm/)
+* もちろん自分に合う　プログラミング言語　と　IDE　を使ってくださいね
+* 'opnepyxl'のインストール方法　１
+  * 1.下にある`Terminal`を押して
+  ![img_2.png](img_2.png)
+  * 2.pip install openpyxlを入力して
+  ![img_3.png](img_3.png)
+  * エンターキーを押す
+* 'opnepyxl'のインストール方法　１
+  * 1.上にある`File`を押して
+  ![img_4.png](img_4.png)
+  * 2.`Setting...`を押して
+  ![img_5.png](img_5.png)
+  * 3.自分のプロジェクト中にある`Python Interpreter`を選択して,右にある`+`を押して
+  ![img_6.png](img_6.png)
+  * 4.上に`openpyxl`を検索して、下の`openpyxl`を選択して、下の`install package`を押す
+  ![img_7.png](img_7.png)
 ## 1.[create_graph](create_graph.py)
 ### 1.0　注意
 プログラムを実行する時<br>`必ずグラフを作る対象のエクセルファイルを閉じること`
