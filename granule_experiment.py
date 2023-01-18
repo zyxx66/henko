@@ -3,7 +3,7 @@
 import os
 import sys
 import RPi.GPIO as GPIO
-from time import time
+import time
 import smbus
 from rclone import rclone_method
 
