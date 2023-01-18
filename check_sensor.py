@@ -106,7 +106,7 @@ print('測定目標'.center(40, '-'), '\n',
 
 target_number = input('チェックしたい番号を入力して、エンターキーを押してください。\n')
 
-if target_number == 1:
+if target_number == '1':
     while True:
         tcaselect(0)
         initTSL2572()
@@ -115,7 +115,7 @@ if target_number == 1:
         i += 1
         print('---------------------%d-----------' % i)
 
-elif target_number == 2:
+elif target_number == '2':
     while True:
         tcaselect(1)
         initTSL2572()
@@ -124,7 +124,7 @@ elif target_number == 2:
         i += 1
         print('---------------------%d-----------' % i)
 
-elif target_number == 3:
+elif target_number == '3':
     while True:
         tcaselect(0)
         initTSL2572()
@@ -137,7 +137,7 @@ elif target_number == 3:
         i += 1
         print('---------------------%d-----------' % i)
 
-elif target_number == 4:
+elif target_number == '4':
     while True:
         initTSL2572()
         henko = lux_get()
