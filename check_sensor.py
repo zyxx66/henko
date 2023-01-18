@@ -106,24 +106,41 @@ print('測定目標'.center(40, '-'), '\n',
 
 target_number = input('チェックしたい番号を入力して、エンターキーを押してください。\n')
 
-
-while(True):
-    if target_number == 2 or 3:
-        time.sleep(0.1)
-        tcaselect(1)
-        initTSL2572()
-        sizenko = lux_get()
-        print(sizenko)
-    if target_number ==1 or 3:
+if target_number == 1:
+    while True:
         tcaselect(0)
         initTSL2572()
         henko = lux_get()
         print(henko)
-    if target_number == 4:
-        time.sleep(0.1)
-        initTSL2572()
-        light = lux_get()
-        print(light)
+        i += 1
+        print('---------------------%d-----------' % i)
 
-    i+=1
-    print('---------------------%d-----------'%i)
+elif target_number == 2:
+    while True:
+        tcaselect(1)
+        initTSL2572()
+        henko = lux_get()
+        print(henko)
+        i += 1
+        print('---------------------%d-----------' % i)
+
+elif target_number == 3:
+    while True:
+        tcaselect(0)
+        initTSL2572()
+        henko = lux_get()
+        print(henko)
+        tcaselect(1)
+        initTSL2572()
+        henko = lux_get()
+        print(henko)
+        i += 1
+        print('---------------------%d-----------' % i)
+
+elif target_number == 4:
+    while True:
+        initTSL2572()
+        henko = lux_get()
+        print(henko)
+        i += 1
+        print('---------------------%d-----------' % i)
