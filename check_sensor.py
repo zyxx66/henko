@@ -114,6 +114,7 @@ if target_number == '1':
         print(henko)
         i += 1
         print('---------------------%d-----------' % i)
+        time.sleep(1)
 
 elif target_number == '2':
     while True:
@@ -123,6 +124,7 @@ elif target_number == '2':
         print(henko)
         i += 1
         print('---------------------%d-----------' % i)
+        time.sleep(1)
 
 elif target_number == '3':
     while True:
@@ -136,6 +138,7 @@ elif target_number == '3':
         print(henko)
         i += 1
         print('---------------------%d-----------' % i)
+        time.sleep(1)
 
 elif target_number == '4':
     while True:
@@ -144,3 +147,4 @@ elif target_number == '4':
         print(henko)
         i += 1
         print('---------------------%d-----------' % i)
+        time.sleep(1)
