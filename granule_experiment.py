@@ -213,7 +213,7 @@ while True:
                     lux2) + ',' + '\n')
                 if 0 > max_lux:
                     max_lux = 0
-                if 0 < min_lux:
+                if 0 <= min_lux:
                     min_lux = 0
                 print('max = %f , min = %f,偏光度 = %f'%(max_lux,min_lux))
                 print(time_now.center(40,'-'))
@@ -224,7 +224,7 @@ while True:
                     lux2) + ',' + '\n')
                 if lux1 > max_lux:
                     max_lux = lux1
-                if lux1 < min_lux:
+                if lux1 <= min_lux:
                     min_lux = lux1
                 print('max = %f , min = %f'%(max_lux,min_lux))
                 print(time_now.center(40,'-'))
