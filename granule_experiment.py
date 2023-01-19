@@ -173,8 +173,8 @@ while True:
         file.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
 
 
-
-        tcaselect(0)
+        # マルチプレクサーを利用する場合は、下の行の　＃　を削除する
+        # tcaselect(0)
 
         # モーターを-90の所に戻す
         angle(-90)
