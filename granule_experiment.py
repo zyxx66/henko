@@ -222,7 +222,7 @@ while True:
                 if adc[1] < min_s:
                     min_s = adc[1]
                 print('max = %f , min = %f'%(max_lux,min_lux))
-                print('max(s) = %f , min(s) = %f'%(adc[1]))
+                print('max(s) = %f , min(s) = %f'%(max_s,min_s))
                 print(time_now.center(40,'-'))
             elif (lux1 >= lux2):
                 k += 1
