@@ -221,8 +221,9 @@ while True:
                     max_s = adc[1]
                 if adc[1] < min_s:
                     min_s = adc[1]
+                print('max(s) = %f , min(s) = %f' % (max_s, min_s))
                 print('max = %f , min = %f'%(max_lux,min_lux))
-                print('max(s) = %f , min(s) = %f'%(max_s,min_s))
+
                 print(time_now.center(40,'-'))
             elif (lux1 >= lux2):
                 k += 1
@@ -233,6 +234,11 @@ while True:
                     max_lux = lux1
                 if lux1 <= min_lux:
                     min_lux = lux1
+                if adc[1] > max_s:
+                    max_s = adc[1]
+                if adc[1] < min_s:
+                    min_s = adc[1]
+                print('max(s) = %f , min(s) = %f' % (max_s, min_s))
                 print('max = %f , min = %f'%(max_lux,min_lux))
                 print(time_now.center(40,'-'))
             elif (lux1 < lux2):
@@ -243,13 +249,20 @@ while True:
                     max_lux = lux2
                 if lux2 < min_lux:
                     min_lux = lux2
+                if adc[1] > max_s:
+                    max_s = adc[1]
+                if adc[1] < min_s:
+                    min_s = adc[1]
+                print('max(s) = %f , min(s) = %f' % (max_s, min_s))
                 print('max = %f , min = %f,' % (max_lux, min_lux))
                 print(time_now.center(40,'-'))
 
         if i == 60:
             angle(-90)
             henkodo = (max_lux - min_lux) / (max_lux + min_lux)
-            print('偏光度 = %f'%(henkodo))
+            henkodo2 = (max_s-min_s)/(max_s+min_s)
+            print('偏光度1 = %f'%(henkodo))
+            print('偏光度2 = %f'%(henkodo2))
             file.write('\n')
         file.close()
 
