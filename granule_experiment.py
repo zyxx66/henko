@@ -192,6 +192,8 @@ while True:
 
         max_lux = 0
         min_lux = 9999
+        max_s = 0
+        min_s = 9999
 
         for i in range(61):
             angle((i - 30)*3)
@@ -215,7 +217,12 @@ while True:
                     max_lux = 0
                 if 0 <= min_lux:
                     min_lux = 0
+                if adc[1] > max_s:
+                    max_s = adc[1]
+                if adc[1] < min_s:
+                    min_s = adc[1]
                 print('max = %f , min = %f'%(max_lux,min_lux))
+                print('max(s) = %f , min(s) = %f'%(adc[1]))
                 print(time_now.center(40,'-'))
             elif (lux1 >= lux2):
                 k += 1
