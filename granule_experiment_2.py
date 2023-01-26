@@ -93,7 +93,8 @@ def getTSL2572adc():
     return [adc0, adc1]
 print('1:可視光の偏光'
       '2:赤外線の偏光')
-
+time_now = time.strftime('%H:%M:%S', time.localtime(
+            time.time()))
 max_lux = 0
 min_lux = 9999
 max_s = 0
