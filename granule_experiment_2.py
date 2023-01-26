@@ -1,7 +1,7 @@
 # 粒子が本当に飛んでるかどうかについて調べる実験である
 # 光センサー不具合の有無を確認するプログラムである
-# 動作：0.1秒間隔でセンサの結果を読み取る
-
+# 動作：1秒間隔でセンサの結果を読み取る
+import os.path
 import sys
 import RPi.GPIO as GPIO
 import time
@@ -101,10 +101,16 @@ min_s = 9999
 
 target_number = input('測定したい部分の番号を入力してください：')
 
-
+file_number = 1
 
 if target_number == '1':
-    file = open('/home/pi/henko/result/granule/granule_kasi.csv', 'a')
+    while True:
+        file_name = '/home/pi/henko/result/granule/granule_kasi_' + str(file_number)+ '.csv'
+        if os.path.exists(file_name):
+            file_number += 1
+        else:
+            file = open(file_name,'a')
+            break
     time_now = time.strftime('%H:%M:%S', time.localtime(
         time.time()))
     for i in range(120):
@@ -170,7 +176,13 @@ if target_number == '1':
         time.sleep(1)
 
 if target_number =='2':
-    file = open('/home/pi/henko/result/granule/granule_sekigai.csv', 'a')
+    while True:
+        file_name = '/home/pi/henko/result/granule/granule_sekigai_' + str(file_number) + '.csv'
+        if os.path.exists(file_name):
+            file_number += 1
+        else:
+            file = open(file_name, 'a')
+            break
     time_now = time.strftime('%H:%M:%S', time.localtime(
         time.time()))
     for i in range(120):
