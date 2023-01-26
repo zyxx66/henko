@@ -7,6 +7,13 @@ import RPi.GPIO as GPIO
 import time
 import smbus
 
+# -----------測定設定----------
+# 測定回数(回)
+number_of_measurements = 120
+# 間隔時間(秒)
+delay_of_measurements = 0.5
+# -----------------------------
+
 GPIO.setmode(GPIO.BCM)
 
 i2c = smbus.SMBus(1)
@@ -45,20 +52,22 @@ TSL2572_C1DATAH = 0x17
 atime = 0xC0
 gain = 1.0
 
+
 def lux_get():
-  adc = getTSL2572adc()
-  cpl = 0.0
-  lux1 = 0.0
-  lux2 = 0.0
-  cpl = (2.73 * (256 - atime) * gain)/(60.0)
-  lux1 = ((adc[0] * 1.00) - (adc[1] * 1.87)) / cpl
-  lux2 = ((adc[0] * 0.63) - (adc[1] * 1.00)) / cpl
-  if ((lux1 <= 0) and (lux2 <= 0)) :
-    return [0,adc[0],adc[1],lux1,lux2]
-  elif (lux1 > lux2) :
-    return [lux1,adc[0],adc[1],lux1,lux2]
-  elif (lux1 < lux2) :
-    return [lux2,adc[0],adc[1],lux1,lux2]
+    adc = getTSL2572adc()
+    cpl = 0.0
+    lux1 = 0.0
+    lux2 = 0.0
+    cpl = (2.73 * (256 - atime) * gain) / (60.0)
+    lux1 = ((adc[0] * 1.00) - (adc[1] * 1.87)) / cpl
+    lux2 = ((adc[0] * 0.63) - (adc[1] * 1.00)) / cpl
+    if ((lux1 <= 0) and (lux2 <= 0)):
+        return [0, adc[0], adc[1], lux1, lux2]
+    elif (lux1 > lux2):
+        return [lux1, adc[0], adc[1], lux1, lux2]
+    elif (lux1 < lux2):
+        return [lux2, adc[0], adc[1], lux1, lux2]
+
 
 def tcaselect(channel):
     data = 1 << channel
@@ -84,11 +93,14 @@ def getTSL2572reg(reg):
     dat = i2c.read_i2c_block_data(TSL2572_ADR, TSL2572_COMMAND | TSL2572_TYPE_INC | reg, 1)
     return dat
 
+
 def getTSL2572adc():
     dat = i2c.read_i2c_block_data(TSL2572_ADR, TSL2572_COMMAND | TSL2572_TYPE_INC | TSL2572_C0DATA, 4)
     adc0 = (dat[1] << 8) | dat[0]
     adc1 = (dat[3] << 8) | dat[2]
     return [adc0, adc1]
+
+
 print('1:可視光の偏光'
       '2:赤外線の偏光')
 
@@ -103,14 +115,14 @@ file_number = 1
 
 if target_number == '1':
     while True:
-        file_name = '/home/pi/henko/result/granule/granule_kasi_' + str(file_number)+ '.csv'
+        file_name = '/home/pi/henko/result/granule/granule_kasi_' + str(file_number) + '.csv'
         if os.path.exists(file_name):
             file_number += 1
         else:
-            file = open(file_name,'a')
+            file = open(file_name, 'a')
             break
 
-    for i in range(600):
+    for i in range(number_of_measurements):
         time_now = time.strftime('%H:%M:%S', time.localtime(
             time.time()))
         time.sleep(0.1)
@@ -173,9 +185,9 @@ if target_number == '1':
             print('max(s) = %f , min(s) = %f' % (max_s, min_s))
             print('max = %f , min = %f,' % (max_lux, min_lux))
         print(time_now.center(40, '-'))
-        time.sleep(0.5)
+        time.sleep(delay_of_measurements)
 
-if target_number =='2':
+if target_number == '2':
     while True:
         file_name = '/home/pi/henko/result/granule/granule_sekigai_' + str(file_number) + '.csv'
         if os.path.exists(file_name):
@@ -184,7 +196,7 @@ if target_number =='2':
             file = open(file_name, 'a')
             break
 
-    for i in range(600):
+    for i in range(number_of_measurements):
         time_now = time.strftime('%H:%M:%S', time.localtime(
             time.time()))
         time.sleep(0.1)
@@ -246,7 +258,6 @@ if target_number =='2':
                 min_s = adc[1]
             print('max(s) = %f , min(s) = %f' % (max_s, min_s))
             print('max = %f , min = %f,' % (max_lux, min_lux))
-            print(time_now.center(40,'-'))
-        time.sleep(0.5)
+            print(time_now.center(40, '-'))
+        time.sleep(0delay_of_measurements)
 file.close()
-
