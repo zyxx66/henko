@@ -93,8 +93,7 @@ def getTSL2572adc():
     return [adc0, adc1]
 print('1:可視光の偏光'
       '2:赤外線の偏光')
-time_now = time.strftime('%H:%M:%S', time.localtime(
-            time.time()))
+
 max_lux = 0
 min_lux = 9999
 max_s = 0
@@ -106,6 +105,8 @@ target_number = input('測定したい部分の番号を入力してください
 
 if target_number == '1':
     file = open('/home/pi/henko/result/granule/granule_kasi.csv', 'a')
+    time_now = time.strftime('%H:%M:%S', time.localtime(
+        time.time()))
     for i in range(120):
         time.sleep(0.1)
         adc = getTSL2572adc()
@@ -166,9 +167,12 @@ if target_number == '1':
                 min_s = adc[1]
             print('max(s) = %f , min(s) = %f' % (max_s, min_s))
             print('max = %f , min = %f,' % (max_lux, min_lux))
+        time.sleep(1)
 
 if target_number =='2':
     file = open('/home/pi/henko/result/granule/granule_sekigai.csv', 'a')
+    time_now = time.strftime('%H:%M:%S', time.localtime(
+        time.time()))
     for i in range(120):
         time.sleep(0.1)
         adc = getTSL2572adc()
@@ -229,5 +233,6 @@ if target_number =='2':
                 min_s = adc[1]
             print('max(s) = %f , min(s) = %f' % (max_s, min_s))
             print('max = %f , min = %f,' % (max_lux, min_lux))
+        time.sleep(1)
 file.close()
 
