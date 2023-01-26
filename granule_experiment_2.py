@@ -44,8 +44,6 @@ TSL2572_C1DATAH = 0x17
 # TSL2572 setings
 atime = 0xC0
 gain = 1.0
-GPIO.setup(27,GPIO.OUT)
-GPIO.output(27,GPIO.HIGH)
 
 def lux_get():
   adc = getTSL2572adc()
