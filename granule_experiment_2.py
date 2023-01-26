@@ -123,7 +123,7 @@ if target_number == '1':
         if ((lux1 <= 0) and (lux2 <= 0)):
             print("0 Lx")
             file.write(
-                str(3 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
+                str(i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
                     lux2) + ',' + '\n')
             if 0 > max_lux:
                 max_lux = 0
@@ -140,7 +140,7 @@ if target_number == '1':
         elif (lux1 >= lux2):
             print(lux1)
             file.write(
-                str(3 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
+                str(i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
                     lux2) + ',' + '\n')
             if lux1 > max_lux:
                 max_lux = lux1
@@ -155,7 +155,7 @@ if target_number == '1':
         elif (lux1 < lux2):
             print(lux2)
             file.write(
-                str(3 * i) + ',' + str(lux2) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
+                str(i) + ',' + str(lux2) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
                     lux2) + ',' + '\n')
             if lux2 > max_lux:
                 max_lux = lux2
@@ -189,7 +189,7 @@ if target_number =='2':
         if ((lux1 <= 0) and (lux2 <= 0)):
             print("0 Lx")
             file.write(
-                str(3 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
+                str(i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
                     lux2) + ',' + '\n')
             if 0 > max_lux:
                 max_lux = 0
@@ -206,7 +206,7 @@ if target_number =='2':
         elif (lux1 >= lux2):
             print(lux1)
             file.write(
-                str(3 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
+                str(i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
                     lux2) + ',' + '\n')
             if lux1 > max_lux:
                 max_lux = lux1
@@ -221,7 +221,7 @@ if target_number =='2':
         elif (lux1 < lux2):
             print(lux2)
             file.write(
-                str(3 * i) + ',' + str(lux2) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
+                str(i) + ',' + str(lux2) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
                     lux2) + ',' + '\n')
             if lux2 > max_lux:
                 max_lux = lux2
