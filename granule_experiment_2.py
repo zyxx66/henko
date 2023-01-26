@@ -94,7 +94,14 @@ def getTSL2572adc():
 print('1:可視光の偏光'
       '2:赤外線の偏光')
 
+max_lux = 0
+min_lux = 9999
+max_s = 0
+min_s = 9999
+
 target_number = input('測定したい部分の番号を入力してください：')
+
+
 
 if target_number == '1':
     file = open('/home/pi/henko/result/granule/granule_kasi.csv', 'a')
