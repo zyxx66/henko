@@ -110,7 +110,7 @@ if target_number == '1':
             file = open(file_name,'a')
             break
 
-    for i in range(120):
+    for i in range(600):
         time_now = time.strftime('%H:%M:%S', time.localtime(
             time.time()))
         time.sleep(0.1)
@@ -173,7 +173,7 @@ if target_number == '1':
             print('max(s) = %f , min(s) = %f' % (max_s, min_s))
             print('max = %f , min = %f,' % (max_lux, min_lux))
         print(time_now.center(40, '-'))
-        time.sleep(1)
+        time.sleep(0.5)
 
 if target_number =='2':
     while True:
@@ -184,7 +184,7 @@ if target_number =='2':
             file = open(file_name, 'a')
             break
 
-    for i in range(120):
+    for i in range(600):
         time_now = time.strftime('%H:%M:%S', time.localtime(
             time.time()))
         time.sleep(0.1)
@@ -247,6 +247,6 @@ if target_number =='2':
             print('max(s) = %f , min(s) = %f' % (max_s, min_s))
             print('max = %f , min = %f,' % (max_lux, min_lux))
             print(time_now.center(40,'-'))
-        time.sleep(1)
+        time.sleep(0.5)
 file.close()
 
