@@ -109,9 +109,10 @@ if target_number == '1':
         else:
             file = open(file_name,'a')
             break
-    time_now = time.strftime('%H:%M:%S', time.localtime(
-        time.time()))
+
     for i in range(120):
+        time_now = time.strftime('%H:%M:%S', time.localtime(
+            time.time()))
         time.sleep(0.1)
         adc = getTSL2572adc()
         print("sekigai + kasiko = %s" % adc[0])
@@ -182,9 +183,10 @@ if target_number =='2':
         else:
             file = open(file_name, 'a')
             break
-    time_now = time.strftime('%H:%M:%S', time.localtime(
-        time.time()))
+
     for i in range(120):
+        time_now = time.strftime('%H:%M:%S', time.localtime(
+            time.time()))
         time.sleep(0.1)
         adc = getTSL2572adc()
         print("sekigai + kasiko = %s" % adc[0])
