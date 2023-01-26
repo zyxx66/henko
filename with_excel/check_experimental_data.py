@@ -14,7 +14,7 @@ import openpyxl
 import csv
 import with_excel.create_graph as cg
 
-experimental_date = '2023年/01月/12日'
+experimental_date = '2023年/01月/20日'
 
 data_title = {1: '振らない', 2: '振る', 3: '振る', 4: '振る', 5: '振らない', 6: '振る',7:'振る',8:'振る'}
 sheet_title = {'empty': 0, 'RX_OX': 1, 'torumarin_0': 2, 'torumarin_1': 3, 'torumarin_3': 4,
