@@ -15,7 +15,7 @@ delay_of_measurements = 0.2
 # -----------------------------
 
 # 測定回数
-number_of_measurements = time_of_measurements/delay_of_measurements
+number_of_measurements = int(time_of_measurements/delay_of_measurements)
 
 GPIO.setmode(GPIO.BCM)
 
@@ -104,7 +104,7 @@ def getTSL2572adc():
     return [adc0, adc1]
 
 
-print('1:可視光の偏光'
+print('1:可視光の偏光\n'
       '2:赤外線の偏光')
 
 max_lux = 0
@@ -115,6 +115,10 @@ min_s = 9999
 target_number = input('測定したい部分の番号を入力してください：')
 
 file_number = 1
+
+if (initTSL2572() != 0):
+    print('Failed')
+    sys.exit()
 
 if target_number == '1':
     while True:
