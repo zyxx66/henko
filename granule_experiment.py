@@ -7,7 +7,9 @@ import time
 import smbus
 from rclone import rclone_method
 
-
+# ----------設定----------
+check_times = 3
+# -----------------------
 def tcaselect(channel):
     data = 1 << channel
     i2c.write_byte_data(0x70, 0x00, data)
@@ -198,7 +200,15 @@ while True:
         for i in range(61):
             angle((i - 30)*3)
             time.sleep(0.1)
-            adc = getTSL2572adc()
+            sum_adc0 = 0
+            sum_adc1 = 0
+            for i in range(check_times):
+                adc = getTSL2572adc()
+                sum_adc0 += adc[0]
+                sum_adc1 += adc[1]
+                time.sleep(0.05)
+            adc[0] = sum_adc0/check_times
+            adc[1] = sum_adc1/check_times
             print("sekigai + kasiko = %s" % adc[0])
             print("sekigai = %s" % adc[1])
             cpl = 0.0
