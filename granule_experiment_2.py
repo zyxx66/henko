@@ -8,11 +8,14 @@ import time
 import smbus
 
 # -----------測定設定----------
-# 測定回数(回)
-number_of_measurements = 300
+# 測定回数(秒)
+time_of_measurements = 300
 # 間隔時間(秒)
 delay_of_measurements = 0.2
 # -----------------------------
+
+# 測定回数
+number_of_measurements = time_of_measurements/delay_of_measurements
 
 GPIO.setmode(GPIO.BCM)
 
