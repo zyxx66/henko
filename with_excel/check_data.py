@@ -65,12 +65,13 @@ def check(folder):
                     for j in range(1, 3):
                         ws.cell(i, j).data_type = 'float'
 
+        #　ここは、11月3日午後から、ch0とch1のデータを記録始めたため
         elif csv_name_split[1] == '11' and csv_name_split[2] == '01' or csv_name_split[2] == '02' or csv_name_split[2] == '03':
             for k in data_address:
                 for i in range(k[0], k[1] + 1):
                     for j in range(1, 3):
                         ws.cell(i, j).data_type = 'float'
-
+        # ここは、ch0とch1のデータを記録後の操作
         else:
             for k in data_address:
                 for i in range(k[0], k[1] + 1):
@@ -95,7 +96,7 @@ def check(folder):
 
             if k == data_address[0]:
                 load_file = graph.load()
-                print('load')
+                print('load %s'%csv_name)
 
             graph.create_scatter(load_file, '角度', '照度', '偏光' + '(' + data[k[0] - 3].split(',')[3].split('\n')[0] + ')',
                                  'H' + str(k[0]),
@@ -117,5 +118,7 @@ def check(folder):
     print('完了')
 
 if __name__ == '__main__':
-    folder = 'C://Users/zyxx/Desktop/test_csv/daily_data/'
+    # 自分のフォルダを選択してください
+    #folder = 'C://Users/zyxx/Desktop/test_csv/daily_data/'
+    folder = 'F://daily/'
     check(folder)
