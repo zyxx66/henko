@@ -1,6 +1,2 @@
-import time
-
-for i in range(100):
-    print('\r'+str(i)+'\n'+'\r'+'i',end='')
-    time.sleep(1)
-
+for i in range(1,3):
+    print(i)

@@ -35,6 +35,7 @@ def check(folder):
                 ws.append(row)
 
         data = []
+
         with open(csv_file) as f:
             for row in f:
                 data.append(row)
@@ -44,17 +45,25 @@ def check(folder):
 
 
         sumup_file.write(csv_name.split('-n')[0] + ',,,\n')
-        sumup_file.write('time,henkou(%),unryou(%),,\n')
+        sumup_file.write('time,henkou(%),unryou(%),ch1,\n')
 
         for i in range(data.__len__()):
             if 'henko(LUX)' in data[i]:
                 start_point = i + 2
+
+            ch0_list = []
             if 'henkoudo' in data[i]:
+                for row in range(start_point,i+1):
+                    ch0_list.append(data[row].split(',')[3])
+                min_ch0 = 99999
+                for j in ch0_list:
+                    if j != '':
+                        if int(j) < min_ch0 and int(j) != 0:
+                            min_ch0 = int(j)
                 data_address.append([start_point, i])
-            if 'henkoudo' in data[i]:
                 data_split = data[i + 1].split(',')
                 sumup_file.write(data[start_point-3].split(',')[3].split('\n')[0] + ',' + str(data_split[5]) + ',' + str(
-                    data_split[6].split('\n')[0] + ',,\n'))
+                    data_split[6].split('\n')[0] + ','+str(min_ch0)+',\n'))
 
         csv_name_split = csv_name.split('-')
 
@@ -92,6 +101,7 @@ def check(folder):
 
         graph = cg.create_graph(xlsx_file, 'Sheet')
 
+        # エクセルファイル中グラフ作成
         for k in data_address:
 
             if k == data_address[0]:
