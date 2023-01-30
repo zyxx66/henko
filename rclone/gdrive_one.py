@@ -1,13 +1,13 @@
 import os
-from rclone import rclone_method
+import rclone_method
 
 # 開始日付と終了日付を入力してください
 # 半角で入力　と　[''],[-]を忘れないように
 # 例　　date_start = '2022-10-11'
 # 　　　date_end = '2022-10-15'
 
-date_start = '2022-04-01'
-date_end = '2022-10-27'
+date_start = '2023-01-18'
+date_end = '2023-01-29'
 upload_date = []
 
 rclone_method.date_time(date_start, date_end, upload_date)
@@ -19,7 +19,7 @@ rd = rclone_method.raspberry_data_path + '/'
 #                          ]
 
 raspberry_source_path = [[rd + 'unryo', '.csv']]
-
+raspberry_source_path = [[rd+'filetest','.csv']]
 def gdrive_once(source_path, suffix):
     for time in upload_date:
         for file in os.listdir(source_path):
