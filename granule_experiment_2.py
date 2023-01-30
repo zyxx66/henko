@@ -12,6 +12,8 @@ import smbus
 time_of_measurements = 300
 # 間隔時間(秒)
 delay_of_measurements = 0.2
+# 毎回測定中取るデータ数
+check_times = 5
 # -----------------------------
 
 # 測定回数
@@ -133,7 +135,15 @@ if target_number == '1':
         time_now = time.strftime('%H:%M:%S', time.localtime(
             time.time()))
         time.sleep(0.1)
-        adc = getTSL2572adc()
+        sum_adc0 = 0
+        sum_adc1 = 0
+        for k in range(check_times):
+            adc = getTSL2572adc()
+            sum_adc0 += adc[0]
+            sum_adc1 += adc[1]
+            time.sleep(0.05)
+        adc[0] = sum_adc0 / check_times
+        adc[1] = sum_adc1 / check_times
         print("sekigai + kasiko = %s" % adc[0])
         print("sekigai = %s" % adc[1])
         cpl = 0.0
