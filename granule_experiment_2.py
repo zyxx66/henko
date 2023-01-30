@@ -141,7 +141,7 @@ if target_number == '1':
             adc = getTSL2572adc()
             sum_adc0 += adc[0]
             sum_adc1 += adc[1]
-            time.sleep(0.05)
+            time.sleep(0.005)
         adc[0] = sum_adc0 / check_times
         adc[1] = sum_adc1 / check_times
         print("sekigai + kasiko = %s" % adc[0])
