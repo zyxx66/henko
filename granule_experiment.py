@@ -202,7 +202,7 @@ while True:
             time.sleep(0.1)
             sum_adc0 = 0
             sum_adc1 = 0
-            for i in range(check_times):
+            for k in range(check_times):
                 adc = getTSL2572adc()
                 sum_adc0 += adc[0]
                 sum_adc1 += adc[1]

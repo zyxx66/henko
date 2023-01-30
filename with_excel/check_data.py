@@ -51,19 +51,23 @@ def check(folder):
             if 'henko(LUX)' in data[i]:
                 start_point = i + 2
 
-            ch0_list = []
+            ch1_list = []
             if 'henkoudo' in data[i]:
                 for row in range(start_point,i+1):
-                    ch0_list.append(data[row].split(',')[3])
-                min_ch0 = 99999
-                for j in ch0_list:
-                    if j != '':
-                        if int(j) < min_ch0 and int(j) != 0:
-                            min_ch0 = int(j)
+                    ch1_list.append(data[row].split(',')[3])
+                min_ch1 = 99999
+                if ch1_list == ['']:
+                    min_ch1 = 0
+                else:
+                    for j in ch1_list:
+                        if j != '':
+                            if int(j) < min_ch1 :
+                                min_ch1 = int(j)
+
                 data_address.append([start_point, i])
                 data_split = data[i + 1].split(',')
                 sumup_file.write(data[start_point-3].split(',')[3].split('\n')[0] + ',' + str(data_split[5]) + ',' + str(
-                    data_split[6].split('\n')[0] + ','+str(min_ch0)+',\n'))
+                    data_split[6].split('\n')[0] + ','+str(min_ch1)+',\n'))
 
         csv_name_split = csv_name.split('-')
 
@@ -129,6 +133,6 @@ def check(folder):
 
 if __name__ == '__main__':
     # 自分のフォルダを選択してください
-    #folder = 'C://Users/zyxx/Desktop/test_csv/daily_data/'
-    folder = 'F://daily/'
+    folder = 'C://Users/zyxx/Desktop/test_csv/daily_data/'
+    # folder = 'F://daily/'
     check(folder)
