@@ -72,7 +72,8 @@ def check(folder):
         csv_name_split = csv_name.split('-')
 
         # 　sizen(LUX),henko(LUX)…… から max(LUX),min(LUX)…… までの数値を float　にする
-        if csv_name_split[1] == '10':
+        # 　11月3日からch1の値を記録してくださいと言われたので、集計ファイルは違う
+        if int(csv_name_split[1]) <= 10:
             for k in data_address:
                 for i in range(k[0], k[1] + 1):
                     for j in range(1, 3):
@@ -84,6 +85,7 @@ def check(folder):
                 for i in range(k[0], k[1] + 1):
                     for j in range(1, 3):
                         ws.cell(i, j).data_type = 'float'
+
         # ここは、ch0とch1のデータを記録後の操作
         else:
             for k in data_address:
