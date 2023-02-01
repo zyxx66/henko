@@ -1,6 +1,7 @@
 
 # update program files
 ## by using python
+まだどうやって書くのを決めてないので、ここにあるすべての内容を無視してください。
 ```
 os.chdir('/home/pi/Documents/test/zyxx')
 os.system('git pull')
