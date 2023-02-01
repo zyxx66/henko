@@ -1,6 +1,6 @@
 # 粒子が本当に飛んでるかどうかについて調べる実験である
 # 光センサー不具合の有無を確認するプログラムである
-# 動作：1秒間隔でセンサの結果を読み取る
+# 動作： delay_of_measurement 秒間隔でセンサの結果を読み取る
 import os.path
 import sys
 import RPi.GPIO as GPIO
