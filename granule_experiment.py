@@ -9,6 +9,7 @@ from rclone import rclone_method
 
 # ----------設定----------
 check_times = 3
+numbers_of_experiments = 10
 # -----------------------
 def tcaselect(channel):
     data = 1 << channel
@@ -171,127 +172,127 @@ while True:
         except:
             print('正しい番号を入力してください')
             sys.exit()
+        for _ in range(numbers_of_experiments):
+            target_name_short = name[target_name]
+            target_diameter = diameter[target_name]
 
-        target_name_short = name[target_name]
-        target_diameter = diameter[target_name]
-
-        csv_file = result_path + '%s-e-%s.csv' % (time_local,target_name_short)
-        csv_sumup_file = sumup_file_path + '%s-e-%s-sumup.csv' % (time_local,target_name_short)
-        file = open(csv_file, 'a')
-        time_now = time.strftime('%H:%M:%S', time.localtime(
-            time.time()))
-        if not os.path.exists(csv_sumup_file):
-            file_sumup = open(csv_sumup_file, 'a')
-            file_sumup.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'time,min,max,偏光度\n')
-        else:
-            file_sumup = open(csv_sumup_file,'a')
+            csv_file = result_path + '%s-e-%s.csv' % (time_local,target_name_short)
+            csv_sumup_file = sumup_file_path + '%s-e-%s-sumup.csv' % (time_local,target_name_short)
+            file = open(csv_file, 'a')
+            time_now = time.strftime('%H:%M:%S', time.localtime(
+                time.time()))
+            if not os.path.exists(csv_sumup_file):
+                file_sumup = open(csv_sumup_file, 'a')
+                file_sumup.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'time,min,max,偏光度\n')
+            else:
+                file_sumup = open(csv_sumup_file,'a')
 
 
-        # タイトルを入力する
-        file.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
+            # タイトルを入力する
+            file.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
 
-        # マルチプレクサーを利用する場合は、下の行の　＃　を削除する
-        # tcaselect(0)
+            # マルチプレクサーを利用する場合は、下の行の　＃　を削除する
+            # tcaselect(0)
 
-        # モーターを-90の所に戻す
-        angle(-90)
-
-        if (initTSL2572() != 0):
-            print('Failed')
-            sys.exit()
-
-        measure_num = 3
-        total = 0
-
-        k = 0
-        avg = 0
-        sum = 0
-
-        max_lux = 0
-        min_lux = 9999
-        max_s = 0
-        min_s = 9999
-
-        for i in range(61):
-            angle((i - 30)*3)
-            time.sleep(0.1)
-            sum_adc0 = 0
-            sum_adc1 = 0
-            for k in range(check_times):
-                adc = getTSL2572adc()
-                sum_adc0 += adc[0]
-                sum_adc1 += adc[1]
-                time.sleep(0.05)
-            adc[0] = sum_adc0/check_times
-            adc[1] = sum_adc1/check_times
-            print("sekigai + kasiko = %s" % adc[0])
-            print("sekigai = %s" % adc[1])
-            cpl = 0.0
-            lux1 = 0.0
-            lux2 = 0.0
-            cpl = (2.73 * (256 - atime) * gain) / (60.0)
-            lux1 = ((adc[0] * 1.00) - (adc[1] * 1.87)) / cpl
-            lux2 = ((adc[0] * 0.63) - (adc[1] * 1.00)) / \
-                   cpl
-            time.sleep(0.01)
-            if ((lux1 <= 0) and (lux2 <= 0)):
-                print("0 Lx")
-                file.write(str(3 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
-                    lux2) + ',' + '\n')
-                if 0 > max_lux:
-                    max_lux = 0
-                if 0 <= min_lux:
-                    min_lux = 0
-                if adc[1] > max_s:
-                    max_s = adc[1]
-                if adc[1] < min_s:
-                    min_s = adc[1]
-                print('max(s) = %f , min(s) = %f' % (max_s, min_s))
-                print('max = %f , min = %f'%(max_lux,min_lux))
-
-                print(time_now.center(40,'-'))
-            elif (lux1 >= lux2):
-                k += 1
-                print(lux1)
-                file.write(str(3 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
-                    lux2) + ',' + '\n')
-                if lux1 > max_lux:
-                    max_lux = lux1
-                if lux1 <= min_lux:
-                    min_lux = lux1
-                if adc[1] > max_s:
-                    max_s = adc[1]
-                if adc[1] < min_s:
-                    min_s = adc[1]
-                print('max(s) = %f , min(s) = %f' % (max_s, min_s))
-                print('max = %f , min = %f'%(max_lux,min_lux))
-                print(time_now.center(40,'-'))
-            elif (lux1 < lux2):
-                print(lux2)
-                file.write(str(3 * i) + ',' + str(lux2) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
-                    lux2) + ',' + '\n')
-                if lux2 > max_lux:
-                    max_lux = lux2
-                if lux2 < min_lux:
-                    min_lux = lux2
-                if adc[1] > max_s:
-                    max_s = adc[1]
-                if adc[1] < min_s:
-                    min_s = adc[1]
-                print('max(s) = %f , min(s) = %f' % (max_s, min_s))
-                print('max = %f , min = %f,' % (max_lux, min_lux))
-                print(time_now.center(40,'-'))
-
-        if i == 60:
+            # モーターを-90の所に戻す
             angle(-90)
-            henkodo = (max_lux - min_lux) / (max_lux + min_lux)
-            henkodo2 = (max_s-min_s)/(max_s+min_s)
-            file_sumup.write('%s,%f,%f,%f\n'%(time_now,min_lux,max_lux,henkodo))
-            print('偏光度1 = %f'%(henkodo))
-            print('偏光度2 = %f'%(henkodo2))
-            file.write('\n')
-        file.close()
-        file_sumup.close()
+
+            if (initTSL2572() != 0):
+                print('Failed')
+                sys.exit()
+
+            measure_num = 3
+            total = 0
+
+            k = 0
+            avg = 0
+            sum = 0
+
+            max_lux = 0
+            min_lux = 9999
+            max_s = 0
+            min_s = 9999
+
+            for i in range(61):
+                angle((i - 30)*3)
+                time.sleep(0.1)
+                sum_adc0 = 0
+                sum_adc1 = 0
+                for k in range(check_times):
+                    adc = getTSL2572adc()
+                    sum_adc0 += adc[0]
+                    sum_adc1 += adc[1]
+                    time.sleep(0.05)
+                adc[0] = sum_adc0/check_times
+                adc[1] = sum_adc1/check_times
+                print("sekigai + kasiko = %s" % adc[0])
+                print("sekigai = %s" % adc[1])
+                cpl = 0.0
+                lux1 = 0.0
+                lux2 = 0.0
+                cpl = (2.73 * (256 - atime) * gain) / (60.0)
+                lux1 = ((adc[0] * 1.00) - (adc[1] * 1.87)) / cpl
+                lux2 = ((adc[0] * 0.63) - (adc[1] * 1.00)) / \
+                       cpl
+                time.sleep(0.01)
+                if ((lux1 <= 0) and (lux2 <= 0)):
+                    print("0 Lx")
+                    file.write(str(3 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
+                        lux2) + ',' + '\n')
+                    if 0 > max_lux:
+                        max_lux = 0
+                    if 0 <= min_lux:
+                        min_lux = 0
+                    if adc[1] > max_s:
+                        max_s = adc[1]
+                    if adc[1] < min_s:
+                        min_s = adc[1]
+                    print('max(s) = %f , min(s) = %f' % (max_s, min_s))
+                    print('max = %f , min = %f'%(max_lux,min_lux))
+
+                    print(time_now.center(40,'-'))
+                elif (lux1 >= lux2):
+                    k += 1
+                    print(lux1)
+                    file.write(str(3 * i) + ',' + str(lux1) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
+                        lux2) + ',' + '\n')
+                    if lux1 > max_lux:
+                        max_lux = lux1
+                    if lux1 <= min_lux:
+                        min_lux = lux1
+                    if adc[1] > max_s:
+                        max_s = adc[1]
+                    if adc[1] < min_s:
+                        min_s = adc[1]
+                    print('max(s) = %f , min(s) = %f' % (max_s, min_s))
+                    print('max = %f , min = %f'%(max_lux,min_lux))
+                    print(time_now.center(40,'-'))
+                elif (lux1 < lux2):
+                    print(lux2)
+                    file.write(str(3 * i) + ',' + str(lux2) + ',' + str(adc[0]) + ',' + str(adc[1]) + ',' + str(lux1) + ',' + str(
+                        lux2) + ',' + '\n')
+                    if lux2 > max_lux:
+                        max_lux = lux2
+                    if lux2 < min_lux:
+                        min_lux = lux2
+                    if adc[1] > max_s:
+                        max_s = adc[1]
+                    if adc[1] < min_s:
+                        min_s = adc[1]
+                    print('max(s) = %f , min(s) = %f' % (max_s, min_s))
+                    print('max = %f , min = %f,' % (max_lux, min_lux))
+                    print(time_now.center(40,'-'))
+
+            if i == 60:
+                angle(-90)
+                henkodo = (max_lux - min_lux) / (max_lux + min_lux)
+                henkodo2 = (max_s-min_s)/(max_s+min_s)
+                file_sumup.write('%s,%f,%f,%f\n'%(time_now,min_lux,max_lux,henkodo))
+                print('偏光度1 = %f'%(henkodo))
+                print('偏光度2 = %f'%(henkodo2))
+                file.write('\n')
+            file.close()
+            file_sumup.close()
 
         # 実験ファイルを google drive　にアップロードする機能、要らなかったら Ture　を Falseにしてください
 
