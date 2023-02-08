@@ -171,7 +171,11 @@ while True:
         csv_file = result_path + '%s-e-%s.csv' % (time_local,target_name_short)
         csv_sumup_file = sumup_file_path + '%s-e-%s-sumup.csv' % (time_local,target_name_short)
         file = open(csv_file, 'a')
-        file_sumup = open(csv_sumup_file,'a')
+        if not os.path.exists(csv_sumup_file):
+            file_sumup = open(csv_sumup_file, 'a')
+            file_sumup.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'time,min,max,偏光度\n')
+        else:
+            file_sumup = open(csv_sumup_file,'a')
 
 
         # タイトルを入力する
@@ -180,9 +184,6 @@ while True:
         file.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
 
         # 集計ファイルが存在しなければすれば
-        if not os.path.exists(csv_sumup_file):
-            print('321')
-            file_sumup.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'time,min,max,偏光度\n')
 
         # マルチプレクサーを利用する場合は、下の行の　＃　を削除する
         # tcaselect(0)
