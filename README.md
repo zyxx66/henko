@@ -65,7 +65,7 @@ gdrive (google drive)　に関するプログラムである
 * **まだ完成してない**（2023/01/17）
 
 ### 7.[with_excel](/with_excel)
-* [check_data.py](/with_excel/check_data.py)
+* [check_data.py](/with_excel/check_daily_data.py)
 * [check_experimental_data.py](/with_excel/check_experimental_data.py)
 * [download_data.py](/with_excel/download_data.py)
 

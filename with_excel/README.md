@@ -81,7 +81,7 @@ example.save(excel_file)
 <br>実行後：
 ![img_1.png](pic/img_1.png)
 
-## 2.[check_data](check_data.py)
+## 2.[check_data](check_daily_data.py)
 ```
 (11行)　folder = 'C://Users/zyxx/Desktop/test_csv/'
 ```

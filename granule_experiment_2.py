@@ -275,7 +275,7 @@ if target_number == '2':
                 min_s = adc[1]
             print('max(s) = %f , min(s) = %f' % (max_s, min_s))
             print('max = %f , min = %f,' % (max_lux, min_lux))
-            print(time_now.center(40, '-'))
+        print(time_now.center(40, '-'))
         time.sleep(delay_of_measurements)
 print('file name : %s'%file_number)
 file.close()
