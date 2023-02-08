@@ -91,8 +91,7 @@ gain = 1.0
 # 結果保存する場所
 result_path = '/home/pi/henko/result/'
 
-# 集計ファイルを保存するところ
-sumup_file_path = '/home/pi/henko/result/sumup/'
+
 
 # こちらの順番はどうでもいい、番号が合ったらオーケー
 number = {'6': '薄力小麦粉(20~50㎛)',
@@ -155,6 +154,14 @@ while True:
 
 
     time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
+    result_path += time_local
+    if not os.path.exists(result_path):
+        os.mkdir(result_path)
+    result_path += '/'
+    sumup_file_path = result_path+'result'
+    if not os.path.exists(sumup_file_path):
+        os.mkdir(sumup_file_path)
+    sumup_file_path+='/'
 
     target_number = input('測定目標の番号を入力してください.\n')
     if target_number != '10':
@@ -166,7 +173,6 @@ while True:
 
         target_name_short = name[target_name]
         target_diameter = diameter[target_name]
-
 
         csv_file = result_path + '%s-e-%s.csv' % (time_local,target_name_short)
         csv_sumup_file = sumup_file_path + '%s-e-%s-sumup.csv' % (time_local,target_name_short)
