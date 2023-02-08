@@ -124,7 +124,7 @@ diameter = {'薄力小麦粉(20~50㎛)': '20~50um',
             'RX_OX(40nm)': '40nm',
             'スギ花粉(30㎛)': '30um',
             '空き': '--'}
-
+k = 0
 while True:
     # 測定目標リスト
     print('測定目標'.center(40, '-'), '\n',
@@ -153,13 +153,15 @@ while True:
 
     time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
     result_path += time_local
-    if not os.path.exists(result_path):
-        os.mkdir(result_path)
-    result_path += '/'
-    sumup_file_path = result_path+'sumup'
-    if not os.path.exists(sumup_file_path):
-        os.mkdir(sumup_file_path)
-    sumup_file_path+='/'
+    if k == 0:
+        if not os.path.exists(result_path):
+            os.mkdir(result_path)
+        result_path += '/'
+        sumup_file_path = result_path+'sumup'
+        if not os.path.exists(sumup_file_path):
+            os.mkdir(sumup_file_path)
+        sumup_file_path+='/'
+        k+=1
 
     target_number = input('測定目標の番号を入力してください.\n')
     if target_number != '10':
