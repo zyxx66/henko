@@ -91,8 +91,6 @@ gain = 1.0
 # 結果保存する場所
 result_path = '/home/pi/henko/result/'
 
-
-
 # こちらの順番はどうでもいい、番号が合ったらオーケー
 number = {'6': '薄力小麦粉(20~50㎛)',
           '8': 'トマトパウダー(100~500㎛)',
@@ -158,7 +156,7 @@ while True:
     if not os.path.exists(result_path):
         os.mkdir(result_path)
     result_path += '/'
-    sumup_file_path = result_path+'result'
+    sumup_file_path = result_path+'sumup'
     if not os.path.exists(sumup_file_path):
         os.mkdir(sumup_file_path)
     sumup_file_path+='/'
@@ -188,8 +186,6 @@ while True:
 
         # タイトルを入力する
         file.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
-
-        # 集計ファイルが存在しなければすれば
 
         # マルチプレクサーを利用する場合は、下の行の　＃　を削除する
         # tcaselect(0)
