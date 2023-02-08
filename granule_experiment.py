@@ -178,8 +178,10 @@ while True:
         time_now = time.strftime('%H:%M:%S', time.localtime(
             time.time()))
         file.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
+
         # 集計ファイルが存在しなければすれば
         if not os.path.exists(csv_sumup_file):
+            print('321')
             file_sumup.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'time,min,max,偏光度\n')
 
         # マルチプレクサーを利用する場合は、下の行の　＃　を削除する
@@ -278,7 +280,7 @@ while True:
             angle(-90)
             henkodo = (max_lux - min_lux) / (max_lux + min_lux)
             henkodo2 = (max_s-min_s)/(max_s+min_s)
-            file_sumup.write('%s,%f,%f,%f'%(time_now,min_lux,max_lux,henkodo))
+            file_sumup.write('%s,%f,%f,%f\n'%(time_now,min_lux,max_lux,henkodo))
             print('偏光度1 = %f'%(henkodo))
             print('偏光度2 = %f'%(henkodo2))
             file.write('\n')
