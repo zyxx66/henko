@@ -177,6 +177,8 @@ while True:
         csv_file = result_path + '%s-e-%s.csv' % (time_local,target_name_short)
         csv_sumup_file = sumup_file_path + '%s-e-%s-sumup.csv' % (time_local,target_name_short)
         file = open(csv_file, 'a')
+        time_now = time.strftime('%H:%M:%S', time.localtime(
+            time.time()))
         if not os.path.exists(csv_sumup_file):
             file_sumup = open(csv_sumup_file, 'a')
             file_sumup.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'time,min,max,偏光度\n')
@@ -185,8 +187,6 @@ while True:
 
 
         # タイトルを入力する
-        time_now = time.strftime('%H:%M:%S', time.localtime(
-            time.time()))
         file.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
 
         # 集計ファイルが存在しなければすれば
