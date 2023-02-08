@@ -179,7 +179,7 @@ while True:
             time.time()))
         file.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
         # 集計ファイルが存在しなければすれば
-        if not os.path.exists(file_sumup):
+        if not os.path.exists(csv_sumup_file):
             file_sumup.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'time,min,max,偏光度\n')
 
         # マルチプレクサーを利用する場合は、下の行の　＃　を削除する
