@@ -91,6 +91,9 @@ gain = 1.0
 # 結果保存する場所
 result_path = '/home/pi/henko/result/'
 
+# 集計ファイルを保存するところ
+sumup_file_path = '/home/pi/henko/result/sumup/'
+
 # こちらの順番はどうでもいい、番号が合ったらオーケー
 number = {'6': '薄力小麦粉(20~50㎛)',
           '8': 'トマトパウダー(100~500㎛)',
@@ -166,14 +169,16 @@ while True:
 
 
         csv_file = result_path + '%s-e-%s.csv' % (time_local,target_name_short)
+        csv_sumup_file = sumup_file_path + '%s-e-%s-sumup.csv' % (time_local,target_name_short)
         file = open(csv_file, 'a')
+        file_sumup = open(csv_sumup_file,'a')
 
 
         # タイトルを入力する
         time_now = time.strftime('%H:%M:%S', time.localtime(
             time.time()))
         file.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'angle,henko(LUX),CH0,CH1,LUX1,LUX2\n')
-
+        file_sumup.write(time_local + ',,,' + time_now  + ',,,,' + target_name_short + ',' + target_diameter + '\n' + 'min,max,偏光度\n')
 
         # マルチプレクサーを利用する場合は、下の行の　＃　を削除する
         # tcaselect(0)
@@ -271,10 +276,12 @@ while True:
             angle(-90)
             henkodo = (max_lux - min_lux) / (max_lux + min_lux)
             henkodo2 = (max_s-min_s)/(max_s+min_s)
+            file_sumup.write('%f,%f,%f'%(min_lux,max_lux,henkodo))
             print('偏光度1 = %f'%(henkodo))
             print('偏光度2 = %f'%(henkodo2))
             file.write('\n')
         file.close()
+        file_sumup.close()
 
         # 実験ファイルを google drive　にアップロードする機能、要らなかったら Ture　を Falseにしてください
 
