@@ -152,8 +152,9 @@ while True:
 
 
     time_local = time.strftime('%Y-%m-%d', time.localtime(time.time()))
-    result_path += time_local
+
     if k == 0:
+        result_path += time_local
         if not os.path.exists(result_path):
             os.mkdir(result_path)
         result_path += '/'
