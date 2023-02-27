@@ -1,33 +1,38 @@
-import openpyxl
+import os
 
-file = 'C:/Users/zyxx/Desktop/sumup_2.xlsx'
+sum_up_csv = 'C:/Users/zyxx/Desktop/test_csv/daily_data/result/sumup.csv'
+unryo_folder = 'C:/Users/zyxx/Desktop/test_csv/daily_data/unryo'
 
-wb = openpyxl.load_workbook(file)
-ws = wb.active
+sumup = open(sum_up_csv, 'r')
+sumup_list = []
+start_list = []
 
-cell_row = 5
-k = 1
-while True:
-    if ws.cell(1, cell_row).value != None:
-        cell_row += 3
-        k += 1
-    else:
-        print('k=%d'%k)
-        break
+# まずは'0'を追加
 
-for i in range(24):
-    ws.cell(29, 3 * i + 1).value = str(650 + i * 50)
-    for k in range(k):
-        # ws.cell(30,2).value = ws.cell(3,2).value
-        # ws.cell(30,3).value = ws.cell(3,3).value
-        #
-        # ws.cell(31,2).value = ws.cell(3,5).value
-        # ws.cell(31,3).value = ws.cell(3,6).value
-        #
-        # ws.cell(30,5).value = ws.cell(4,2).value
-        # ws.cell(30,6).value = ws.cell(4,3).value
+for i in sumup:
+    sumup_list.append(i)
 
-        ws.cell(30 + k, 2 + i * 3).value = ws.cell(3 + i, 2 + k * 3).value
-        ws.cell(30 + k, 3 + i * 3).value = ws.cell(3 + i, 3 + 3 * k).value
+for i in range(sumup_list.__len__()):
+    if '/' in sumup_list[i]:
+        start_list.append(i + 2)
+    if 'end' in sumup_list[i]:
+        start_list.append(i + 2)
 
-wb.save(file)
+for i in range(start_list.__len__() ):
+    csv_list = []
+    # 時間を読み取る
+    time_split = sumup_list[start_list[i] - 2].split(',')[0].split('/')
+    csv_file = time_split[0] + '-' + time_split[1] + '-' + time_split[2] + '.csv'
+    print(csv_file)
+    # 雲量csvファイルを開く
+    csv_file_reader = open(unryo_folder + '/' + csv_file, 'r')
+    for k in csv_file_reader:
+        csv_list.append(k)
+    for l in csv_list:
+        l_split = l.split('\n')[0].split(',')
+        time = l_split[0]
+        unryo = l_split[1]
+        print(time)
+    for j in range(start_list[i], start_list[i+1] - 2):
+        pass
+print(csv_list)

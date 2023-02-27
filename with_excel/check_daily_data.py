@@ -53,21 +53,22 @@ def check(folder):
 
             ch1_list = []
             if 'henkoudo' in data[i]:
-                for row in range(start_point,i+1):
-                    ch1_list.append(data[row].split(',')[3])
-                min_ch1 = 99999
-                if ch1_list == ['']:
-                    min_ch1 = 0
-                else:
-                    for j in ch1_list:
-                        if j != '':
-                            if int(j) < min_ch1 :
-                                min_ch1 = int(j)
+            #     for row in range(start_point,i+1):
+            #         ch1_list.append(data[row].split(',')[3])
+            #     min_ch1 = 99999
+            #     if ch1_list == ['']:
+            #         min_ch1 = 0
+            #     else:
+            #         for j in ch1_list:
+            #             if j != '':
+            #                 if int(j) < min_ch1 :
+            #                     min_ch1 = int(j)
 
                 data_address.append([start_point, i])
                 data_split = data[i + 1].split(',')
-                sumup_file.write(data[start_point-3].split(',')[3].split('\n')[0] + ',' + str(data_split[5]) + ',' + str(
-                    data_split[6].split('\n')[0] + ','+str(min_ch1)+',\n'))
+                # sumup_file.write(data[start_point-3].split(',')[3].split('\n')[0] + ',' + str(data_split[5]) + ',' + str(
+                #     data_split[6].split('\n')[0] + ','+str(min_ch1)+',\n'))
+                sumup_file.write(data[start_point-3].split(',')[3].split('\n')[0] + ',' + str(data_split[5])  +',\n')
 
         csv_name_split = csv_name.split('-')
 

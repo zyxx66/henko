@@ -11,6 +11,9 @@ import os
 import cv2
 import numpy as np
 import ts1
+# ----2023/02/27追加----
+# ライン通知機能使用かどうか
+line_notice = False
 
 GPIO.setmode(GPIO.BCM)
 gp_out = 18
@@ -95,7 +98,7 @@ url = "https://notify-api.line.me/api/notify"
 # token = "H5elt3vAYuitcjLoVNo0KoQdjDmeEhODrgK0agnexeV"
 
 # f219030
-token = "qsI16BJFqnoajg7ci1vxDlhxx84AKZp0r3C4b0YV5pO"
+# token = "qsI16BJFqnoajg7ci1vxDlhxx84AKZp0r3C4b0YV5pO"
 
 image = filename
 
@@ -164,14 +167,15 @@ lstr = ','.join(map1)
 ms_data = '自然光(LUX)：' + str(round(s_ave, 2)) + '偏光(LUX)：' + lstr + "最大値:" + str(round(max, 2)) + "最小値:" + str(
     round(min, 2))
 ms2 = '雲量（％）：' + str(unryou) + '偏光度（％）：' + str(henkoudo)
-send_data = {'message': ms_data}
-send2 = {'message': ms2}
-headers = {'Authorization': 'Bearer ' + token}
-files = {'imageFile': open(image, 'rb')}
-file2 = {'imageFile': open(bwname, 'rb')}
 
-res = requests.post(url, data=send_data, headers=headers, files=files)
-res2 = requests.post(url, data=send2, headers=headers, files=file2)
+if line_notice:
+    send_data = {'message': ms_data}
+    send2 = {'message': ms2}
+    headers = {'Authorization': 'Bearer ' + token}
+    files = {'imageFile': open(image, 'rb')}
+    file2 = {'imageFile': open(bwname, 'rb')}
+    res = requests.post(url, data=send_data, headers=headers, files=files)
+    res2 = requests.post(url, data=send2, headers=headers, files=file2)
 
 print(henkoudo)
 

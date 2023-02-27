@@ -54,7 +54,7 @@ print(sum_up_list)
 # xlsxファイルにデータを入力
 for data in sum_up_list:
     # もし時間が出現したら
-    if '-' in data[0]:
+    if '/' in data[0]:
         sumup_row += 1
         work_sheet.cell(sumup_row, 1).value = data[0]
     elif 'time' not in data[0] and 'end' not in data[0]:

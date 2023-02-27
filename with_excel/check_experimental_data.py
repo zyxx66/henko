@@ -14,13 +14,14 @@ import openpyxl
 import csv
 import with_excel.create_graph as cg
 
-experimental_date = '2023年/01月/20日'
+experimental_date = '2023年/01月/30日'
 
-data_title = {1: '振らない', 2: '振る', 3: '振る', 4: '振る', 5: '振らない', 6: '振る',7:'振る',8:'振る'}
+data_title = {1: '振らない', 2: '振る', 3: '振る', 4: '振る', 5: '振らない', 6: '振る',7:'振る',8:'振る',9:'1',10:'1',11:'1',12:'1',13:'1',14:'1',15:'1',16:'1',17:'1',18:
+              1,19:'1',20:'1',21:'1',22:'1',23:'1',24:'1',25:'1'}
 sheet_title = {'empty': 0, 'RX_OX': 1, 'torumarin_0': 2, 'torumarin_1': 3, 'torumarin_3': 4,
-               'kokuen': 5, 'komugiko': 6, 'sugikafun': 7, 'tomato': 8}
+               'kokuen': 5, 'komugiko': 6, 'sugikafun': 7, 'tomato': 8,'none':9}
 sheet_name_Japanses = {'empty': '空き', 'RX_OX': 'RX OX', 'torumarin_0': 'トルマリン(0.8)', 'torumarin_1': 'トルマリン(1.8)', 'torumarin_3': 'トルマリン(3)',
-               'kokuen': '黒鉛', 'komugiko': '小麦粉', 'sugikafun': '花粉', 'tomato': 'トマト'}
+               'kokuen': '黒鉛', 'komugiko': '小麦粉', 'sugikafun': '花粉', 'tomato': 'トマト','none':'none'}
 fill_color = openpyxl.styles.PatternFill('solid', fgColor='FFFF00')
 border_set = openpyxl.styles.Border(left=openpyxl.styles.Side(style='thick', color=openpyxl.styles.colors.BLACK),
                                     right=openpyxl.styles.Side(style='thick', color=openpyxl.styles.colors.BLACK),
