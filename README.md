@@ -90,13 +90,13 @@ gdrive (google drive)　に関するプログラムである
 * [download_data.py](/with_excel/download_data.py)
 
 ## 5.参照になれるページ
-参照ページ1：https://akizukidenshi.com/catalog/g/gK-15536/ <br>
-(赤外線を測る機能が存在する) <br>
-参照ページ2：https://s-design-tokyo.com/use-tsl25721/ <br>
-(赤外線の照度の読み取り方法)<br>
-参照ページ3:http://www.wakariyasui.sakura.ne.jp/p/wave/kouha/kouha.html<br>
-(偏光)<br>
-参照ページ4:https://tadao-sakamoto.com/rayleigh-scattering-mie-scattering/<br>
-(散乱)<br>
-参照ページ5:http://www.takuichi.net/hobby/edu/em/sky_polarization/index-j.html<br>
-(空の偏光度)<br>
+参照ページ1：(赤外線を測る機能が存在する) <br>
+https://akizukidenshi.com/catalog/g/gK-15536/ <br>
+参照ページ2：(赤外線の照度の読み取り方法)<br>
+https://s-design-tokyo.com/use-tsl25721/ <br>
+参照ページ3:(偏光)<br>
+http://www.wakariyasui.sakura.ne.jp/p/wave/kouha/kouha.html<br>
+参照ページ4:(散乱)<br>
+https://tadao-sakamoto.com/rayleigh-scattering-mie-scattering/<br>
+参照ページ5:(空の偏光度)<br>
+http://www.takuichi.net/hobby/edu/em/sky_polarization/index-j.html<br>
